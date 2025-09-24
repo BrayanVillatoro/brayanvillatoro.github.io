@@ -1,5 +1,5 @@
 const GITHUB_USERNAME = 'brayan-villatoro';
-const GITHUB_API_URL = `https://api.github.com/users/brayan-villatoro/repos?sort=created&direction=asc&per_page=10.`;
+const GITHUB_API_URL = `https://api.github.com/users/brayanvillatoro/repos?sort=created&direction=asc&per_page=10.`;
 
 const timelineContainer = document.getElementById('timeline-container');
 const loadingElement = document.getElementById('loading');
