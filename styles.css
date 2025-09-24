@@ -525,21 +525,3 @@ footer {
         font-size: 1.5rem;
     }
 }
-
-.load-more-btn {
-    display: block;
-    margin: 1rem auto;
-    padding: 0.6rem 1.2rem;
-    background: #2b6cb0;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.load-more-btn:hover {
-    background: #2c5282;
-}
