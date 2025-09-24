@@ -2,11 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brayan Villatoro - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- For icons -->
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is a simple website hosted on GitHub Pages.</p>
+    <header>
+        <div class="container">
+            <h1><a href="#home">Brayan Villatoro</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#timeline">Projects</a></li>
+                    <li><a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" class="linkedin-btn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Full-Stack Developer & Innovator</h2>
+            <p>Building the future, one commit at a time.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I'm a passionate developer with experience in full-stack development, focusing on creating scalable web applications. Currently exploring AI integrations and open-source contributions.</p>
+            <!-- Placeholder from LinkedIn: Customize with your real details -->
+            <div class="experience">
+                <h3>Experience</h3>
+                <ul>
+                    <li><strong>Software Engineer</strong> at Tech Innovators Inc. (2022 - Present)<br>Developed backend services using Node.js and React for e-commerce platforms.</li>
+                    <li><strong>Junior Developer</strong> at Startup XYZ (2020 - 2022)<br>Contributed to mobile apps with Flutter and Firebase integrations.</li>
+                </ul>
+            </div>
+            <div class="skills">
+                <h3>Skills</h3>
+                <ul>
+                    <li>JavaScript / React</li>
+                    <li>Node.js / Express</li>
+                    <li>Python / Django</li>
+                    <li>Git / GitHub</li>
+                    <li>AWS / Docker</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline">
+        <div class="container">
+            <h2>GitHub Projects Timeline</h2>
+            <p id="loading">Loading your GitHub projects...</p>
+            <div id="timeline-container" class="timeline"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Brayan Villatoro. Built with GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
