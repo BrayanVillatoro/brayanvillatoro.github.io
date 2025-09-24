@@ -289,6 +289,25 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Load More Button (Mobile Only) */
+.load-more-btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.6rem 1.2rem;
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background: #2c5282;
+}
+
 /* Contact Section */
 .contact {
     padding: 120px 0 60px;
@@ -503,6 +522,16 @@ footer {
 
     .submit-btn {
         font-size: 0.85rem;
+    }
+
+    .load-more-btn {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .load-more-btn {
+        display: none;
     }
 }
 
