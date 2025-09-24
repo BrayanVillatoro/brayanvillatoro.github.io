@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Brayan Villatoro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">Brayan Villatoro</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#timeline">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" class="linkedin-btn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="contact" class="contact animate__animated animate__fadeIn">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p class="contact-intro">Interested in collaborating or have a question? Drop me a message!</p>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_HASH" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required rows="6" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            <p id="form-response" class="form-response"></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Brayan Villatoro. Built with GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
