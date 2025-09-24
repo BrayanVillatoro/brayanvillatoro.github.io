@@ -1,12 +1,10 @@
-// Replace with your GitHub username
-const GITHUB_USERNAME = 'YOUR_GITHUB_USERNAME'; // e.g., 'brayan-villatoro'
+const GITHUB_USERNAME = 'brayan-villatoro';
 const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=asc&per_page=10`;
 
-// DOM elements
 const timelineContainer = document.getElementById('timeline-container');
 const loadingElement = document.getElementById('loading');
+const formResponse = document.getElementById('form-response');
 
-// Function to fetch and display GitHub projects
 async function loadGitHubTimeline() {
     try {
         const response = await fetch(GITHUB_API_URL);
@@ -16,18 +14,18 @@ async function loadGitHubTimeline() {
         const repos = await response.json();
 
         if (repos.length === 0) {
-            timelineContainer.innerHTML = '<p>No public projects found. Make sure your repos are public!</p>';
+            timelineContainer.innerHTML = '<p class="text-center text-gray-500">No public projects found.</p>';
             loadingElement.style.display = 'none';
             return;
         }
 
-        timelineContainer.innerHTML = ''; // Clear loading
+        timelineContainer.innerHTML = '';
         loadingElement.style.display = 'none';
 
         repos.forEach((repo, index) => {
             const timelineItem = document.createElement('div');
-            timelineItem.className = 'timeline-item';
-            timelineItem.style.animationDelay = `${index * 0.2}s`; // Staggered animation
+            timelineItem.className = `timeline-item animate__animated animate__fadeInUp`;
+            timelineItem.style.animationDelay = `${index * 0.2}s`;
 
             const createdDate = new Date(repo.created_at).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -49,12 +47,11 @@ async function loadGitHubTimeline() {
 
     } catch (error) {
         console.error('Error fetching GitHub repos:', error);
-        timelineContainer.innerHTML = '<p>Error loading projects. Check your username and internet connection.</p>';
+        timelineContainer.innerHTML = '<p class="text-center text-red-500">Error loading projects.</p>';
         loadingElement.style.display = 'none';
     }
 }
 
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -68,5 +65,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Load timeline on page load
+if (formResponse) {
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', function (e) {
+        formResponse.textContent = 'Thanks for your message! I’ll get back soon.';
+        form.reset();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', loadGitHubTimeline);
