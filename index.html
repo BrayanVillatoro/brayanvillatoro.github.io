@@ -1,129 +1,99 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brayan Villatoro's portfolio showcasing computer engineering projects and skills.">
-    <title>Brayan Villatoro | Computer Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Helvetica:wght@900&family=Arial:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Brayan Villatoro - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="site-title">Brayan Villatoro Portfolio</div>
-            <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <h1><a href="index.html">Brayan Villatoro</a></h1>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#timeline">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" class="linkedin-btn"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" class="linkedin-btn">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
+    <section id="home" class="hero animate__animated animate__fadeIn">
         <div class="container">
-            <h1 class="hero-title animate__animated animate__fadeIn">BRAYAN VILLATORO</h1>
-            <div class="hero-content">
-                <img src="profile.jpg" alt="Brayan Villatoro" class="hero-image">
-                <div class="hero-text">
-                    <h2>LA-based Computer Engineer & Innovator</h2>
-                    <p>Brayan Villatoro is an LA-based computer engineer, developer, and innovator. His juxtaposition between code and real-world impact punctuates his signature style. Brayan believes engineering solutions are metaphors, making the abstract concrete and mystifying the mundane.</p>
-                </div>
+            <h2>Computer Engineer & Innovator</h2>
+            <p>Building impactful solutions with code and creativity.</p>
+        </div>
+    </section>
+
+    <section id="about" class="animate__animated animate__fadeInUp">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I'm a passionate engineer with a focus on creating simple and real world proven solutions. I thrive on solving complex problems and creating real world impact on end users.</p>
+            <div class="experience">
+                <h3>Experience</h3>
+                <ul>
+                    <li><strong>Information Technology</strong> at London Jewelers (MARCH 2024 - Present)<br>Provide IT solutions for luxury brands including Rolex, Patek Philippe, Cartier, VCA and other high-profile partners.
+                    
+                    A trusted point of contact in high-pressure situations, leading technical problem-solving during critical moments to
+                    ensure uninterrupted business operations. Strong communication, influence, and adaptability in resolving complex issues.
+                    
+                    Global administrator for all IT infrastructure and develop proprietary software with JavaScript.</li>
+
+                    <li><strong>Information Technology</strong> at PLS Financial (OCT 2023 - FEB 2024)<br>Drove excellence by prioritizing the meticulous fine-tuning and optimization of technology infrastructure.
+                    
+                    Directly oversaw 14 locations, including the top two highest-revenue sites out of over 214 locations across North
+                    America.
+                    Drove excellence by prioritizing the meticulous fine-tuning and optimization of technology infrastructure. Directly
+                    oversaw 14 locations, including the top two highest-revenue sites out of over 214 locations across North America.</li>
+
+                    <li><strong>Network Engineer</strong> at ArtsDistrict (JUL 2022 - FEB 2023)<br>Served as the sole Network Engineer, ensuring the security and reliability of the network infrastructure. Proficient in
+                    managing WatchGuard firewalls, UniFi networks, and G Suite administration.</li>
+
+                    <li><strong>Intern </strong> at New York State Office for the Prevention of Domestic Violence (APR 2021 - MAY 2021)<br>I was assigned the responsibility of developing a comprehensive cyber security safety and information document tailored
+                    for domestic abuse victims. https://opdv.ny.gov/system/files/documents/2021/10/technology-safety.pdf.</li>
+
+                    <li><strong>Intern </strong> at Microsoft (MAR 2017 - APR 2017)<br>Demonstrated expertise in identifying website vulnerabilities, specifically through parameter manipulation, to uncover
+                    login breaches that had not been anticipated by developers.</li>
+
+                </ul>
+            </div>
+            <div class="skills">
+                <h3>Skills</h3>
+                <ul>
+                    <li>JavaScript </li>
+                    <li>C++ </li>
+                    <li>Python</li>
+                    <li>Git / GitHub</li>
+                    <li>Azure</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="timeline" class="animate__animated animate__fadeInUp">
         <div class="container">
-            <h2>Engineering Services</h2>
-            <p>Brayan offers professional IT and engineering solutions for agencies and industry clients, with expertise in infrastructure optimization, software development, and cybersecurity—perfect for campaigns, portfolios, and brand content.</p>
-        </div>
-    </section>
-
-    <section id="collections" class="collections">
-        <div class="container">
-            <div class="collection">
-                <h2>GitHub Collection</h2>
-                <p>Explore my open-source contributions and projects. Code is a metaphor, making the abstract concrete and mystifying the mundane. Be clear, be confident, and don’t overthink it.</p>
-                <div id="loading">Loading your GitHub projects...</div>
-                <div id="projects-container" class="projects-grid"></div>
-            </div>
-            <div class="collection">
-                <h2>Professional Experience Collection</h2>
-                <p>Highlights from my career in IT and engineering. Be clear, be confident, and don’t overthink it. The beauty of your story is that it’s going to continue to evolve.</p>
-                <ul class="experience-list">
-                    <li>Information Technology at London Jewelers (March 2024 - Present)</li>
-                    <li>Information Technology at PLS Financial (October 2023 - February 2024)</li>
-                    <li>Network Engineer at ArtsDistrict (July 2022 - February 2023)</li>
-                </ul>
-            </div>
-            <div class="collection">
-                <h2>Skills & Internships Collection</h2>
-                <p>Core skills and early experiences. Your goal should be to make it feel right for right now. Later will take care of itself.</p>
-                <ul class="skills-list">
-                    <li>JavaScript, C++, Python</li>
-                    <li>Git/GitHub, Azure</li>
-                    <li>Intern at NYS Office for Prevention of Domestic Violence (April 2021 - May 2021)</li>
-                    <li>Intern at Microsoft (March 2017 - April 2017)</li>
-                </ul>
-            </div>
+            <h2>GitHub Projects Timeline</h2>
+            <p id="loading">Loading your GitHub projects...</p>
+            <div id="timeline-container" class="timeline"></div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Brayan Villatoro | <a href="https://brayanvillatoro.com">brayanvillatoro.com</a></p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/brayanvillatoro" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
+            <p>&copy; 2025 Brayan Villatoro. Built with GitHub Pages.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
