@@ -1,6 +1,6 @@
 # Brayan Villatoro's Portfolio 🌟
 
-![Portfolio Preview](https://via.placeholder.com/800x400.png?text=Portfolio+Preview) <!-- Replace with screenshot.png -->
+![brayan_villatoro](https://github.com/user-attachments/assets/cd555f77-2c73-4fbb-88a6-756bbd12a997)
 
 Welcome to my personal portfolio repository! This static website, hosted on **GitHub Pages**, showcases my skills, projects, and professional journey as a full-stack developer. Built with **HTML**, **CSS**, and **JavaScript**, it features a dynamic GitHub projects timeline, a contact form powered by Formspree, and a link to my LinkedIn profile.
 
