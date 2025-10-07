@@ -21,7 +21,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(to right, #2b6cb0, #2c3e50);
+    background: linear-gradient(to right, #415A77, #1B263B);
     color: white;
     padding: 1rem 0;
     position: fixed;
@@ -57,7 +57,7 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     transition: color 0.3s ease;
 }
 
@@ -107,7 +107,7 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #4299e1, #2c3e50);
+    background: linear-gradient(135deg, #415A77, #1B263B);
     color: white;
     text-align: center;
     padding: 120px 0 80px;
@@ -133,7 +133,7 @@ nav a:hover {
 /* About Section */
 #about {
     padding: 60px 0;
-    background: white;
+    background: E0E1DD;
 }
 
 #about h2 {
@@ -479,7 +479,7 @@ footer {
     }
 
     .timeline::after {
-        left: 20px;
+        left: 80px;
     }
 
     .timeline-item {
