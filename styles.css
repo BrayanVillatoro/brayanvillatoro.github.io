@@ -5,15 +5,31 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    min-height: 100%;
+    /* fallback color if gradients aren't supported/rendered immediately */
+    background-color: #f7fafc;
+}
+
+/* Apply the gradient consistently and ensure it covers the page */
+html, body {
+    background-image: linear-gradient(180deg, #415A77 0%, #1B263B 30%, #E0E1DD 70%, #f7fafc 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacOSFont, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: #2d3748;
-    /* Full-page gradient so sections blend seamlessly from top to bottom */
-    background: linear-gradient(180deg, #415A77 0%, #1B263B 30%, #E0E1DD 70%, #f7fafc 100%);
     min-height: 100vh;
     scroll-behavior: smooth;
 }
+
+/* Prevent fixed header from covering anchored content */
+html { scroll-padding-top: 72px; }
 
 .container {
     max-width: 1200px;
@@ -162,7 +178,7 @@ nav a:hover {
 @media screen and (min-width: 769px) {
     #about .container {
         background: rgba(255,255,255,0.85);
-        padding: 2rem;
+        padding: 1.6rem;
         border-radius: 10px;
         box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
@@ -266,17 +282,8 @@ nav a:hover {
 }
 
 .timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    right: -8px;
-    background: #415A77;
-    border: 3px solid #2b6cb0;
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-    transition: transform 0.3s ease;
+    /* Removed circle markers: visual markers were removed per request */
+    content: none;
 }
 
 .timeline-item:hover::after {
@@ -346,7 +353,8 @@ nav a:hover {
 .contact {
     padding: 120px 0 60px;
     background: transparent; /* show page gradient through */
-    min-height: 80vh;
+    /* avoid forcing a large empty area; let content define height */
+    min-height: auto;
 }
 
 .contact h2 {
@@ -369,10 +377,12 @@ nav a:hover {
 .contact-form {
     max-width: 450px;
     margin: 0 auto;
-    background: white;
+    /* slightly translucent card so the page gradient reads through subtly */
+    background: rgba(255,255,255,0.96);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .form-group {
@@ -391,10 +401,11 @@ nav a:hover {
 .form-group textarea {
     width: 100%;
     padding: 0.6rem;
-    border: 1px solid #e2e8f0;
+    /* slightly stronger border for contrast against the translucent card */
+    border: 1px solid rgba(0,0,0,0.08);
     border-radius: 6px;
     font-size: 0.9rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.15s ease;
 }
 
 .form-group input:focus,
@@ -518,7 +529,7 @@ footer {
 
     .timeline-item {
         width: 100%;
-        padding-left: 50px;
+        padding-left: 70px;
         padding-right: 15px;
     }
 
@@ -528,7 +539,8 @@ footer {
     }
 
     .timeline-item::after {
-        left: 12px;
+        left: 26px;
+        right: auto;
     }
 
     .timeline-content {
@@ -547,6 +559,32 @@ footer {
     .contact-form {
         padding: 1rem;
         max-width: 90%;
+    }
+
+    /* Mobile: ensure contact card is readable over gradient */
+    #contact .container {
+        background: rgba(255,255,255,0.98);
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    #contact,
+    #contact h2,
+    #contact p,
+    #contact label {
+        color: #2d3748;
+    }
+
+    /* Mobile: make about card readable like contact */
+    #about .container {
+        background: rgba(255,255,255,0.98);
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    #about,
+    #about h2,
+    #about p,
+    #about label {
+        color: #2d3748;
     }
 
     .form-group input,
@@ -574,6 +612,37 @@ footer {
         }
 }
 
+    /* Make contact container match about card on desktop for consistent look */
+    @media screen and (min-width: 769px) {
+        #contact .container {
+            background: rgba(255,255,255,0.95);
+            padding: 1.6rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+        /* ensure text within the contact card is dark enough */
+        #contact,
+        #contact h2,
+        #contact p,
+        #contact label {
+            color: #2d3748;
+        }
+    }
+
+    /* Footer spacing: ensure contact page bottom looks like index */
+    footer {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        position: relative;
+        z-index: 10; /* keep footer above background artifacts */
+        background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
+    }
+
+    /* Force background to cover very long pages and avoid white gaps */
+    html, body {
+        background-size: auto 100%;
+    }
+
 @media screen and (max-width: 480px) {
     header h1 a {
         font-size: 1.4rem;
@@ -592,4 +661,21 @@ footer {
     .contact h2 {
         font-size: 1.5rem;
     }
+}
+
+#about p {
+    max-width: 70ch;
+    margin: 0 auto 1rem;
+    line-height: 1.75;
+    font-size: 1rem;
+    color: #2d3748;
+}
+
+/* Softer header overlay so it blends more smoothly with the body gradient */
+header::before {
+    background: linear-gradient(180deg,
+        rgba(65,90,119,0.7) 0%,
+        rgba(65,90,119,0.45) 20%,
+        rgba(27,38,59,0.18) 50%,
+        rgba(27,38,59,0.0) 100%);
 }
