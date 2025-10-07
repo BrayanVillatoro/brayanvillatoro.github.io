@@ -6,10 +6,12 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacOSFont, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: #2d3748;
-    background-color: #f7fafc;
+    /* Full-page gradient so sections blend seamlessly from top to bottom */
+    background: linear-gradient(180deg, #415A77 0%, #1B263B 30%, #E0E1DD 70%, #f7fafc 100%);
+    min-height: 100vh;
     scroll-behavior: smooth;
 }
 
@@ -21,14 +23,34 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(to right, #415A77, #1B263B);
+    /* transparent header: pseudo-element adds a vertical fade so the header blends into the page gradient */
+    background: transparent;
     color: white;
     padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    overflow: visible;
+}
+
+/* vertical fade overlay so header starts the body gradient smoothly */
+header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1; /* sits behind header content but above the page background because header has a high z-index */
+    background: linear-gradient(180deg,
+        rgba(65,90,119,0.9) 0%, /* matches #415A77 */
+        rgba(27,38,59,0.6) 40%, /* matches #1B263B */
+        rgba(27,38,59,0.0) 100%);
 }
 
 header .container {
@@ -52,7 +74,7 @@ nav ul {
 nav li {
     margin-left: 1.5rem;
 }
-
+/* Header Manu */
 nav a {
     color: white;
     text-decoration: none;
@@ -66,10 +88,10 @@ nav a:hover {
 }
 
 .linkedin-btn {
-    background: #0a66c2;
+    background: #0077B5;
     padding: 0.5rem 1rem;
     border-radius: 6px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -107,7 +129,7 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #415A77, #1B263B);
+    background: transparent;
     color: white;
     text-align: center;
     padding: 120px 0 80px;
@@ -118,7 +140,7 @@ nav a:hover {
 
 .hero h2 {
     font-size: 2.2rem;
-    font-weight: 800;
+    font-weight: 1000;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -133,14 +155,26 @@ nav a:hover {
 /* About Section */
 #about {
     padding: 60px 0;
-    background: E0E1DD;
+    background: transparent;
 }
 
+/* Desktop: put a semi-opaque card behind the about content for readability */
+@media screen and (min-width: 769px) {
+    #about .container {
+        background: rgba(255,255,255,0.85);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    /* Slightly more transparent header on desktop to emphasize page fade */
+    header {
+        background: linear-gradient(to right, rgba(65,90,119,0.85), rgba(27,38,59,0.85));
+    }
+}
 #about h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 2rem;
-    color: #2d3748;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -164,7 +198,7 @@ nav a:hover {
 
 .experience li,
 .skills li {
-    background: #edf2f7;
+    background: #f7fafc;
     margin-bottom: 0.75rem;
     padding: 1rem;
     border-radius: 8px;
@@ -181,7 +215,7 @@ nav a:hover {
 /* Timeline Section */
 #timeline {
     padding: 60px 0;
-    background: #f7fafc;
+    background: transparent; /* allow body gradient to continue */
 }
 
 #timeline h2 {
@@ -237,7 +271,7 @@ nav a:hover {
     width: 16px;
     height: 16px;
     right: -8px;
-    background: white;
+    background: #415A77;
     border: 3px solid #2b6cb0;
     top: 15px;
     border-radius: 50%;
@@ -311,7 +345,7 @@ nav a:hover {
 /* Contact Section */
 .contact {
     padding: 120px 0 60px;
-    background: #f7fafc;
+    background: transparent; /* show page gradient through */
     min-height: 80vh;
 }
 
@@ -457,9 +491,9 @@ footer {
     }
 
     #about {
-        padding: 40px 0;
+        padding: 60px 0;
+        background: transparent; /* transparent so it shows the body gradient underneath */
     }
-
     #about h2 {
         font-size: 1.8rem;
     }
@@ -471,9 +505,9 @@ footer {
     }
 
     #timeline {
-        padding: 40px 0;
+        padding: 60px 0;
+        background: transparent; /* allow the page gradient to continue through */
     }
-
     #timeline h2 {
         font-size: 1.8rem;
     }
@@ -533,6 +567,11 @@ footer {
     .load-more-btn {
         display: none;
     }
+        /* keep header more subtle on desktop; pseudo-element provides the smooth fade */
+        header {
+            /* ensure header stays transparent on desktop; opacity handled by ::before */
+            background: transparent;
+        }
 }
 
 @media screen and (max-width: 480px) {
