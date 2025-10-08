@@ -71,8 +71,9 @@ header::before {
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* keeps name left and nav right */
     align-items: center;
+    padding-left: 1rem; /* small extra left padding so the site name isn't flush */
 }
 
 header h1 a {
@@ -82,9 +83,25 @@ header h1 a {
     font-weight: 700;
 }
 
+/* Ensure the site name sits on the left of the header and is visible above the nav */
+header h1 {
+    margin: 0;
+    padding-left: 0.75rem; /* ensure name sits comfortably from the left edge */
+    z-index: 1001; /* keep name above header overlays */
+    display: block; /* ensure it's visible and participates in layout */
+}
+
+@media screen and (max-width: 480px) {
+    header h1 a { font-size: 1.25rem; }
+}
+
 nav ul {
     display: flex;
     list-style: none;
+    /* push nav to the right while keeping a comfortable right gap */
+    margin-left: auto;
+    margin-right: 2.5rem;
+    gap: 1.25rem;
 }
 
 nav li {
@@ -129,6 +146,7 @@ nav a:hover {
 
 .nav-menu {
     display: flex;
+    margin-left: auto; /* push the whole nav block to the right of the header */
 }
 
 .nav-menu.active {
@@ -170,17 +188,19 @@ nav a:hover {
 
 /* About Section */
 #about {
-    padding: 60px 0;
+    padding: 80px 0; /* more breathing room */
     background: transparent;
 }
 
 /* Desktop: put a semi-opaque card behind the about content for readability */
 @media screen and (min-width: 769px) {
     #about .container {
-        background: rgba(255,255,255,0.85);
-        padding: 1.6rem;
-        border-radius: 10px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        background: rgba(255,255,255,0.9);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        max-width: 1000px;
+        margin: 0 auto;
     }
     /* Slightly more transparent header on desktop to emphasize page fade */
     header {
@@ -194,6 +214,8 @@ nav a:hover {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+
+/* About layout: single column by default (original styles retained) */
 
 .experience,
 .skills {
@@ -238,7 +260,7 @@ nav a:hover {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 2rem;
-    color: #2d3748;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -479,14 +501,14 @@ footer {
         align-items: center;
     }
 
-    nav li {
-        margin: 0.5rem 0;
+    nav ul {
+        display: flex;
+        list-style: none;
+        /* keep spacing between menu items and a small right gap */
+        margin-left: 0;
+        margin-right: 2.5rem;
+        gap: 1.25rem;
     }
-
-    .linkedin-btn {
-        margin-top: 0.5rem;
-    }
-
     .hero {
         padding: 100px 0 60px;
         min-height: auto;
@@ -505,6 +527,7 @@ footer {
         padding: 60px 0;
         background: transparent; /* transparent so it shows the body gradient underneath */
     }
+    /* About remains single-column on mobile */
     #about h2 {
         font-size: 1.8rem;
     }
@@ -664,6 +687,7 @@ footer {
 }
 
 #about p {
+    /* Constrain the bio line-length to match the content cards and improve readability */
     max-width: 70ch;
     margin: 0 auto 1rem;
     line-height: 1.75;
@@ -679,3 +703,136 @@ header::before {
         rgba(27,38,59,0.18) 50%,
         rgba(27,38,59,0.0) 100%);
 }
+
+@media screen and (min-width: 1000px) {
+    nav ul {
+        margin-right: 4rem; /* nudge menu left from the edge a bit more on wide screens */
+        gap: 2rem;
+    }
+    #about .container {
+        max-width: 850px; /* slightly narrower for better line length */
+    }
+}
+
+/* Lifestyle page placeholders */
+.lifestyle-intro .lead {
+    max-width: 70ch;
+    margin: 0 auto 1rem;
+    color: #2d3748;
+}
+
+/* Improve readability for the intro text when over the page gradient */
+.lifestyle-intro .lead {
+    color: #ffffff; /* make intro text white for best contrast */
+    font-size: 1.05rem;
+}
+
+/* Dark highlight box for readable intro/about content */
+.lifestyle-highlight {
+    background: rgba(255, 255, 255, 0.95);
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        color:black;
+        min-height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.lifestyle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.lifestyle-grid .card {
+    background: rgba(255,255,255,0.95);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.lifestyle-grid .graphic {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .lifestyle-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ensure lifestyle content doesn't sit under the fixed header */
+#lifestyle {
+    padding-top: 100px; /* leaves space for fixed header */
+    color:white;
+}
+
+.lifestyle-card {
+    background: rgba(255,255,255,0.96);
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    margin-top: 1rem;
+}
+
+/* Ensure text inside lifestyle-card is dark and readable */
+.lifestyle-card,
+.lifestyle-card p,
+.lifestyle-card .caption {
+    color: #2d3748;
+}
+
+/* Make small helper/template text inside the card slightly larger and more readable */
+.lifestyle-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.lifestyle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.connect-area {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    padding-top: 1rem;
+}
+
+.connect-area p { color: #2d3748; }
+
+.connect-btn {
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.connect-btn.strava { background: linear-gradient(90deg,#fc4c02,#ff7a00); }
+
+@media screen and (max-width: 900px) {
+    .lifestyle-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media screen and (max-width: 480px) {
+    .lifestyle-grid { grid-template-columns: 1fr; }
+}
+
+/* Add bottom gap so the template items don't touch the bottom of the viewport */
+main { padding-bottom: 8rem; }
