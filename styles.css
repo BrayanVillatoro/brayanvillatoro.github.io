@@ -399,7 +399,6 @@ nav a:hover {
 .contact-form {
     max-width: 450px;
     margin: 0 auto;
-    /* slightly translucent card so the page gradient reads through subtly */
     background: rgba(255,255,255,0.96);
     padding: 1.5rem;
     border-radius: 8px;
@@ -423,7 +422,6 @@ nav a:hover {
 .form-group textarea {
     width: 100%;
     padding: 0.6rem;
-    /* slightly stronger border for contrast against the translucent card */
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 6px;
     font-size: 0.9rem;
