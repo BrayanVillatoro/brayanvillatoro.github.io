@@ -103,12 +103,44 @@ if (navToggle && navMenu) {
     });
 }
 
-// Form response handling
+// Form response handling - submit via fetch and only reset on success
 if (formResponse) {
     const form = document.querySelector('.contact-form');
-    form.addEventListener('submit', function (e) {
-        formResponse.textContent = 'Thanks for your message! I’ll get back soon.';
-        form.reset();
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        formResponse.textContent = 'Sending...';
+
+        const action = form.getAttribute('action') || window.location.href;
+        const formData = new FormData(form);
+
+        try {
+            const res = await fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (res.ok) {
+                formResponse.textContent = 'Thanks — your message was sent!';
+                form.reset();
+            } else {
+                let errMsg = 'Sorry, an error occurred while sending your message.';
+                try {
+                    const data = await res.json();
+                    if (data && data.errors) {
+                        errMsg = data.errors.map(err => err.message).join(', ');
+                    }
+                } catch (parseErr) {
+                    // ignore JSON parse errors
+                }
+                formResponse.textContent = errMsg;
+            }
+        } catch (err) {
+            console.error('Form submit failed', err);
+            formResponse.textContent = 'Network error. Please try again later.';
+        }
     });
 }
 
