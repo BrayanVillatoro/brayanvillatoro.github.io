@@ -103,45 +103,49 @@ if (navToggle && navMenu) {
     });
 }
 
-// Form response handling - submit via fetch and only reset on success
+// Form response handling - opt-in AJAX. By default the form will POST natively so Formspree's HTML
+// checker and native submissions work. Add data-ajax="true" to the form element to enable JS handling.
 if (formResponse) {
     const form = document.querySelector('.contact-form');
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        formResponse.textContent = 'Sending...';
+    // Only intercept submit if explicitly requested with data-ajax="true"
+    if (form && form.dataset && form.dataset.ajax === 'true') {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            formResponse.textContent = 'Sending...';
 
-        const action = form.getAttribute('action') || window.location.href;
-        const formData = new FormData(form);
+            const action = form.getAttribute('action') || window.location.href;
+            const formData = new FormData(form);
 
-        try {
-            const res = await fetch(action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (res.ok) {
-                formResponse.textContent = 'Thanks — your message was sent!';
-                form.reset();
-            } else {
-                let errMsg = 'Sorry, an error occurred while sending your message.';
-                try {
-                    const data = await res.json();
-                    if (data && data.errors) {
-                        errMsg = data.errors.map(err => err.message).join(', ');
+            try {
+                const res = await fetch(action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
                     }
-                } catch (parseErr) {
-                    // ignore JSON parse errors
+                });
+
+                if (res.ok) {
+                    formResponse.textContent = 'Thanks — your message was sent!';
+                    form.reset();
+                } else {
+                    let errMsg = 'Sorry, an error occurred while sending your message.';
+                    try {
+                        const data = await res.json();
+                        if (data && data.errors) {
+                            errMsg = data.errors.map(err => err.message).join(', ');
+                        }
+                    } catch (parseErr) {
+                        // ignore JSON parse errors
+                    }
+                    formResponse.textContent = errMsg;
                 }
-                formResponse.textContent = errMsg;
+            } catch (err) {
+                console.error('Form submit failed', err);
+                formResponse.textContent = 'Network error. Please try again later.';
             }
-        } catch (err) {
-            console.error('Form submit failed', err);
-            formResponse.textContent = 'Network error. Please try again later.';
-        }
-    });
+        });
+    }
 }
 
 // Handle window resize to reload timeline if needed
