@@ -37,7 +37,7 @@ Welcome to my personal portfolio repository! This static website, hosted on **Gi
 
 ## 🛠️ Getting Started
 
-Follow these steps to run the portfolio locally or adapt it for your own use.
+Follow these steps to run the website locally or adapt it for your own use.
 
 ### Prerequisites
 - A GitHub account
@@ -98,7 +98,7 @@ brayanvillatoro.github.io/
 
 ## 🤝 Contributing
 
-I welcome contributions to enhance this portfolio! To contribute:
+I welcome contributions to enhance this website! To contribute:
 
 1. Fork the repository.
 2. Create a branch: `git checkout -b feature/your-idea`.

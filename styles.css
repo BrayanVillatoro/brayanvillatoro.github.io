@@ -241,7 +241,7 @@ nav a:hover {
     background: transparent;
     color: white;
     text-align: center;
-    padding: 120px 0 80px;
+    padding: 80px 0 80px;
     min-height: 40vh;
     display: flex;
     align-items: center;
@@ -826,34 +826,35 @@ header::before {
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
+/* Ensure lifestyle-grid cards are consistent */
 .lifestyle-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-top: 1rem;
-    
+    width: 100%;
+    max-width: 100%;
+    align-items: stretch;
+    /* Ensure all cards stretch to the same height */
 }
 
+/* General card styling */
 .lifestyle-grid .card {
-    background: rgba(255,255,255,0.95);
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: center;
-    min-height: 140px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-height: 160px;
+    /* Slightly increased for consistency */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Subtle background and shadow for depth */
-    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
-    /* Soft gradient */
-    border-radius: 16px;
-    /* Softer, modern corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Smooth hover effect */
-    }
+}
     
 .lifestyle-grid .card:hover {
     transform: translateY(-5px);
@@ -862,6 +863,12 @@ header::before {
     /* Enhanced shadow */
         }
         
+/* Specific styling for Spotify card */
+.lifestyle-grid .card.spotify-card {
+    padding: 0;
+    /* Remove padding to let iframe fill the card */
+}
+
 .lifestyle-grid .graphic {
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
@@ -871,6 +878,7 @@ header::before {
     .lifestyle-grid {
         grid-template-columns: 1fr;
     }
+  
 }
 
 /* Ensure lifestyle content doesn't sit under the fixed header */
@@ -900,36 +908,157 @@ header::before {
     line-height: 1.6;
 }
 
+/* Ensure lifestyle-grid fills its parent */
 .lifestyle-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    align-items: stretch;
-}
-
-.spotify-embed-container {
     margin-top: 1rem;
-    border-top: 1px solid rgba(0,0,0,0.04);
-    padding-top: 1rem;
+    width: 100%;
+    max-width: 100%;
 }
 
-.spotify-embed-container p { color: #2d3748; }
+/* Style the card to fill the grid cell */
+.lifestyle-grid .card.placeholder {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    /* Reduced for more space */
+    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+    /* Your gradient */
+    border-radius: 16px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    min-height: 140px;
+    /* Base height */
+    display: flex;
+    /* Enable flex for height stretching */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.spotify-embed-container  {
-    display: inline-block;
-    padding: 0.45rem 0.8rem;
-    border-radius: 8px;
-    color: white;
-    text-decoration: none;
+/* Hover effect */
+.lifestyle-grid .card.placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Style the Spotify embed container */
+.spotify-embed-container {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    /* Fill card height */
+    padding: 0;
+    border-radius: 12px;
+    display: flex;
+    /* Ensure iframe can stretch */
+    flex-direction: column;
+}
+
+/* Style the iframe */
+.spotify-iframe {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    /* Fill container height */
+    border-radius: 12px;
+    border: none;
+}
+
+/* Optional caption */
+.spotify-embed-container::before {
+    content: "Daily Mix on Spotify";
+    display: block;
+    font-size: 1rem;
     font-weight: 600;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 
+/* Ensure card has defined height for taller mobile viewports */
+@media screen and (min-height: 900px) {
+    .lifestyle-grid .card.placeholder {
+        height: 100%;
+        /* Fill available grid cell height */
+        min-height: 200px;
+        /* Taller for larger viewports */
+    }
+
+    .spotify-embed-container {
+        height: 100%;
+        /* Ensure container fills card */
+    }
+
+    .spotify-iframe {
+        height: 100%;
+        /* Fill container */
+        min-height: 152px;
+        /* Fallback to avoid collapse */
+    }
+}
+
+/* Mobile adjustments */
 @media screen and (max-width: 900px) {
-    .lifestyle-grid { grid-template-columns: repeat(2, 1fr); }
+    .lifestyle-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Your rule */
+    }
+
+    .lifestyle-grid .card.placeholder {
+        padding: 0.3rem;
+        min-height: 160px;
+        /* Slightly taller for mobile */
+    }
+
+    .spotify-iframe {
+        height: 100%;
+        /* Fill card height */
+        min-height: 152px;
+        /* Consistent fallback */
+    }
 }
 
 @media screen and (max-width: 480px) {
-    .lifestyle-grid { grid-template-columns: 1fr; }
+    .lifestyle-grid {
+        grid-template-columns: 1fr;
+        /* Your rule */
+    }
+
+    .container {
+        padding: 0 0.5rem;
+        /* Your mobile padding */
+    }
+
+    .lifestyle-grid .card.placeholder {
+        padding: 0.2rem;
+        min-height: 180px;
+        /* Taller for single-column mobile */
+    }
+
+    .spotify-iframe {
+        height: 100%;
+        min-height: 152px;
+    }
+}
+
+/* Override general iframe rule */
+@media screen and (max-width: 430px) {
+    .spotify-iframe {
+        height: 100%;
+        /* Override height: auto */
+        min-height: 152px;
+    }
+}
+
+/* Ensure lifestyle section fills width */
+#lifestyle {
+    padding-top: 100px;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Add bottom gap so the template items don't touch the bottom of the viewport */
