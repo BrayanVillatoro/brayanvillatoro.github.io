@@ -261,11 +261,13 @@ nav a:hover {
     margin: 0 auto;
 }
 
-/* About Section */
+/*
+/ About Section 
 #about {
-    padding: 80px 0; /* more breathing room */
+    padding: 80px 0; 
     background: transparent;
 }
+*/
 
 /* Desktop: put a semi-opaque card behind the about content for readability */
 @media screen and (min-width: 769px) {
@@ -943,6 +945,7 @@ header::before {
 .lifestyle-grid .card.placeholder:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    
 }
 
 /* Style the Spotify embed container */
