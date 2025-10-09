@@ -5,7 +5,7 @@
 Welcome to my personal portfolio repository! This static website, hosted on **GitHub Pages**, showcases my skills, projects, and professional journey as a full-stack developer. Built with **HTML**, **CSS**, and **JavaScript**, it features a dynamic GitHub projects timeline, a contact form powered by Formspree, and a link to my LinkedIn profile.
 
 🔗 **Live Demo**: [brayanvillatoro.github.io](https://brayanvillatoro.github.io)  
-📩 **Contact**: [Contact Page](https://brayanvillatoro.github.io/contact.html)  
+📩 **Contact**: [Contact Page](https://brayanvillatoro.com/contact.html)  
 💼 **LinkedIn**: [Brayan Villatoro](https://www.linkedin.com/in/brayan-villatoro/)  
 ⭐ **Star this repo**: Show support by starring!  
 🔔 **Watch for updates**: Stay tuned for new features.
@@ -130,7 +130,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - ⭐ **Star this repo** to show support!
 - 🔔 **Watch** for updates on new features and fixes.
 - 💬 Join the conversation in the [Discussions](https://github.com/brayanvillatoro/brayanvillatoro.github.io/discussions) tab.
-- 📧 Reach out via the [Contact Page](https://brayanvillatoro.github.io/contact.html) or [LinkedIn](https://www.linkedin.com/in/brayan-villatoro/).
+- 📧 Reach out via the [Contact Page](https://brayanvillatoro.com/contact.html) or [LinkedIn](https://www.linkedin.com/in/brayan-villatoro/).
 
 Thank you for visiting my portfolio! 🚀 Let's connect and build something amazing.
 
