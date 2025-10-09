@@ -831,6 +831,7 @@ header::before {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-top: 1rem;
+    
 }
 
 .lifestyle-grid .card {
@@ -843,9 +844,24 @@ header::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-}
-
+    /* Subtle background and shadow for depth */
+    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+    /* Soft gradient */
+    border-radius: 16px;
+    /* Softer, modern corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth hover effect */
+    }
+    
+.lifestyle-grid .card:hover {
+    transform: translateY(-5px);
+    /* Slight lift */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    /* Enhanced shadow */
+        }
+        
 .lifestyle-grid .graphic {
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
@@ -891,15 +907,15 @@ header::before {
     align-items: stretch;
 }
 
-.connect-area {
+.spotify-embed-container {
     margin-top: 1rem;
     border-top: 1px solid rgba(0,0,0,0.04);
     padding-top: 1rem;
 }
 
-.connect-area p { color: #2d3748; }
+.spotify-embed-container p { color: #2d3748; }
 
-.connect-btn {
+.spotify-embed-container  {
     display: inline-block;
     padding: 0.45rem 0.8rem;
     border-radius: 8px;
@@ -907,8 +923,6 @@ header::before {
     text-decoration: none;
     font-weight: 600;
 }
-
-.connect-btn.strava { background: linear-gradient(90deg,#fc4c02,#ff7a00); }
 
 @media screen and (max-width: 900px) {
     .lifestyle-grid { grid-template-columns: repeat(2, 1fr); }
