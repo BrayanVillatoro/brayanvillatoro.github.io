@@ -20,6 +20,61 @@ html, body {
     background-size: cover;
 }
 
+/* Mobile-first adjustments: target small phones (iPhone 14 Pro width ~393px) and general mobile */
+@media screen and (max-width: 430px) {
+    /* slightly larger base tap targets and readable text */
+    html { font-size: 15px; }
+    body { line-height: 1.5; }
+
+    header {
+        padding: 0.6rem 0;
+    }
+
+    header .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    /* make nav compact: hide inline menu and show toggle */
+    nav ul { display: none; }
+    .nav-toggle { display: block; }
+
+    header h1 a { font-size: 1.05rem; }
+
+    .hero { padding: 72px 0 40px; }
+
+    .container { padding: 0 0.75rem; }
+
+    /* Make inputs and buttons easier to tap */
+    .form-group input, .form-group textarea { padding: 0.9rem; font-size: 1rem; }
+    .submit-btn { padding: 0.85rem; font-size: 1rem; }
+
+    /* Make timeline stack and reduce left padding */
+    .timeline::after { left: 56px; }
+    .timeline-item { padding-left: 64px; }
+
+    /* Ensure hero and about text are readable */
+    .hero h2 { font-size: 1.4rem; }
+    .hero p { font-size: 1rem; }
+
+    /* Responsive embeds */
+    iframe { max-width: 100%; width: 100%; height: auto; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Stack hero content on small phones for simpler layout */
+    .hero {
+        display: block;
+        padding: 64px 0 28px;
+        text-align: center;
+    }
+
+    /* make container use more of the viewport on phones */
+    .container { max-width: 100%; }
+
+    /* Improve link tap size in header/nav */
+    nav a { padding: 0.6rem 0.4rem; display: inline-block; font-size: 1rem; }
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacOSFont, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
@@ -142,6 +197,26 @@ nav a:hover {
     border: none;
     color: white;
     cursor: pointer;
+}
+
+/* Make the toggle easier to see and tap on mobile */
+@media screen and (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+        padding: 0.5rem;
+        border-radius: 6px;
+    }
+
+    /* When the menu is active ensure it's readable and occupies full width */
+    .nav-menu.active {
+        display: flex;
+        background: linear-gradient(180deg,#2b3e50,#223240);
+        padding: 1rem 0.5rem;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
 }
 
 .nav-menu {
@@ -499,6 +574,9 @@ footer {
         align-items: center;
     }
 
+    /* When nav is active (opened by the toggle) allow scrolling inside the menu */
+    .nav-menu.active { max-height: calc(100vh - 60px); overflow: auto; }
+
     nav ul {
         display: flex;
         list-style: none;
@@ -581,6 +659,14 @@ footer {
         padding: 1rem;
         max-width: 90%;
     }
+
+    /* Make footer and other small text slightly bigger on mobile */
+    footer { font-size: 1rem; }
+
+
+/* general responsive helpers */
+.container img, .container iframe { max-width: 100%; height: auto; }
+.btn, .submit-btn { touch-action: manipulation; }
 
     /* Mobile: ensure contact card is readable over gradient */
     #contact .container {
