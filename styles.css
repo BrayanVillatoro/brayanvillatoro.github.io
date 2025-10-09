@@ -970,7 +970,7 @@ header::before {
 
 /* Optional caption */
 .spotify-embed-container::before {
-    content: "Daily Mix on Spotify";
+    content: "Daily Mix";
     display: block;
     font-size: 1rem;
     font-weight: 600;
