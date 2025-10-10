@@ -1069,11 +1069,6 @@ header::before {
 /* Add bottom gap so the template items don't touch the bottom of the viewport */
 main { padding-bottom: 8rem; }
 
-
-.lifestyle-card {
-    max-width: 100%; /* Adjust container width as needed */
-}
-
 .card {
     position: relative;
     overflow: hidden;
