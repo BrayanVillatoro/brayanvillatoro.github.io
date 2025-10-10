@@ -1070,21 +1070,104 @@ header::before {
 main { padding-bottom: 8rem; }
 
 
-.lifestyle-card {
-    max-width: 100%; /* Adjust container width as needed */
+/* Ensure cards have a consistent height and constrain content */
+.lifestyle-grid .card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Fixed height for consistency */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Prevent content from overflowing */
 }
 
-.card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px; /* Optional: rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow */
+/* Hover effect */
+.lifestyle-grid .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Image styling to ensure they fit within the card */
 .lifestyle-photo {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove inline spacing */
-    object-fit: cover; /* Ensure image fits nicely in the container */
+    height: 100%; /* Fill the card height */
+    max-height: 150px; /* Limit image height to avoid stretching the card */
+    object-fit: cover; /* Maintain aspect ratio, cropping if necessary */
+    display: block;
+    border-radius: 8px; /* Optional: match card's rounded corners */
+}
+
+/* Caption styling to ensure it doesn't interfere with image */
+.lifestyle-grid .caption {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2d3748;
+    text-align: center;
+    margin-top: 0.5rem; /* Space between image and caption */
+}
+
+/* Adjust Strava embed to fit within card */
+.strava-embed-placeholder {
+    width: 100%;
+    height: 100%; /* Fill card height */
+    max-height: 150px; /* Match image height */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 900px) {
+    .lifestyle-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lifestyle-grid .card {
+        height: 180px; /* Slightly smaller for 2-column layout */
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        max-height: 130px; /* Adjust for smaller cards */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .lifestyle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lifestyle-grid .card {
+        height: 200px; /* Consistent height for single-column layout */
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        max-height: 150px; /* Maintain image/embed height */
+    }
+}
+
+/* Spotify embed container */
+.spotify-embed-container {
+    width: 100%;
+    height: 152px; /* Match Spotify iframe height */
+    padding: 0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Ensure Spotify iframe fits */
+.spotify-iframe {
+    width: 100%;
+    height: 152px; /* Fixed height to match container */
+    border-radius: 12px;
+    border: none;
 }
 
