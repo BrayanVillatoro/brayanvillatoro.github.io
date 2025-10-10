@@ -8,7 +8,7 @@
 html, body {
     height: 100%;
     min-height: 100%;
-    /* fallback color if gradients aren't supported/rendered immediately */
+    /* Fallback color if gradients aren't supported/rendered immediately */
     background-color: #f7fafc;
 }
 
@@ -22,7 +22,7 @@ html, body {
 
 /* Mobile-first adjustments: target small phones (iPhone 14 Pro width ~393px) and general mobile */
 @media screen and (max-width: 430px) {
-    /* slightly larger base tap targets and readable text */
+    /* Slightly larger base tap targets and readable text */
     html { font-size: 15px; }
     body { line-height: 1.5; }
 
@@ -35,7 +35,7 @@ html, body {
         padding-right: 0.75rem;
     }
 
-    /* make nav compact: hide inline menu and show toggle */
+    /* Make nav compact: hide inline menu and show toggle */
     nav ul { display: none; }
     .nav-toggle { display: block; }
 
@@ -68,7 +68,7 @@ html, body {
         text-align: center;
     }
 
-    /* make container use more of the viewport on phones */
+    /* Make container use more of the viewport on phones */
     .container { max-width: 100%; }
 
     /* Improve link tap size in header/nav */
@@ -94,7 +94,7 @@ html { scroll-padding-top: 72px; }
 
 /* Header */
 header {
-    /* transparent header: pseudo-element adds a vertical fade so the header blends into the page gradient */
+    /* Transparent header: pseudo-element adds a vertical fade so the header blends into the page gradient */
     background: transparent;
     color: white;
     padding: 1rem 0;
@@ -108,7 +108,7 @@ header {
     overflow: visible;
 }
 
-/* vertical fade overlay so header starts the body gradient smoothly */
+/* Vertical fade overlay so header starts the body gradient smoothly */
 header::before {
     content: '';
     position: absolute;
@@ -117,18 +117,19 @@ header::before {
     top: 0;
     bottom: 0;
     pointer-events: none;
-    z-index: -1; /* sits behind header content but above the page background because header has a high z-index */
+    z-index: -1; /* Sits behind header content but above the page background */
     background: linear-gradient(180deg,
-        rgba(65,90,119,0.9) 0%, /* matches #415A77 */
-        rgba(27,38,59,0.6) 40%, /* matches #1B263B */
+        rgba(65,90,119,0.7) 0%,
+        rgba(65,90,119,0.45) 20%,
+        rgba(27,38,59,0.18) 50%,
         rgba(27,38,59,0.0) 100%);
 }
 
 header .container {
     display: flex;
-    justify-content: space-between; /* keeps name left and nav right */
+    justify-content: space-between; /* Keeps name left and nav right */
     align-items: center;
-    padding-left: 1rem; /* small extra left padding so the site name isn't flush */
+    padding-left: 1rem; /* Small extra left padding so the site name isn't flush */
 }
 
 header h1 a {
@@ -141,9 +142,9 @@ header h1 a {
 /* Ensure the site name sits on the left of the header and is visible above the nav */
 header h1 {
     margin: 0;
-    padding-left: 0.75rem; /* ensure name sits comfortably from the left edge */
-    z-index: 1001; /* keep name above header overlays */
-    display: block; /* ensure it's visible and participates in layout */
+    padding-left: 0.75rem; /* Ensure name sits comfortably from the left edge */
+    z-index: 1001; /* Keep name above header overlays */
+    display: block; /* Ensure it's visible and participates in layout */
 }
 
 @media screen and (max-width: 480px) {
@@ -153,7 +154,7 @@ header h1 {
 nav ul {
     display: flex;
     list-style: none;
-    /* push nav to the right while keeping a comfortable right gap */
+    /* Push nav to the right while keeping a comfortable right gap */
     margin-left: auto;
     margin-right: 2.5rem;
     gap: 1.25rem;
@@ -162,7 +163,8 @@ nav ul {
 nav li {
     margin-left: 1.5rem;
 }
-/* Header Manu */
+
+/* Header Menu */
 nav a {
     color: white;
     text-decoration: none;
@@ -221,7 +223,7 @@ nav a:hover {
 
 .nav-menu {
     display: flex;
-    margin-left: auto; /* push the whole nav block to the right of the header */
+    margin-left: auto; /* Push the whole nav block to the right of the header */
 }
 
 .nav-menu.active {
@@ -261,14 +263,11 @@ nav a:hover {
     margin: 0 auto;
 }
 
-
 #experience {
-    padding: 0px 0; 
+    padding: 0px 0;
     background: transparent;
-    /* Gap */
 }
 
-/* Desktop: put a semi-opaque card behind the experience content for readability */
 @media screen and (min-width: 769px) {
     #experience .container {
         background: rgba(255,255,255,0.9);
@@ -278,11 +277,11 @@ nav a:hover {
         max-width: 1000px;
         margin: 0 auto;
     }
-    /* Slightly more transparent header on desktop to emphasize page fade */
     header {
         background: linear-gradient(to right, rgba(65,90,119,0.85), rgba(27,38,59,0.85));
     }
 }
+
 #experience h2 {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -290,8 +289,6 @@ nav a:hover {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
-/* Experience layout: single column by default (original styles retained) */
 
 .experience,
 .skills {
@@ -329,7 +326,7 @@ nav a:hover {
 /* Timeline Section */
 #timeline {
     padding: 60px 0;
-    background: transparent; /* allow body gradient to continue */
+    background: transparent;
 }
 
 #timeline h2 {
@@ -380,7 +377,6 @@ nav a:hover {
 }
 
 .timeline-item::after {
-    /* Removed circle markers: visual markers were removed per request */
     content: none;
 }
 
@@ -451,8 +447,7 @@ nav a:hover {
 /* Contact Section */
 .contact {
     padding: 120px 0 60px;
-    background: transparent; /* show page gradient through */
-    /* avoid forcing a large empty area; let content define height */
+    background: transparent;
     min-height: auto;
 }
 
@@ -548,6 +543,9 @@ footer {
     text-align: center;
     padding: 1.5rem 0;
     font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
 }
 
 /* Mobile Styles */
@@ -569,24 +567,18 @@ footer {
 
     .nav-menu.active {
         display: flex;
+        max-height: calc(100vh - 60px);
+        overflow: auto;
     }
 
     nav ul {
         flex-direction: column;
         align-items: center;
-    }
-
-    /* When nav is active (opened by the toggle) allow scrolling inside the menu */
-    .nav-menu.active { max-height: calc(100vh - 60px); overflow: auto; }
-
-    nav ul {
-        display: flex;
-        list-style: none;
-        /* keep spacing between menu items and a small right gap */
         margin-left: 0;
         margin-right: 2.5rem;
         gap: 1.25rem;
     }
+
     .hero {
         padding: 100px 0 60px;
         min-height: auto;
@@ -603,9 +595,9 @@ footer {
 
     #experience {
         padding: 60px 0;
-        background: transparent; /* transparent so it shows the body gradient underneath */
+        background: transparent;
     }
-    /* Experience remains single-column on mobile */
+
     #experience h2 {
         font-size: 1.8rem;
     }
@@ -618,8 +610,9 @@ footer {
 
     #timeline {
         padding: 60px 0;
-        background: transparent; /* allow the page gradient to continue through */
+        background: transparent;
     }
+
     #timeline h2 {
         font-size: 1.8rem;
     }
@@ -662,20 +655,17 @@ footer {
         max-width: 90%;
     }
 
-    /* Make footer and other small text slightly bigger on mobile */
     footer { font-size: 1rem; }
 
+    .container img, .container iframe { max-width: 100%; height: auto; }
+    .btn, .submit-btn { touch-action: manipulation; }
 
-/* general responsive helpers */
-.container img, .container iframe { max-width: 100%; height: auto; }
-.btn, .submit-btn { touch-action: manipulation; }
-
-    /* Mobile: ensure contact card is readable over gradient */
     #contact .container {
         background: rgba(255,255,255,0.98);
         padding: 1rem;
         border-radius: 8px;
     }
+
     #contact,
     #contact h2,
     #contact p,
@@ -683,7 +673,6 @@ footer {
         color: #2d3748;
     }
 
-    /* Mobile: make experience card readable like contact */
     #experience .container {
         background: rgba(255,255,255,0.98);
         box-shadow: 0 6px 18px rgba(0,0,0,0.08);
@@ -691,6 +680,7 @@ footer {
         border-radius: 8px;
         max-width: 410px;
     }
+
     #experience,
     #experience h2,
     #experience p,
@@ -716,43 +706,36 @@ footer {
     .load-more-btn {
         display: none;
     }
-        /* keep header more subtle on desktop; pseudo-element provides the smooth fade */
-        header {
-            /* ensure header stays transparent on desktop; opacity handled by ::before */
-            background: transparent;
-        }
+
+    header {
+        background: transparent;
+    }
+
+    #contact .container {
+        background: rgba(255,255,255,0.95);
+        padding: 1.6rem;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    #contact,
+    #contact h2,
+    #contact p,
+    #contact label {
+        color: #2d3748;
+    }
 }
 
-    /* Make contact container match experience card on desktop for consistent look */
-    @media screen and (min-width: 769px) {
-        #contact .container {
-            background: rgba(255,255,255,0.95);
-            padding: 1.6rem;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-        }
-        /* ensure text within the contact card is dark enough */
-        #contact,
-        #contact h2,
-        #contact p,
-        #contact label {
-            color: #2d3748;
-        }
+@media screen and (min-width: 1000px) {
+    nav ul {
+        margin-right: 4rem;
+        gap: 2rem;
     }
 
-    /* Footer spacing: ensure contact page bottom looks like index */
-    footer {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        position: relative;
-        z-index: 10; /* keep footer above background artifacts */
-        background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
+    #experience .container {
+        max-width: 1200px;
     }
-
-    /* Force background to cover very long pages and avoid white gaps */
-    html, body {
-        background-size: auto 100%;
-    }
+}
 
 @media screen and (max-width: 480px) {
     header h1 a {
@@ -775,7 +758,6 @@ footer {
 }
 
 #experience p {
-    /* Constrain the bio line-length to match the content cards and improve readability */
     max-width: 70ch;
     margin: 0 auto 1rem;
     line-height: 1.75;
@@ -783,54 +765,29 @@ footer {
     color: #2d3748;
 }
 
-/* Softer header overlay so it blends more smoothly with the body gradient */
-header::before {
-    background: linear-gradient(180deg,
-        rgba(65,90,119,0.7) 0%,
-        rgba(65,90,119,0.45) 20%,
-        rgba(27,38,59,0.18) 50%,
-        rgba(27,38,59,0.0) 100%);
-}
-
-@media screen and (min-width: 1000px) {
-    nav ul {
-        margin-right: 4rem; /* nudge menu left from the edge a bit more on wide screens */
-        gap: 2rem;
-    }
-    #experience .container {
-        max-width: 1200px; /* slightly narrower for better line length */
-    }
-}
-
 /* Lifestyle page placeholders */
 .lifestyle-intro .lead {
     max-width: 70ch;
     margin: 0 auto 1rem;
-    color: #2d3748;
-}
-
-/* Improve readability for the intro text when over the page gradient */
-.lifestyle-intro .lead {
-    color: #ffffff; /* make intro text white for best contrast */
+    color: #ffffff;
     font-size: 1.05rem;
 }
 
-/* Dark highlight box for readable intro content */
 .lifestyle-highlight {
     background: rgba(255, 255, 255, 0.95);
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        color:black;
-        min-height: 140px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* Ensure lifestyle-grid cards are consistent */
+/* Lifestyle grid container */
 .lifestyle-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -839,223 +796,172 @@ header::before {
     width: 100%;
     max-width: 100%;
     align-items: stretch;
-    /* Ensure all cards stretch to the same height */
 }
 
-/* General card styling */
+/* Card styling with strict size control */
 .lifestyle-grid .card {
     width: 100%;
-    max-width: 100%;
+    height: 220px; /* Fixed height for all cards */
+    max-height: 220px; /* Prevent stretching */
     margin: 0;
     padding: 0.5rem;
     background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-height: 160px;
-    /* Slightly increased for consistency */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between; /* Space out caption and image */
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-    
-.lifestyle-grid .card:hover {
-    transform: translateY(-5px);
-    /* Slight lift */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    /* Enhanced shadow */
-        }
-        
-/* Specific styling for Spotify card */
-.lifestyle-grid .card.spotify-card {
-    padding: 0;
-    /* Remove padding to let iframe fill the card */
-}
-
-.lifestyle-grid .graphic {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-}
-
-@media screen and (max-width: 768px) {
-    .lifestyle-grid {
-        grid-template-columns: 1fr;
-    }
-  
-}
-
-/* Ensure lifestyle content doesn't sit under the fixed header */
-#lifestyle {
-    padding-top: 100px; /* leaves space for fixed header */
-    color:white;
-}
-
-.lifestyle-card {
-    background: rgba(255,255,255,0.96);
-    padding: 1.25rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    margin-top: 1rem;
-}
-
-/* Ensure text inside lifestyle-card is dark and readable */
-.lifestyle-card,
-.lifestyle-card p,
-.lifestyle-card .caption {
-    color: #2d3748;
-}
-
-/* Make small helper/template text inside the card slightly larger and more readable */
-.lifestyle-card p {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* Ensure lifestyle-grid fills its parent */
-.lifestyle-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Style the card to fill the grid cell */
-.lifestyle-grid .card.placeholder {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0.5rem;
-    /* Reduced for more space */
-    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
-    /* Your gradient */
-    border-radius: 16px;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-    min-height: 140px;
-    /* Base height */
-    display: flex;
-    /* Enable flex for height stretching */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Clip any overflow */
+    position: relative;
 }
 
 /* Hover effect */
-.lifestyle-grid .card.placeholder:hover {
+.lifestyle-grid .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    
 }
 
-/* Style the Spotify embed container */
-.spotify-embed-container {
+/* Image styling with strict constraints */
+.lifestyle-photo {
     width: 100%;
-    max-width: 100%;
-    height: 100%;
-    /* Fill card height */
-    padding: 0;
-    border-radius: 12px;
-    display: flex;
-    /* Ensure iframe can stretch */
-    flex-direction: column;
-}
-
-/* Style the iframe */
-.spotify-iframe {
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    /* Fill container height */
-    border-radius: 12px;
-    border: none;
-}
-
-/* Optional caption */
-.spotify-embed-container::before {
-    content: "Daily Mix";
+    height: 160px; /* Fixed height for images */
+    max-height: 160px; /* Prevent overflow */
+    max-width: 100% !important; /* Force scaling */
+    object-fit: cover; /* Crop to fit, maintain aspect ratio */
     display: block;
-    font-size: 1rem;
+    border-radius: 8px;
+}
+
+/* Caption styling */
+.lifestyle-grid .caption {
+    font-size: 0.9rem;
     font-weight: 600;
     color: #2d3748;
     text-align: center;
-    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    width: 100%;
 }
 
-/* Ensure card has defined height for taller mobile viewports */
-@media screen and (min-height: 900px) {
-    .lifestyle-grid .card.placeholder {
-        height: 100%;
-        /* Fill available grid cell height */
-        min-height: 200px;
-        /* Taller for larger viewports */
-    }
-
-    .spotify-embed-container {
-        height: 100%;
-        /* Ensure container fills card */
-    }
-
-    .spotify-iframe {
-        height: 100%;
-        /* Fill container */
-        min-height: 152px;
-        /* Fallback to avoid collapse */
-    }
+/* Strava embed specific styling */
+.strava-embed-placeholder {
+    width: 100%;
+    height: 160px; /* Match image height */
+    max-height: 160px;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-/* Mobile adjustments */
+/* Graphic (e.g., emoji) for Strava card */
+.lifestyle-grid .graphic {
+    font-size: 1.5rem; /* Smaller to fit */
+    margin-bottom: 0.3rem;
+}
+
+/* Spotify embed container */
+.spotify-embed-container {
+    width: 100%;
+    height: 152px; /* Fixed height for Spotify */
+    max-height: 152px;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f5f7fa, #e4e7eb); /* Match card style */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Spotify iframe */
+.spotify-iframe {
+    width: 100%;
+    height: 152px; /* Fixed height */
+    max-height: 152px;
+    border: none;
+    border-radius: 12px;
+}
+
+/* Spotify caption */
+.spotify-embed-container::before {
+    content: "Daily Mix";
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2d3748;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+/* Responsive adjustments */
 @media screen and (max-width: 900px) {
     .lifestyle-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* Your rule */
     }
 
-    .lifestyle-grid .card.placeholder {
-        padding: 0.3rem;
-        min-height: 160px;
-        /* Slightly taller for mobile */
+    .lifestyle-grid .card {
+        height: 200px; /* Slightly smaller for 2-column */
+        max-height: 200px;
     }
 
-    .spotify-iframe {
-        height: 100%;
-        /* Fill card height */
-        min-height: 152px;
-        /* Consistent fallback */
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 140px;
+        max-height: 140px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .lifestyle-grid {
         grid-template-columns: 1fr;
-        /* Your rule */
+    }
+
+    .lifestyle-grid .card {
+        height: 220px; /* Consistent height for single-column */
+        max-height: 220px;
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 160px;
+        max-height: 160px;
+    }
+
+    .spotify-embed-container,
+    .spotify-iframe {
+        height: 152px;
+        max-height: 152px;
     }
 
     .container {
         padding: 0 0.5rem;
-        /* Your mobile padding */
-    }
-
-    .lifestyle-grid .card.placeholder {
-        padding: 0.2rem;
-        min-height: 180px;
-        /* Taller for single-column mobile */
-    }
-
-    .spotify-iframe {
-        height: 100%;
-        min-height: 152px;
     }
 }
 
-/* Override general iframe rule */
+@media screen and (min-height: 900px) {
+    .lifestyle-grid .card {
+        height: 220px;
+        max-height: 220px;
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 160px;
+        max-height: 160px;
+    }
+
+    .spotify-embed-container {
+        height: 152px;
+    }
+
+    .spotify-iframe {
+        height: 152px;
+        max-height: 152px;
+    }
+}
+
 @media screen and (max-width: 430px) {
     .spotify-iframe {
-        height: 100%;
-        /* Override height: auto */
-        min-height: 152px;
+        height: 152px;
+        max-height: 152px;
     }
 }
 
@@ -1067,107 +973,26 @@ header::before {
 }
 
 /* Add bottom gap so the template items don't touch the bottom of the viewport */
-main { padding-bottom: 8rem; }
+main {
+    padding-bottom: 8rem;
+}
 
-
-/* Ensure cards have a consistent height and constrain content */
-.lifestyle-grid .card {
-    width: 100%;
+.lifestyle-card {
+    background: rgba(255,255,255,0.96);
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    margin-top: 1rem;
     max-width: 100%;
-    margin: 0;
-    padding: 0.5rem;
-    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    height: 200px; /* Fixed height for consistency */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Prevent content from overflowing */
 }
 
-/* Hover effect */
-.lifestyle-grid .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Image styling to ensure they fit within the card */
-.lifestyle-photo {
-    width: 100%;
-    height: 100%; /* Fill the card height */
-    max-height: 150px; /* Limit image height to avoid stretching the card */
-    object-fit: cover; /* Maintain aspect ratio, cropping if necessary */
-    display: block;
-    border-radius: 8px; /* Optional: match card's rounded corners */
-}
-
-/* Caption styling to ensure it doesn't interfere with image */
-.lifestyle-grid .caption {
-    font-size: 0.9rem;
-    font-weight: 600;
+.lifestyle-card,
+.lifestyle-card p,
+.lifestyle-card .caption {
     color: #2d3748;
-    text-align: center;
-    margin-top: 0.5rem; /* Space between image and caption */
 }
 
-/* Adjust Strava embed to fit within card */
-.strava-embed-placeholder {
-    width: 100%;
-    height: 100%; /* Fill card height */
-    max-height: 150px; /* Match image height */
-    overflow: hidden; /* Prevent overflow */
+.lifestyle-card p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
-
-/* Mobile adjustments */
-@media screen and (max-width: 900px) {
-    .lifestyle-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .lifestyle-grid .card {
-        height: 180px; /* Slightly smaller for 2-column layout */
-    }
-
-    .lifestyle-photo,
-    .strava-embed-placeholder {
-        max-height: 130px; /* Adjust for smaller cards */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .lifestyle-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .lifestyle-grid .card {
-        height: 200px; /* Consistent height for single-column layout */
-    }
-
-    .lifestyle-photo,
-    .strava-embed-placeholder {
-        max-height: 150px; /* Maintain image/embed height */
-    }
-}
-
-/* Spotify embed container */
-.spotify-embed-container {
-    width: 100%;
-    height: 152px; /* Match Spotify iframe height */
-    padding: 0;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-/* Ensure Spotify iframe fits */
-.spotify-iframe {
-    width: 100%;
-    height: 152px; /* Fixed height to match container */
-    border-radius: 12px;
-    border: none;
-}
-
