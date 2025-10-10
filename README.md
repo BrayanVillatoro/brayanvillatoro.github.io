@@ -21,7 +21,7 @@ Welcome to my personal portfolio repository! This static website, hosted on **Gi
 - **Dynamic GitHub Timeline**: Fetches my public repositories from the GitHub API, displayed in a responsive, animated timeline sorted by creation date.
 - **Responsive Design**: Optimized for all devices with smooth animations via [Animate.css](https://animate.style/).
 - **Contact Form**: Powered by [Formspree](https://formspree.io/) for seamless email submissions.
-- **Professional About Section**: Highlights my experience and skills, synced with my [LinkedIn profile](https://www.linkedin.com/in/brayan-villatoro/).
+- **Professional Experience Section**: Highlights my experience and skills, synced with my [LinkedIn profile](https://www.linkedin.com/in/brayan-villatoro/).
 - **Modern Styling**: Clean gradients, hover effects, and a LinkedIn-inspired blue theme.
 - **Lightweight**: No build tools required—pure static files for easy hosting on GitHub Pages.
 
@@ -65,7 +65,7 @@ Follow these steps to run the website locally or adapt it for your own use.
      <form action="https://formspree.io/f/YOUR_FORMSPREE_HASH" method="POST">
      ```
      - Sign up at [formspree.io](https://formspree.io/), create a form, and copy the endpoint hash.
-   - **About Section**: Edit `index.html` to update experience and skills from your LinkedIn.
+   - **Experience Section**: Edit `index.html` to update experience and skills from your LinkedIn.
    - **Styling**: Modify `styles.css` for custom colors or layouts.
 
 4. **Deploy**:
@@ -86,7 +86,7 @@ Follow these steps to run the website locally or adapt it for your own use.
 
 ```
 brayanvillatoro.github.io/
-├── index.html        # Homepage with About and GitHub timeline
+├── index.html        # Homepage with Experience and GitHub timeline
 ├── contact.html      # Contact form page
 ├── styles.css        # Global styles with responsive design
 ├── script.js         # GitHub API fetch, smooth scrolling, form response

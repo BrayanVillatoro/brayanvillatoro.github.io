@@ -53,7 +53,7 @@ html, body {
     .timeline::after { left: 56px; }
     .timeline-item { padding-left: 64px; }
 
-    /* Ensure hero and about text are readable */
+    /* Ensure hero and experience text are readable */
     .hero h2 { font-size: 1.4rem; }
     .hero p { font-size: 1rem; }
 
@@ -248,7 +248,7 @@ nav a:hover {
 }
 
 .hero h2 {
-    font-size: 2.2rem;
+    font-size: 3.2rem;
     font-weight: 1000;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
@@ -262,16 +262,15 @@ nav a:hover {
 }
 
 
-#about {
-    padding: 80px 0; 
+#experience {
+    padding: 0px 0; 
     background: transparent;
-    /* transparent so it shows the body gradient underneath */
+    /* Gap */
 }
 
-
-/* Desktop: put a semi-opaque card behind the about content for readability */
+/* Desktop: put a semi-opaque card behind the experience content for readability */
 @media screen and (min-width: 769px) {
-    #about .container {
+    #experience .container {
         background: rgba(255,255,255,0.9);
         padding: 2rem;
         border-radius: 12px;
@@ -284,7 +283,7 @@ nav a:hover {
         background: linear-gradient(to right, rgba(65,90,119,0.85), rgba(27,38,59,0.85));
     }
 }
-#about h2 {
+#experience h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 2rem;
@@ -292,7 +291,7 @@ nav a:hover {
     letter-spacing: 2px;
 }
 
-/* About layout: single column by default (original styles retained) */
+/* Experience layout: single column by default (original styles retained) */
 
 .experience,
 .skills {
@@ -400,6 +399,7 @@ nav a:hover {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     transition: transform 0.3s ease;
+    width: 100%;
 }
 
 .timeline-content:hover {
@@ -601,12 +601,12 @@ footer {
         padding: 0 1rem;
     }
 
-    #about {
+    #experience {
         padding: 60px 0;
         background: transparent; /* transparent so it shows the body gradient underneath */
     }
-    /* About remains single-column on mobile */
-    #about h2 {
+    /* Experience remains single-column on mobile */
+    #experience h2 {
         font-size: 1.8rem;
     }
 
@@ -683,16 +683,18 @@ footer {
         color: #2d3748;
     }
 
-    /* Mobile: make about card readable like contact */
-    #about .container {
+    /* Mobile: make experience card readable like contact */
+    #experience .container {
         background: rgba(255,255,255,0.98);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
         padding: 1rem;
         border-radius: 8px;
+        max-width: 410px;
     }
-    #about,
-    #about h2,
-    #about p,
-    #about label {
+    #experience,
+    #experience h2,
+    #experience p,
+    #experience label {
         color: #2d3748;
     }
 
@@ -721,7 +723,7 @@ footer {
         }
 }
 
-    /* Make contact container match about card on desktop for consistent look */
+    /* Make contact container match experience card on desktop for consistent look */
     @media screen and (min-width: 769px) {
         #contact .container {
             background: rgba(255,255,255,0.95);
@@ -765,14 +767,14 @@ footer {
         font-size: 0.9rem;
     }
 
-    #about h2,
+    #experience h2,
     #timeline h2,
     .contact h2 {
         font-size: 1.5rem;
     }
 }
 
-#about p {
+#experience p {
     /* Constrain the bio line-length to match the content cards and improve readability */
     max-width: 70ch;
     margin: 0 auto 1rem;
@@ -795,8 +797,8 @@ header::before {
         margin-right: 4rem; /* nudge menu left from the edge a bit more on wide screens */
         gap: 2rem;
     }
-    #about .container {
-        max-width: 850px; /* slightly narrower for better line length */
+    #experience .container {
+        max-width: 1200px; /* slightly narrower for better line length */
     }
 }
 
@@ -813,7 +815,7 @@ header::before {
     font-size: 1.05rem;
 }
 
-/* Dark highlight box for readable intro/about content */
+/* Dark highlight box for readable intro content */
 .lifestyle-highlight {
     background: rgba(255, 255, 255, 0.95);
         padding: 1rem;
