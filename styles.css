@@ -161,7 +161,7 @@ header::before {
 header .container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* keep centered by default */
     padding-left: 1rem;
 }
 
@@ -170,6 +170,8 @@ header h1 a {
     text-decoration: none;
     font-size: 1.6rem;
     font-weight: 700;
+    display: inline-flex;
+    align-items: center; /* ensure vertical centering with nav */
 }
 
 header h1 {
@@ -191,6 +193,7 @@ nav ul {
     margin-left: auto;
     margin-right: 2.5rem;
     gap: 1.25rem;
+    align-items: center; /* vertically center items */
 }
 
 nav li {
@@ -203,6 +206,9 @@ nav a {
     font-weight: 500;
     font-size: 1.2rem;
     transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center; /* align text with icons/buttons */
+    padding-top: 0.15rem; /* nudge down slightly to visually center with logo/button */
 }
 
 nav a:hover {
@@ -770,10 +776,7 @@ footer {
     background: linear-gradient(180deg, rgba(45, 55, 72, 0.95), rgba(45, 55, 72, 0.95));
 }
 
-html,
-body {
-    background-size: auto 100%;
-}
+/* background-size already defined earlier; duplicate removed */
 
 @media screen and (max-width: 480px) {
     header h1 a {
@@ -803,9 +806,7 @@ body {
     color: #2d3748;
 }
 
-header::before {
-    background: linear-gradient(180deg, rgba(65, 90, 119, 0.7) 0%, rgba(65, 90, 119, 0.45) 20%, rgba(27, 38, 59, 0.18) 50%, rgba(27, 38, 59, 0.0) 100%);
-}
+/* Duplicate header::before removed (kept original full definition earlier). */
 
 @media screen and (min-width: 1000px) {
     nav ul {
@@ -853,16 +854,24 @@ header::before {
     width: 100%;
     max-width: 100%;
     margin: 0;
-    padding: 0.5rem;
+    /* reduce inner padding so media fills more horizontal space */
+    padding: 0.2rem;
     background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* use grid for consistent title/media/caption rows so media fills available space */
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    align-items: start;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+}
+
+/* Make all cards a consistent shape so media fills them predictably */
+.lifestyle-grid .card,
+.lifestyle-grid .card.placeholder {
+    aspect-ratio: 3 / 4; /* width : height */
 }
 
 .lifestyle-grid .card:hover {
@@ -875,8 +884,8 @@ header::before {
 }
 
 .lifestyle-grid .graphic {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
+    /* reserved for optional decorative graphics inside the lifestyle grid */
+    display: block;
 }
 
 .lifestyle-grid .card.placeholder {
@@ -887,12 +896,18 @@ header::before {
     background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
     border-radius: 16px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-    height: 250px;
-    max-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    /* allow card to size to its content so no empty bottom gap remains */
+    height: auto;
+    max-height: none;
+    /* use grid so the middle (media) row expands to fill available space */
+    display: grid;
+    /* ensure the middle row can fully expand and allow children to fill it */
+    grid-template-rows: auto minmax(0, 1fr) auto; /* title / media / caption/actions */
+    gap: 0.5rem;
+    align-items: start;
+    /* reduce horizontal padding so media has more width */
+    padding: 0.25rem;
+    padding-bottom: 0.4rem; /* keep a little bottom breathing room */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
 }
@@ -902,36 +917,182 @@ header::before {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Ensure any media inside a card fills the middle grid row so no bottom gap remains */
+.lifestyle-grid .card img,
+.lifestyle-grid .card iframe,
+.lifestyle-grid .card .lifestyle-photo,
+.lifestyle-grid .card .strava-embed-placeholder,
+.lifestyle-grid .card .spotify-embed-container {
+    grid-row: 2;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    object-fit: cover;
+    align-self: stretch;
+    justify-self: stretch;
+}
+
+/* Prevent inner scrolling and allow iframes injected by embeds to scale to their container
+   Some third-party scripts insert inline width/height; use max-width/max-height and min-height:0
+   on the grid middle row so it can shrink when necessary. */
+.lifestyle-grid .card {
+    /* let the middle row actually shrink if needed */
+    min-height: 0;
+}
+
+.lifestyle-grid .card .strava-embed-placeholder,
+.lifestyle-grid .card .strava-embed-placeholder iframe,
+.lifestyle-grid .card .strava-embed-placeholder * {
+    box-sizing: border-box;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+}
+
+/* If the embed creates nested wrappers with inline styles, force them to fit */
+.lifestyle-grid .card .strava-embed-placeholder > div,
+.lifestyle-grid .card .strava-embed-placeholder > div * {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+}
+
+/* Additional tuning: clamp the embed height so it never exceeds the card.
+   Use a percentage-based max-height and a safe fallback scale for stubborn iframes. */
+.lifestyle-grid .card .strava-embed-placeholder {
+    /* ensure the placeholder can't push beyond the card */
+    max-height: 100% !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden !important;
+}
+
+.lifestyle-grid .card .strava-embed-placeholder iframe {
+    /* keep iframe sized to container but allow it to scale down if needed */
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    transform-origin: top center;
+}
+
+/* If the embed still overflows because it uses fixed pixel heights, scale it down slightly */
+.lifestyle-grid .card .strava-embed-placeholder .strava-embed-wrapper,
+.lifestyle-grid .card .strava-embed-placeholder > div {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+}
+
+/* Optional: provide a conservative scale for very tall embeds on narrow cards */
+@media screen and (max-width: 900px) {
+    .lifestyle-grid .card .strava-embed-placeholder iframe {
+        /* small downscale to avoid needing scroll inside smaller cards */
+        transform: scale(0.98);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .lifestyle-grid .card .strava-embed-placeholder iframe {
+        transform: scale(0.95);
+    }
+}
+
+/* Make the Strava card slightly taller so the 'Follow' area and header are visible */
+.lifestyle-grid .card.strava-card {
+    /* match image cards: title / media / caption, predictable aspect */
+    aspect-ratio: 3 / 4;
+    padding: 0.25rem;
+}
+
+.lifestyle-grid .card.strava-card .strava-embed-placeholder {
+    grid-row: 2;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 3 / 4;
+    min-height: 240px;
+    border-radius: 12px;
+    object-fit: cover;
+    overflow: hidden !important;
+}
+
+.lifestyle-grid .card.strava-card .strava-embed-placeholder iframe {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Place titles and captions in rows 1 and 3 explicitly */
+.lifestyle-grid .card > h1,
+.lifestyle-grid .card > h2,
+.lifestyle-grid .card > h3,
+.lifestyle-grid .card > h4,
+.lifestyle-grid .card .card-title {
+    grid-row: 1;
+    text-align: center;
+}
+
+.lifestyle-grid .card .caption,
+.lifestyle-grid .card .card-footer {
+    grid-row: 3;
+}
+
 .lifestyle-grid .caption {
     font-size: 1rem;
     font-weight: 600;
     color: #2d3748;
     text-align: center;
-    margin-bottom: 0.5rem;
+    /* reduce gap between title and media */
+    margin-bottom: 0.25rem;
     flex-grow: 0;
     flex-shrink: 0;
 }
 
 .lifestyle-photo {
     width: 100%;
-    height: 200px;
-    max-height: 200px;
-    object-fit: cover;
+    /* taller photos */
+    /* size images via aspect-ratio so cards adapt naturally */
+    height: auto;
+    max-height: none;
+    aspect-ratio: 3 / 4;
     display: block;
+    min-height: 240px; /* sensible minimum */
+    /* round inner media to match the card's rounded look */
+    border-radius: 12px;
+    /* show top of the image first */
+    object-position: top center;
+    /* ensure the photo fills the available width inside the card */
+    align-self: stretch;
+    margin-top: 0;
+    object-fit: cover;
 }
 
 .strava-embed-placeholder {
     width: 100%;
-    height: 200px;
-    max-height: 200px;
+    /* taller embed area for better visibility */
+    height: auto;
+    max-height: none;
+    aspect-ratio: 3 / 4;
+    min-height: 240px;
+    border-radius: 12px;
+    align-self: stretch;
+    margin-top: 0;
     overflow: hidden;
 }
 
 .spotify-embed-container {
     width: 100%;
-    max-width: 300px;
-    height: 352px;
-    margin: 1rem auto;
+    max-width: none; /* allow full card width */
+    height: 420px; /* make spotify embed a bit taller so it looks proportionate */
+    margin: 0.75rem 0;
     padding: 0;
     border-radius: 12px;
     display: flex;
@@ -941,7 +1102,7 @@ header::before {
 
 .spotify-iframe {
     width: 100%;
-    height: 352px;
+    height: 100%;
     border-radius: 12px;
     border: none;
 }
@@ -987,14 +1148,15 @@ header::before {
 
     .lifestyle-grid .card.placeholder {
         padding: 0.3rem;
-        height: 180px;
-        max-height: 180px;
+        /* let the card size to its content on smaller screens */
+        height: auto;
+        max-height: none;
     }
 
     .lifestyle-photo,
     .strava-embed-placeholder {
-        height: 130px;
-        max-height: 130px;
+    min-height: 420px;
+    max-height: 620px;
     }
 }
 
@@ -1009,14 +1171,15 @@ header::before {
 
     .lifestyle-grid .card.placeholder {
         padding: 0.2rem;
-        height: 200px;
-        max-height: 200px;
+        /* allow card to size to its content on small phones */
+        height: auto;
+        max-height: none;
     }
 
     .lifestyle-photo,
     .strava-embed-placeholder {
-        height: 150px;
-        max-height: 150px;
+    min-height: 360px;
+    max-height: 520px;
     }
 
     .spotify-iframe {
@@ -1026,14 +1189,14 @@ header::before {
 
 @media screen and (min-height: 900px) {
     .lifestyle-grid .card.placeholder {
-        height: 300px;
-        max-height: 300px;
+        height: auto;
+        max-height: none;
     }
 
     .lifestyle-photo,
     .strava-embed-placeholder {
-        height: 250px;
-        max-height: 250px;
+        min-height: 250px;
+        max-height: 420px;
     }
 
     .spotify-embed-container {
@@ -1074,17 +1237,11 @@ main {
     }
 
     .lifestyle-grid .card.placeholder {
-        height: 250px;
-        max-height: 250px;
-        padding: 0.5rem;
+    /* desktop: let card size to its content */
+    height: auto;
+    max-height: none;
+        padding: 0.35rem;
     }
 
-    .lifestyle-photo,
-    .strava-embed-placeholder {
-        height: 200px;
-        max-height: 200px;
-        width: 100%;
-        max-width: 100%;
-        object-fit: cover;
-    }
+    /* desktop-specific duplication removed; generic media rules handle sizing */
 }

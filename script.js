@@ -120,3 +120,70 @@ window.addEventListener('resize', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => loadGitHubTimeline());
+
+/*
+  Small fallback to normalize third-party embed sizing (Strava).
+  Some embed scripts inject inline width/height or extra wrappers after load.
+  This snippet uses a MutationObserver to detect when the Strava placeholder
+  receives children and then strips width/height attributes and applies
+  a CSS-friendly class to ensure the embed fits its card.
+*/
+function normalizeStravaEmbed() {
+    const placeholder = document.querySelector('.strava-embed-placeholder');
+    if (!placeholder) return;
+
+    const applyFix = (node) => {
+        try {
+            // remove inline size attributes on elements
+            ['width', 'height', 'style'].forEach(attr => {
+                if (node.hasAttribute && node.hasAttribute(attr)) {
+                    // keep other style rules but strip width/height from style attribute
+                    if (attr === 'style') {
+                        const style = node.getAttribute('style');
+                        const cleaned = style.replace(/(?:\bwidth\s*:\s*[^;]+;?)|(?:\bheight\s*:\s*[^;]+;?)/g, '');
+                        node.setAttribute('style', cleaned);
+                    } else {
+                        node.removeAttribute(attr);
+                    }
+                }
+            });
+
+            // force sizing-friendly classes
+            node.classList && node.classList.add('normalized-embed-node');
+        } catch (e) {
+            // ignore errors for third-party nodes we can't modify
+            console.warn('normalizeStravaEmbed: failed to clean node', e);
+        }
+    };
+
+    const observer = new MutationObserver((mutations, obs) => {
+        for (const m of mutations) {
+            for (const n of m.addedNodes) {
+                applyFix(n);
+                // also fix descendants
+                if (n.querySelectorAll) {
+                    n.querySelectorAll('*').forEach(applyFix);
+                }
+            }
+        }
+
+        // If the placeholder has at least one iframe or visible content, stop observing
+        if (placeholder.querySelector('iframe, .strava-embed-wrapper, img')) {
+            obs.disconnect();
+        }
+    });
+
+    // Start observing for child additions and subtree changes
+    observer.observe(placeholder, { childList: true, subtree: true });
+
+    // Also attempt a one-time pass in case the embed already exists
+    applyFix(placeholder);
+    placeholder.querySelectorAll('*').forEach(applyFix);
+}
+
+// Run after window load to give third-party scripts time to inject
+window.addEventListener('load', () => {
+    normalizeStravaEmbed();
+    // run again after a short delay in case the embed loads slowly
+    setTimeout(normalizeStravaEmbed, 800);
+});
