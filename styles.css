@@ -163,7 +163,7 @@ nav li {
     margin-left: 1.5rem;
 }
 
-/* Header Manu */
+/* Header Menu */
 nav a {
     color: white;
     text-decoration: none;
@@ -262,7 +262,6 @@ nav a:hover {
     margin: 0 auto;
 }
 
-
 #experience {
     padding: 0px 0; 
     background: transparent;
@@ -293,7 +292,6 @@ nav a:hover {
 }
 
 /* Experience layout: single column by default (original styles retained) */
-
 .experience,
 .skills {
     margin-bottom: 1.5rem;
@@ -663,14 +661,13 @@ footer {
 
     footer { font-size: 1rem; }
 
-
-/* general responsive helpers */
-.container img, .container iframe { max-width: 100%; height: auto; }
-.btn, .submit-btn { touch-action: manipulation; }
+    /* general responsive helpers */
+    .container img, .container iframe { max-width: 100%; height: auto; }
+    .btn, .submit-btn { touch-action: manipulation; }
 
     /* Mobile: ensure contact card is readable over gradient */
     #contact .container {
-        background: rgba(255,255,255,0.98);
+        background poetry: rgba(255,255,255,0.98);
         padding: 1rem;
         border-radius: 8px;
     }
@@ -714,43 +711,43 @@ footer {
     .load-more-btn {
         display: none;
     }
-        /* keep header more subtle on desktop; pseudo-element provides the smooth fade */
-        header {
-            /* ensure header stays transparent on desktop; opacity handled by ::before */
-            background: transparent;
-        }
+    /* keep header more subtle on desktop; pseudo-element provides the smooth fade */
+    header {
+        /* ensure header stays transparent on desktop; opacity handled by ::before */
+        background: transparent;
+    }
 }
 
-    /* Make contact container match experience card on desktop for consistent look */
-    @media screen and (min-width: 769px) {
-        #contact .container {
-            background: rgba(255,255,255,0.95);
-            padding: 1.6rem;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-        }
-        /* ensure text within the contact card is dark enough */
-        #contact,
-        #contact h2,
-        #contact p,
-        #contact label {
-            color: #2d3748;
-        }
+/* Make contact container match experience card on desktop for consistent look */
+@media screen and (min-width: 769px) {
+    #contact .container {
+        background: rgba(255,255,255,0.95);
+        padding: 1.6rem;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
+    /* ensure text within the contact card is dark enough */
+    #contact,
+    #contact h2,
+    #contact p,
+    #contact label {
+        color: #2d3748;
+    }
+}
 
-    /* Footer spacing: ensure contact page bottom looks like index */
-    footer {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        position: relative;
-        z-index: 10; /* keep footer above background artifacts */
-        background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
-    }
+/* Footer spacing: ensure contact page bottom looks like index */
+footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: relative;
+    z-index: 10; /* keep footer above background artifacts */
+    background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
+}
 
-    /* Force background to cover very long pages and avoid white gaps */
-    html, body {
-        background-size: auto 100%;
-    }
+/* Force background to cover very long pages and avoid white gaps */
+html, body {
+    background-size: auto 100%;
+}
 
 @media screen and (max-width: 480px) {
     header h1 a {
@@ -816,16 +813,16 @@ header::before {
 /* Dark highlight box for readable intro content */
 .lifestyle-highlight {
     background: rgba(255, 255, 255, 0.95);
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        color:black;
-        min-height: 140px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 /* Ensure lifestyle-grid cards are consistent */
@@ -854,15 +851,16 @@ header::before {
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
-    
+
 .lifestyle-grid .card:hover {
     transform: translateY(-5px);
     /* Slight lift */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     /* Enhanced shadow */
-        }
-        
+}
+
 /* Specific styling for Spotify card */
 .lifestyle-grid .card.spotify-card {
     padding: 0;
@@ -874,55 +872,20 @@ header::before {
     margin-bottom: 0.5rem;
 }
 
-@media screen and (max-width: 768px) {
-    .lifestyle-grid {
-        grid-template-columns: 1fr;
-    }
-  
-}
-
-/* Ensure lifestyle content doesn't sit under the fixed header */
-#lifestyle {
-    padding-top: 100px; /* leaves space for fixed header */
-    color:white;
-}
-
-.lifestyle-card {
-    background: rgba(255,255,255,0.96);
-    padding: 1.25rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    margin-top: 1rem;
-}
-
-/* Ensure text inside lifestyle-card is dark and readable */
-.lifestyle-card,
-.lifestyle-card p,
-.lifestyle-card .caption {
-    color: #2d3748;
-}
-
-/* Make small helper/template text inside the card slightly larger and more readable */
-.lifestyle-card p {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
 /* Style the card to fill the grid cell */
 .lifestyle-grid .card.placeholder {
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0.5rem;
-    /* Reduced for more space */
     background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
-    /* Your gradient */
     border-radius: 16px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
     height: 200px; /* Fixed height to prevent expansion */
+    max-height: 200px; /* Strictly enforce max height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden; /* Clip overflowing content */
@@ -932,7 +895,6 @@ header::before {
 .lifestyle-grid .card.placeholder:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    
 }
 
 /* Caption styling */
@@ -948,18 +910,18 @@ header::before {
 
 /* Image styling to fill available space without expanding card */
 .lifestyle-photo {
-    flex-grow: 1;
-    height: 0;
     width: 100%;
-    object-fit: cover;
+    height: 150px; /* Fixed height for images */
+    max-height: 150px; /* Prevent expansion */
+    object-fit: cover; /* Crop to fit */
     display: block;
 }
 
 /* Strava embed placeholder */
 .strava-embed-placeholder {
-    flex-grow: 1;
-    height: 0;
     width: 100%;
+    height: 150px; /* Match image height */
+    max-height: 150px;
     overflow: hidden;
 }
 
@@ -995,40 +957,97 @@ header::before {
     margin-bottom: 0.5rem;
 }
 
-/* Ensure card has defined height for taller mobile viewports */
-@media screen and (min-height: 900px) {
-    .lifestyle-grid .card.placeholder {
-        height: 250px; /* Taller for larger viewports */
-    }
+/* Ensure lifestyle content doesn't sit under the fixed header */
+#lifestyle {
+    padding-top: 100px; /* leaves space for fixed header */
+    color: white;
+}
+
+.lifestyle-card {
+    background: rgba(255,255,255,0.96);
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    margin-top: 1rem;
+}
+
+/* Ensure text inside lifestyle-card is dark and readable */
+.lifestyle-card,
+.lifestyle-card p,
+.lifestyle-card .caption {
+    color: #2d3748;
+}
+
+/* Make small helper/template text inside the card slightly larger and more readable */
+.lifestyle-card p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 /* Mobile adjustments */
 @media screen and (max-width: 900px) {
     .lifestyle-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* Your rule */
     }
 
     .lifestyle-grid .card.placeholder {
         padding: 0.3rem;
         height: 180px; /* Adjusted for mobile */
+        max-height: 180px;
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 130px;
+        max-height: 130px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .lifestyle-grid {
         grid-template-columns: 1fr;
-        /* Your rule */
     }
 
     .container {
         padding: 0 0.5rem;
-        /* Your mobile padding */
     }
 
     .lifestyle-grid .card.placeholder {
         padding: 0.2rem;
-        height: 200px; /* Consistent for single-column */
+        height: 200px;
+        max-height: 200px;
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 150px;
+        max-height: 150px;
+    }
+
+    .spotify-iframe {
+        height: 352px;
+    }
+}
+
+/* Taller viewports */
+@media screen and (min-height: 900px) {
+    .lifestyle-grid .card.placeholder {
+        height: 250px;
+        max-height: 250px;
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 200px;
+        max-height: 200px;
+    }
+
+    .spotify-embed-container {
+        height: 352px;
+    }
+
+    .spotify-iframe {
+        height: 352px;
     }
 }
 
@@ -1049,10 +1068,31 @@ header::before {
 /* Add bottom gap so the template items don't touch the bottom of the viewport */
 main { padding-bottom: 8rem; }
 
-
 .card {
     position: relative;
     overflow: hidden;
     border-radius: 8px; /* Optional: rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow */
+}
+
+/* Desktop-specific adjustments for 3-column layout */
+@media screen and (min-width: 901px) {
+    .lifestyle-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lifestyle-grid .card.placeholder {
+        height: 200px;
+        max-height: 200px;
+        padding: 0.5rem;
+    }
+
+    .lifestyle-photo,
+    .strava-embed-placeholder {
+        height: 150px;
+        max-height: 150px;
+        width: 100%;
+        max-width: 100%;
+        object-fit: cover;
+    }
 }
