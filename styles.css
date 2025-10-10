@@ -241,8 +241,8 @@ nav a:hover {
     background: transparent;
     color: white;
     text-align: center;
-    padding: 80px 0 80px;
-    min-height: 40vh;
+    padding: 100px 0 10px;
+    min-height: 35vh;
     display: flex;
     align-items: center;
 }
@@ -261,13 +261,13 @@ nav a:hover {
     margin: 0 auto;
 }
 
-/*
-/ About Section 
+
 #about {
     padding: 80px 0; 
     background: transparent;
+    /* transparent so it shows the body gradient underneath */
 }
-*/
+
 
 /* Desktop: put a semi-opaque card behind the about content for readability */
 @media screen and (min-width: 769px) {
@@ -1066,3 +1066,23 @@ header::before {
 
 /* Add bottom gap so the template items don't touch the bottom of the viewport */
 main { padding-bottom: 8rem; }
+
+
+.lifestyle-card {
+    max-width: 100%; /* Adjust container width as needed */
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow */
+}
+
+.lifestyle-photo {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove inline spacing */
+    object-fit: cover; /* Ensure image fits nicely in the container */
+}
+
