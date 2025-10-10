@@ -5,26 +5,29 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     min-height: 100%;
-    /* fallback color if gradients aren't supported/rendered immediately */
     background-color: #f7fafc;
 }
 
-/* Apply the gradient consistently and ensure it covers the page */
-html, body {
+html,
+body {
     background-image: linear-gradient(180deg, #415A77 0%, #1B263B 30%, #E0E1DD 70%, #f7fafc 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* Mobile-first adjustments: target small phones (iPhone 14 Pro width ~393px) and general mobile */
 @media screen and (max-width: 430px) {
-    /* slightly larger base tap targets and readable text */
-    html { font-size: 15px; }
-    body { line-height: 1.5; }
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        line-height: 1.5;
+    }
 
     header {
         padding: 0.6rem 0;
@@ -35,44 +38,80 @@ html, body {
         padding-right: 0.75rem;
     }
 
-    /* make nav compact: hide inline menu and show toggle */
-    nav ul { display: none; }
-    .nav-toggle { display: block; }
+    nav ul {
+        display: none;
+    }
 
-    header h1 a { font-size: 1.05rem; }
+    .nav-toggle {
+        display: block;
+    }
 
-    .hero { padding: 72px 0 40px; }
+    header h1 a {
+        font-size: 1.05rem;
+    }
 
-    .container { padding: 0 0.75rem; }
+    .hero {
+        padding: 72px 0 40px;
+    }
 
-    /* Make inputs and buttons easier to tap */
-    .form-group input, .form-group textarea { padding: 0.9rem; font-size: 1rem; }
-    .submit-btn { padding: 0.85rem; font-size: 1rem; }
+    .container {
+        padding: 0 0.75rem;
+    }
 
-    /* Make timeline stack and reduce left padding */
-    .timeline::after { left: 56px; }
-    .timeline-item { padding-left: 64px; }
+    .form-group input,
+    .form-group textarea {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
 
-    /* Ensure hero and experience text are readable */
-    .hero h2 { font-size: 1.4rem; }
-    .hero p { font-size: 1rem; }
+    .submit-btn {
+        padding: 0.85rem;
+        font-size: 1rem;
+    }
 
-    /* Responsive embeds */
-    iframe { max-width: 100%; width: 100%; height: auto; }
-    img { max-width: 100%; height: auto; display: block; }
+    .timeline::after {
+        left: 56px;
+    }
 
-    /* Stack hero content on small phones for simpler layout */
+    .timeline-item {
+        padding-left: 64px;
+    }
+
+    .hero h2 {
+        font-size: 1.4rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    iframe {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
     .hero {
         display: block;
         padding: 64px 0 28px;
         text-align: center;
     }
 
-    /* make container use more of the viewport on phones */
-    .container { max-width: 100%; }
+    .container {
+        max-width: 100%;
+    }
 
-    /* Improve link tap size in header/nav */
-    nav a { padding: 0.6rem 0.4rem; display: inline-block; font-size: 1rem; }
+    nav a {
+        padding: 0.6rem 0.4rem;
+        display: inline-block;
+        font-size: 1rem;
+    }
 }
 
 body {
@@ -83,8 +122,9 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Prevent fixed header from covering anchored content */
-html { scroll-padding-top: 72px; }
+html {
+    scroll-padding-top: 72px;
+}
 
 .container {
     max-width: 1200px;
@@ -92,9 +132,7 @@ html { scroll-padding-top: 72px; }
     padding: 0 1rem;
 }
 
-/* Header */
 header {
-    /* transparent header: pseudo-element adds a vertical fade so the header blends into the page gradient */
     background: transparent;
     color: white;
     padding: 1rem 0;
@@ -108,7 +146,6 @@ header {
     overflow: visible;
 }
 
-/* vertical fade overlay so header starts the body gradient smoothly */
 header::before {
     content: '';
     position: absolute;
@@ -117,18 +154,15 @@ header::before {
     top: 0;
     bottom: 0;
     pointer-events: none;
-    z-index: -1; /* sits behind header content but above the page background because header has a high z-index */
-    background: linear-gradient(180deg,
-        rgba(65,90,119,0.9) 0%, /* matches #415A77 */
-        rgba(27,38,59,0.6) 40%, /* matches #1B263B */
-        rgba(27,38,59,0.0) 100%);
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(65, 90, 119, 0.9) 0%, rgba(27, 38, 59, 0.6) 40%, rgba(27, 38, 59, 0.0) 100%);
 }
 
 header .container {
     display: flex;
-    justify-content: space-between; /* keeps name left and nav right */
+    justify-content: space-between;
     align-items: center;
-    padding-left: 1rem; /* small extra left padding so the site name isn't flush */
+    padding-left: 1rem;
 }
 
 header h1 a {
@@ -138,22 +172,22 @@ header h1 a {
     font-weight: 700;
 }
 
-/* Ensure the site name sits on the left of the header and is visible above the nav */
 header h1 {
     margin: 0;
-    padding-left: 0.75rem; /* ensure name sits comfortably from the left edge */
-    z-index: 1001; /* keep name above header overlays */
-    display: block; /* ensure it's visible and participates in layout */
+    padding-left: 0.75rem;
+    z-index: 1001;
+    display: block;
 }
 
 @media screen and (max-width: 480px) {
-    header h1 a { font-size: 1.25rem; }
+    header h1 a {
+        font-size: 1.25rem;
+    }
 }
 
 nav ul {
     display: flex;
     list-style: none;
-    /* push nav to the right while keeping a comfortable right gap */
     margin-left: auto;
     margin-right: 2.5rem;
     gap: 1.25rem;
@@ -163,7 +197,6 @@ nav li {
     margin-left: 1.5rem;
 }
 
-/* Header Menu */
 nav a {
     color: white;
     text-decoration: none;
@@ -190,7 +223,6 @@ nav a:hover {
     background: #2b6cb0;
 }
 
-/* Mobile Menu */
 .nav-toggle {
     display: none;
     font-size: 1.5rem;
@@ -200,7 +232,6 @@ nav a:hover {
     cursor: pointer;
 }
 
-/* Make the toggle easier to see and tap on mobile */
 @media screen and (max-width: 768px) {
     .nav-toggle {
         display: block;
@@ -208,10 +239,9 @@ nav a:hover {
         border-radius: 6px;
     }
 
-    /* When the menu is active ensure it's readable and occupies full width */
     .nav-menu.active {
         display: flex;
-        background: linear-gradient(180deg,#2b3e50,#223240);
+        background: linear-gradient(180deg, #2b3e50, #223240);
         padding: 1rem 0.5rem;
         top: 56px;
         left: 0;
@@ -222,7 +252,7 @@ nav a:hover {
 
 .nav-menu {
     display: flex;
-    margin-left: auto; /* push the whole nav block to the right of the header */
+    margin-left: auto;
 }
 
 .nav-menu.active {
@@ -237,7 +267,6 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Hero Section */
 .hero {
     background: transparent;
     color: white;
@@ -263,26 +292,25 @@ nav a:hover {
 }
 
 #experience {
-    padding: 0px 0; 
+    padding: 0px 0;
     background: transparent;
-    /* Gap */
 }
 
-/* Desktop: put a semi-opaque card behind the experience content for readability */
 @media screen and (min-width: 769px) {
     #experience .container {
-        background: rgba(255,255,255,0.9);
+        background: rgba(255, 255, 255, 0.9);
         padding: 2rem;
         border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         max-width: 1000px;
         margin: 0 auto;
     }
-    /* Slightly more transparent header on desktop to emphasize page fade */
+
     header {
-        background: linear-gradient(to right, rgba(65,90,119,0.85), rgba(27,38,59,0.85));
+        background: linear-gradient(to right, rgba(65, 90, 119, 0.85), rgba(27, 38, 59, 0.85));
     }
 }
+
 #experience h2 {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -291,7 +319,6 @@ nav a:hover {
     letter-spacing: 2px;
 }
 
-/* Experience layout: single column by default (original styles retained) */
 .experience,
 .skills {
     margin-bottom: 1.5rem;
@@ -325,10 +352,9 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Timeline Section */
 #timeline {
     padding: 60px 0;
-    background: transparent; /* allow body gradient to continue */
+    background: transparent;
 }
 
 #timeline h2 {
@@ -379,7 +405,6 @@ nav a:hover {
 }
 
 .timeline-item::after {
-    /* Removed circle markers: visual markers were removed per request */
     content: none;
 }
 
@@ -428,7 +453,6 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Load More Button (Mobile Only) */
 .load-more-btn {
     display: block;
     margin: 1rem auto;
@@ -447,11 +471,9 @@ nav a:hover {
     background: #2c5282;
 }
 
-/* Contact Section */
 .contact {
     padding: 120px 0 60px;
-    background: transparent; /* show page gradient through */
-    /* avoid forcing a large empty area; let content define height */
+    background: transparent;
     min-height: auto;
 }
 
@@ -475,10 +497,10 @@ nav a:hover {
 .contact-form {
     max-width: 450px;
     margin: 0 auto;
-    background: rgba(255,255,255,0.96);
+    background: rgba(255, 255, 255, 0.96);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -498,7 +520,7 @@ nav a:hover {
 .form-group textarea {
     width: 100%;
     padding: 0.6rem;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 6px;
     font-size: 0.9rem;
     transition: border-color 0.3s ease, box-shadow 0.15s ease;
@@ -540,7 +562,6 @@ nav a:hover {
     font-size: 0.9rem;
 }
 
-/* Footer */
 footer {
     background: #2d3748;
     color: white;
@@ -549,10 +570,9 @@ footer {
     font-size: 0.9rem;
     position: relative;
     z-index: 10;
-    background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
+    background: linear-gradient(180deg, rgba(45, 55, 72, 0.95), rgba(45, 55, 72, 0.95));
 }
 
-/* Mobile Styles */
 @media screen and (max-width: 768px) {
     header .container {
         flex-direction: row;
@@ -659,18 +679,27 @@ footer {
         max-width: 90%;
     }
 
-    footer { font-size: 1rem; }
+    footer {
+        font-size: 1rem;
+    }
 
-    /* general responsive helpers */
-    .container img, .container iframe { max-width: 100%; height: auto; }
-    .btn, .submit-btn { touch-action: manipulation; }
+    .container img,
+    .container iframe {
+        max-width: 100%;
+        height: auto;
+    }
 
-    /* Mobile: ensure contact card is readable over gradient */
+    .btn,
+    .submit-btn {
+        touch-action: manipulation;
+    }
+
     #contact .container {
-        background poetry: rgba(255,255,255,0.98);
+        background: rgba(255, 255, 255, 0.98);
         padding: 1rem;
         border-radius: 8px;
     }
+
     #contact,
     #contact h2,
     #contact p,
@@ -678,14 +707,14 @@ footer {
         color: #2d3748;
     }
 
-    /* Mobile: make experience card readable like contact */
     #experience .container {
-        background: rgba(255,255,255,0.98);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
         padding: 1rem;
         border-radius: 8px;
         max-width: 410px;
     }
+
     #experience,
     #experience h2,
     #experience p,
@@ -711,22 +740,20 @@ footer {
     .load-more-btn {
         display: none;
     }
-    /* keep header more subtle on desktop; pseudo-element provides the smooth fade */
+
     header {
-        /* ensure header stays transparent on desktop; opacity handled by ::before */
         background: transparent;
     }
 }
 
-/* Make contact container match experience card on desktop for consistent look */
 @media screen and (min-width: 769px) {
     #contact .container {
-        background: rgba(255,255,255,0.95);
+        background: rgba(255, 255, 255, 0.95);
         padding: 1.6rem;
         border-radius: 10px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     }
-    /* ensure text within the contact card is dark enough */
+
     #contact,
     #contact h2,
     #contact p,
@@ -735,17 +762,16 @@ footer {
     }
 }
 
-/* Footer spacing: ensure contact page bottom looks like index */
 footer {
     padding-top: 2rem;
     padding-bottom: 2rem;
     position: relative;
-    z-index: 10; /* keep footer above background artifacts */
-    background: linear-gradient(180deg, rgba(45,55,72,0.95), rgba(45,55,72,0.95));
+    z-index: 10;
+    background: linear-gradient(180deg, rgba(45, 55, 72, 0.95), rgba(45, 55, 72, 0.95));
 }
 
-/* Force background to cover very long pages and avoid white gaps */
-html, body {
+html,
+body {
     background-size: auto 100%;
 }
 
@@ -770,7 +796,6 @@ html, body {
 }
 
 #experience p {
-    /* Constrain the bio line-length to match the content cards and improve readability */
     max-width: 70ch;
     margin: 0 auto 1rem;
     line-height: 1.75;
@@ -778,39 +803,28 @@ html, body {
     color: #2d3748;
 }
 
-/* Softer header overlay so it blends more smoothly with the body gradient */
 header::before {
-    background: linear-gradient(180deg,
-        rgba(65,90,119,0.7) 0%,
-        rgba(65,90,119,0.45) 20%,
-        rgba(27,38,59,0.18) 50%,
-        rgba(27,38,59,0.0) 100%);
+    background: linear-gradient(180deg, rgba(65, 90, 119, 0.7) 0%, rgba(65, 90, 119, 0.45) 20%, rgba(27, 38, 59, 0.18) 50%, rgba(27, 38, 59, 0.0) 100%);
 }
 
 @media screen and (min-width: 1000px) {
     nav ul {
-        margin-right: 4rem; /* nudge menu left from the edge a bit more on wide screens */
+        margin-right: 4rem;
         gap: 2rem;
     }
+
     #experience .container {
-        max-width: 1200px; /* slightly narrower for better line length */
+        max-width: 1200px;
     }
 }
 
-/* Lifestyle page placeholders */
 .lifestyle-intro .lead {
     max-width: 70ch;
     margin: 0 auto 1rem;
-    color: #2d3748;
-}
-
-/* Improve readability for the intro text when over the page gradient */
-.lifestyle-intro .lead {
-    color: #ffffff; /* make intro text white for best contrast */
+    color: #ffffff;
     font-size: 1.05rem;
 }
 
-/* Dark highlight box for readable intro content */
 .lifestyle-highlight {
     background: rgba(255, 255, 255, 0.95);
     padding: 1rem;
@@ -825,7 +839,6 @@ header::before {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* Ensure lifestyle-grid cards are consistent */
 .lifestyle-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -834,10 +847,8 @@ header::before {
     width: 100%;
     max-width: 100%;
     align-items: stretch;
-    /* Ensure all cards stretch to the same height */
 }
 
-/* General card styling */
 .lifestyle-grid .card {
     width: 100%;
     max-width: 100%;
@@ -856,15 +867,11 @@ header::before {
 
 .lifestyle-grid .card:hover {
     transform: translateY(-5px);
-    /* Slight lift */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    /* Enhanced shadow */
 }
 
-/* Specific styling for Spotify card */
 .lifestyle-grid .card.spotify-card {
     padding: 0;
-    /* Remove padding to let iframe fill the card */
 }
 
 .lifestyle-grid .graphic {
@@ -872,7 +879,6 @@ header::before {
     margin-bottom: 0.5rem;
 }
 
-/* Style the card to fill the grid cell */
 .lifestyle-grid .card.placeholder {
     width: 100%;
     max-width: 100%;
@@ -881,23 +887,21 @@ header::before {
     background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
     border-radius: 16px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-    height: 200px; /* Fixed height to prevent expansion */
-    max-height: 200px; /* Strictly enforce max height */
+    height: 250px;
+    max-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Clip overflowing content */
+    overflow: hidden;
 }
 
-/* Hover effect */
 .lifestyle-grid .card.placeholder:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Caption styling */
 .lifestyle-grid .caption {
     font-size: 1rem;
     font-weight: 600;
@@ -908,29 +912,26 @@ header::before {
     flex-shrink: 0;
 }
 
-/* Image styling to fill available space without expanding card */
 .lifestyle-photo {
     width: 100%;
-    height: 150px; /* Fixed height for images */
-    max-height: 150px; /* Prevent expansion */
-    object-fit: cover; /* Crop to fit */
+    height: 200px;
+    max-height: 200px;
+    object-fit: cover;
     display: block;
 }
 
-/* Strava embed placeholder */
 .strava-embed-placeholder {
     width: 100%;
-    height: 150px; /* Match image height */
-    max-height: 150px;
+    height: 200px;
+    max-height: 200px;
     overflow: hidden;
 }
 
-/* Style the Spotify embed container */
 .spotify-embed-container {
     width: 100%;
-    max-width: 300px; /* Standard Spotify width */
-    height: 352px; /* Standard Spotify playlist height */
-    margin: 1rem auto; /* Center it */
+    max-width: 300px;
+    height: 352px;
+    margin: 1rem auto;
     padding: 0;
     border-radius: 12px;
     display: flex;
@@ -938,7 +939,6 @@ header::before {
     overflow: hidden;
 }
 
-/* Style the iframe */
 .spotify-iframe {
     width: 100%;
     height: 352px;
@@ -946,7 +946,6 @@ header::before {
     border: none;
 }
 
-/* Optional caption */
 .spotify-embed-container::before {
     content: "Daily Mix";
     display: block;
@@ -957,34 +956,30 @@ header::before {
     margin-bottom: 0.5rem;
 }
 
-/* Ensure lifestyle content doesn't sit under the fixed header */
 #lifestyle {
-    padding-top: 100px; /* leaves space for fixed header */
+    padding-top: 100px;
     color: white;
 }
 
 .lifestyle-card {
-    background: rgba(255,255,255,0.96);
+    background: rgba(255, 255, 255, 0.96);
     padding: 1.25rem;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     margin-top: 1rem;
 }
 
-/* Ensure text inside lifestyle-card is dark and readable */
 .lifestyle-card,
 .lifestyle-card p,
 .lifestyle-card .caption {
     color: #2d3748;
 }
 
-/* Make small helper/template text inside the card slightly larger and more readable */
 .lifestyle-card p {
     font-size: 1rem;
     line-height: 1.6;
 }
 
-/* Mobile adjustments */
 @media screen and (max-width: 900px) {
     .lifestyle-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -992,7 +987,7 @@ header::before {
 
     .lifestyle-grid .card.placeholder {
         padding: 0.3rem;
-        height: 180px; /* Adjusted for mobile */
+        height: 180px;
         max-height: 180px;
     }
 
@@ -1029,17 +1024,16 @@ header::before {
     }
 }
 
-/* Taller viewports */
 @media screen and (min-height: 900px) {
     .lifestyle-grid .card.placeholder {
-        height: 250px;
-        max-height: 250px;
+        height: 300px;
+        max-height: 300px;
     }
 
     .lifestyle-photo,
     .strava-embed-placeholder {
-        height: 200px;
-        max-height: 200px;
+        height: 250px;
+        max-height: 250px;
     }
 
     .spotify-embed-container {
@@ -1051,46 +1045,44 @@ header::before {
     }
 }
 
-/* Override general iframe rule */
 @media screen and (max-width: 430px) {
     .spotify-iframe {
         height: 352px;
     }
 }
 
-/* Ensure lifestyle section fills width */
 #lifestyle {
     padding-top: 100px;
     width: 100%;
     max-width: 100%;
 }
 
-/* Add bottom gap so the template items don't touch the bottom of the viewport */
-main { padding-bottom: 8rem; }
+main {
+    padding-bottom: 8rem;
+}
 
 .card {
     position: relative;
     overflow: hidden;
-    border-radius: 8px; /* Optional: rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Desktop-specific adjustments for 3-column layout */
 @media screen and (min-width: 901px) {
     .lifestyle-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 
     .lifestyle-grid .card.placeholder {
-        height: 200px;
-        max-height: 200px;
+        height: 250px;
+        max-height: 250px;
         padding: 0.5rem;
     }
 
     .lifestyle-photo,
     .strava-embed-placeholder {
-        height: 150px;
-        max-height: 150px;
+        height: 200px;
+        max-height: 200px;
         width: 100%;
         max-width: 100%;
         object-fit: cover;
