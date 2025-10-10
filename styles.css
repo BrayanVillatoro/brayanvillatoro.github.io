@@ -20,6 +20,115 @@ body {
     background-size: cover;
 }
 
+/* Liquid Glass variables and utility (Apple-like vibrancy) */
+:root {
+    --glass-tint-r: 255;
+    --glass-tint-g: 255;
+    --glass-tint-b: 255;
+    --glass-alpha: 0.06;      /* subtle base tint */
+    --glass-alpha-2: 0.12;    /* gradient top tint */
+    --glass-blur-header: 14px; /* blur for header */
+    --glass-blur-card: 8px;   /* lighter blur for cards (performance) */
+    --glass-saturate: 120%;
+    --glass-border: rgba(255,255,255,0.18);
+    --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    /* halo variables removed (no hover rainbow) */
+}
+
+/* Core liquid glass utility */
+.liquid-glass {
+    /* Blue-tinted glass variant (matches timeline readability) */
+    background: linear-gradient(
+        to bottom,
+        rgba(43,108,176,0.14),
+        rgba(43,108,176,0.08)
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-header)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-header)) saturate(var(--glass-saturate));
+    border: 1px solid rgba(99,179,237,0.18);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 280ms ease, transform 220ms ease;
+}
+
+/* Card-specific variant: lighter blur, smaller shadow for performance */
+.card.liquid-glass {
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    border-radius: 12px;
+    border: 1px solid rgba(99,179,237,0.12);
+    box-shadow: 0 6px 18px rgba(15,23,42,0.05);
+}
+
+/* Modest hover lift for affordance; rainbow halo removed. Disabled for reduced-motion/reduced-transparency users. */
+.liquid-glass:hover {
+    transform: translateY(-3px);
+    /* modest shadow on hover; halo removed for a cleaner look */
+    box-shadow: 0 12px 32px rgba(15,23,42,0.08);
+}
+
+.card.liquid-glass:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+}
+
+/* Feature-detect and provide fallback for browsers which don't support backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .liquid-glass,
+    .card.liquid-glass {
+        background-color: rgba(255,255,255,0.94);
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .liquid-glass,
+    .card.liquid-glass {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background-color: rgba(255,255,255,0.96);
+        /* remove hover halo/animation for accessibility */
+        transition: none !important;
+    }
+    .liquid-glass:hover,
+    .card.liquid-glass:hover {
+        transform: none !important;
+        box-shadow: var(--glass-shadow) !important;
+    }
+}
+
+/* Make timeline items appear glassy by default (timeline items are usually JS-generated) */
+.timeline .timeline-content {
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), 0.06),
+        rgba(255,255,255,0.04)
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 6px 16px rgba(15,23,42,0.04);
+    border-radius: 8px;
+}
+
+/* Apply timeline-like blue glass to any container marked with liquid-glass for improved readability */
+.container.liquid-glass {
+    background: linear-gradient(
+        to bottom,
+        rgba(43,108,176,0.12),
+        rgba(43,108,176,0.06)
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    border: 1px solid rgba(99,179,237,0.18);
+    box-shadow: 0 8px 22px rgba(15,23,42,0.06);
+    border-radius: 10px;
+}
+
+/* experience-specific liquid-glass overrides removed — experience now matches lifestyle panels */
+
 @media screen and (max-width: 430px) {
     html {
         font-size: 15px;
@@ -303,11 +412,19 @@ nav a:hover {
 }
 
 @media screen and (min-width: 769px) {
+    /* experience container becomes a neutral liquid glass panel */
     #experience .container {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 2rem;
+        background: linear-gradient(
+            to bottom,
+            rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), calc(var(--glass-alpha) + 0.02)),
+            rgba(255,255,255, calc(var(--glass-alpha-2)))
+        );
+        -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+        backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+        border: 1px solid rgba(255,255,255,0.08);
+        padding: 1.25rem 1.5rem;
         border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 10px 30px rgba(15,23,42,0.06);
         max-width: 1000px;
         margin: 0 auto;
     }
@@ -344,18 +461,37 @@ nav a:hover {
 
 .experience li,
 .skills li {
-    background: #f7fafc;
+    /* each experience/skill item becomes a neutral liquid-glass card */
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), calc(var(--glass-alpha) + 0.02)),
+        rgba(255,255,255, calc(var(--glass-alpha-2)))
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    border: 1px solid rgba(255,255,255,0.08);
     margin-bottom: 0.75rem;
     padding: 1rem;
-    border-radius: 8px;
-    border-left: 4px solid #2b6cb0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    color: #1f2937; /* darker text for contrast on glass */
+    line-height: 1.65; /* improve readability */
+    font-size: 1rem;
 }
 
 .experience li:hover,
 .skills li:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 24px rgba(15,23,42,0.09);
+}
+
+.experience li strong,
+.skills li strong,
+.timeline-content h3,
+.timeline-content h4 {
+    color: #0f1724; /* strong heading color */
+    font-weight: 700;
 }
 
 #timeline {
@@ -422,18 +558,24 @@ nav a:hover {
     left: -8px;
 }
 
+
+/* Timeline items: match Lifestyle white translucent panels for consistency */
 .timeline-content {
     padding: 15px;
-    background: white;
+    background: rgba(255, 255, 255, 0.96);
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.10);
     border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
 }
 
 .timeline-content:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.11);
 }
 
 .timeline-content h3 {
@@ -444,8 +586,9 @@ nav a:hover {
 
 .timeline-content p,
 .timeline-content span {
-    color: #718096;
-    font-size: 0.9rem;
+    color: #334155; /* darker secondary text */
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .project-link {
@@ -503,11 +646,20 @@ nav a:hover {
 .contact-form {
     max-width: 450px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.96);
+    /* use neutral liquid-glass to match other content panels */
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), calc(var(--glass-alpha) + 0.02)),
+        rgba(255,255,255, calc(var(--glass-alpha-2)))
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+    color: #1f2937;
+    line-height: 1.6;
 }
 
 .form-group {
@@ -714,11 +866,19 @@ footer {
     }
 
     #experience .container {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        /* small-screen experience: neutral liquid-glass panel */
+        background: linear-gradient(
+            to bottom,
+            rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), calc(var(--glass-alpha) + 0.02)),
+            rgba(255,255,255, calc(var(--glass-alpha-2)))
+        );
+        -webkit-backdrop-filter: blur(calc(var(--glass-blur-card)/1.25)) saturate(var(--glass-saturate));
+        backdrop-filter: blur(calc(var(--glass-blur-card)/1.25)) saturate(var(--glass-saturate));
         padding: 1rem;
         border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(15,23,42,0.05);
         max-width: 410px;
+        border: 1px solid rgba(255,255,255,0.06);
     }
 
     #experience,
@@ -854,11 +1014,17 @@ footer {
     width: 100%;
     max-width: 100%;
     margin: 0;
-    /* reduce inner padding so media fills more horizontal space */
-    padding: 0.2rem;
-    background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+    /* convert cards to neutral liquid-glass containers so content matches Experience */
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), calc(var(--glass-alpha) + 0.02)),
+        rgba(255,255,255, calc(var(--glass-alpha-2)))
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    border: 1px solid rgba(255,255,255,0.06);
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
     /* use grid for consistent title/media/caption rows so media fills available space */
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
@@ -866,6 +1032,7 @@ footer {
     align-items: start;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    color: #1f2937; /* ensure titles and captions are dark */
 }
 
 /* Make all cards a consistent shape so media fills them predictably */
@@ -1123,22 +1290,27 @@ footer {
 }
 
 .lifestyle-card {
-    background: rgba(255, 255, 255, 0.96);
+    /* convert lifestyle card to neutral liquid-glass to match experience/timeline */
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--glass-tint-r), var(--glass-tint-g), var(--glass-tint-b), calc(var(--glass-alpha) + 0.02)),
+        rgba(255,255,255, calc(var(--glass-alpha-2)))
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-card)) saturate(var(--glass-saturate));
     padding: 1.25rem;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 30px rgba(15,23,42,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
     margin-top: 1rem;
+    color: #1f2937; /* darker text for better contrast on glass */
+    line-height: 1.65;
 }
 
-.lifestyle-card,
 .lifestyle-card p,
 .lifestyle-card .caption {
-    color: #2d3748;
-}
-
-.lifestyle-card p {
+    color: #1f2937;
     font-size: 1rem;
-    line-height: 1.6;
 }
 
 @media screen and (max-width: 900px) {
