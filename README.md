@@ -4,7 +4,7 @@
 
 Welcome to my personal portfolio repository! This static website, hosted on **GitHub Pages**, showcases my skills, projects, and professional journey as a full-stack developer. Built with **HTML**, **CSS**, and **JavaScript**, it features a dynamic GitHub projects timeline, a contact form powered by Formspree, and a link to my LinkedIn profile.
 
-🔗 **Live Demo**: [brayanvillatoro.github.io](https://brayanvillatoro.github.io)  
+🔗 **Live Demo**: [brayanvillatoro.github.io](https://brayanvillatoro.com)  
 📩 **Contact**: [Contact Page](https://brayanvillatoro.com/contact.html)  
 💼 **LinkedIn**: [Brayan Villatoro](https://www.linkedin.com/in/brayan-villatoro/)  
 ⭐ **Star this repo**: Show support by starring!  
@@ -90,7 +90,8 @@ brayanvillatoro.github.io/
 ├── contact.html      # Contact form page
 ├── styles.css        # Global styles with responsive design
 ├── script.js         # GitHub API fetch, smooth scrolling, form response
-├── screenshot.png    # Optional screenshot for README (add your own)
+├── liftstyle.html    # My life
+├── Images            # Collection of images for the website
 └── README.md         # This file
 ```
 
