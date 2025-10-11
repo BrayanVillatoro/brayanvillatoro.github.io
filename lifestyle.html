@@ -5,82 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lifestyle — Brayan Villatoro</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <div class="container liquid-glass">
-            <h1><a href="index.html">Brayan Villatoro</a></h1>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="index.html#experience">Experience</a></li>
-                    <li><a href="index.html#timeline">Projects</a></li>
-                    <li><a href="lifestyle.html">Lifestyle</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" class="linkedin-btn">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a></li>
-                </ul>
-            </nav>
+        <div class="container">
+            <div class="header-row">
+                <div class="brand"><a href="index.html">Brayan Villatoro</a></div>
+
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html#experience">Experience</a></li>
+                        <li><a href="index.html#timeline">Work</a></li>
+                        <li><a href="lifestyle.html">Lifestyle</a></li>
+                        <li><a href="#contact" id="contact-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a class="project-request" href="#about" id="about-link">About</a>
+                </div>
+            </div>
         </div>
     </header>
 
     <main>
         <section id="lifestyle" class="animate__animated animate__fadeInUp">
             <div class="container">
-                <div class="lifestyle-highlight liquid-glass">
+                <div class="lifestyle-highlight">
                     <p>When I’m not diving into the latest technology or coding at my computer, you’ll likely find me
                         outdoors, soaking in the fresh air. Whether I’m riding my bike, swinging a tennis racket, or
-                        exploring a peaceful hiking trail, I feel most alive when I’m active and connected to nature. Born
-                        in El Salvador, I immigrated to the United States at the age of six, carrying with me a curiosity
-                        that’s shaped my life. As a child, I was fascinated by how things worked, often taking apart my
-                        PlayStation 2 (much to my parents’ dismay) or building makeshift radios from spare parts scavenged
-                        from bins. This love for engineering and problem-solving has stayed with me, driving me to work hard
-                        and approach every challenge with my best effort. I take pride in doing things right, and I’m not
-                        one to sit idle—I thrive on staying busy and pushing myself to grow.
+                        exploring a peaceful hiking trail, I feel most alive when I’m active and connected to nature. 
                         As the first in my family to graduate college, I carry the weight of my parents’ sacrifices and the
                         joy of their pride in my achievements. That milestone wasn’t just mine; it was a shared victory for
-                        my family, a testament to their unwavering support. Today, I’m driven by big dreams and a desire to
-                        make a meaningful impact. Whether through innovative technology or simply lending a hand, I’m
-                        committed to leaving the world a better place than I found it.</p>
+                        my family, a testament to their unwavering support. .</p>
                 </div>
-                <div class="lifestyle-card liquid-glass">
+                <div class="lifestyle-card">
                     <div class="lifestyle-grid">
-                        <div class="card placeholder liquid-glass">
-                            <div class="caption">Me</div>
+                        <div class="card placeholder">
                             <img src="/Images/me.png" alt="Brayan Villatoro Photography" class="lifestyle-photo">
+                            <div class="caption">Me</div>
                         </div>
     
-                        <div class="card placeholder strava-card liquid-glass">
+                        <div class="card placeholder strava-card">
                             <!-- Strava embed -->
                             <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="12232418064"
                                 data-style="standard" data-from-embed="false"></div>
                             <script src="https://strava-embeds.com/embed.js"></script>
                             <div class="caption">Strava</div>
                         </div>
-                        <div class="card placeholder liquid-glass">
-                            <div class="caption">Dream Car</div>
+                        <div class="card placeholder">
                             <img src="/Images/GT3.jpg" alt="Red Porsche GT3" class="lifestyle-photo">
+                            <div class="caption">Dream GT3</div>
                         </div>
-                        <div class="card placeholder liquid-glass">
+                        <div class="card placeholder">
+                            <img src="/Images/tennis.jpg" alt="Tennis Player" class="lifestyle-photo">
                             <div class="caption">Tennis</div>
-                            <img src="/Images/Tennis.jpg" alt="Tennis Player" class="lifestyle-photo">
                         </div>
-                        <div class="card placeholder liquid-glass">
+                        <div class="card placeholder">
+                            <img src="/Images/home.jpg" alt="Dream Home" class="lifestyle-photo">
                             <div class="caption">Dream Home</div>
-                            <img src="/Images/dream_home.jpg" alt="Dream Home" class="lifestyle-photo">
                         </div>
-                        <div class="card placeholder liquid-glass">
-                            <div class="caption">Softball Team</div>
-                            <img src="/Images/Softball.jpg" alt="Softball Team Winning Game" class="lifestyle-photo">
+                        <div class="card placeholder">
+                            <img src="/Images/softball.jpg" alt="Softball Team Winning Game" class="lifestyle-photo">
+                            <div class="caption">Softball Squad</div>
                         </div>
                     </div>
                 </div>
     
-                <!--  <div class="card placeholder spotify-card"> -->
                 <div class="spotify-embed-container" alt="Spotify Playlist">
                     <iframe data-testid="embed-iframe" class="spotify-iframe"
                         src="https://open.spotify.com/embed/playlist/5hJch7GxaPW2TGCB05UQiG?utm_source=generator"
@@ -88,8 +83,6 @@
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
                     </iframe>
                 </div>
-    
-    
     
         </section>
     </main>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brayan Villatoro</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <!-- Structured Data -->
@@ -33,61 +36,95 @@
 <body>
     <header>
     <div class="container">
-            <h1><a href="index.html">Brayan Villatoro</a></h1>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="nav-menu">
-                <ul>
+        <div class="header-row">
+            <div class="brand"><a href="index.html">Brayan Villatoro</a></div>
+
+            <nav class="nav">
+                <ul class="nav-list">
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#timeline">Projects</a></li>
+                    <li><a href="#timeline">Work</a></li>
                     <li><a href="lifestyle.html">Lifestyle</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" class="linkedin-btn">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a></li>
+                    <li><a href="#contact" id="contact-link">Contact</a></li>
                 </ul>
             </nav>
+
+            <div class="header-actions">
+                <!-- About opener in header actions (opens modal) -->
+                <a class="project-request" href="#about" id="about-link">About</a>
+            </div>
         </div>
+    </div>
     </header>
 
-    <section id="home" class="hero animate__animated animate__fadeIn">
+    <section id="home" class="hero">
         <div class="container">
-            <h2>Computer Engineer</h2>
-            <p>Building impactful solutions with code and creativity.</p>
+            <h1 class="hero-title"><span class="hero-first">Brayan</span> <span class="hero-last">Villatoro</span></h1>
+            <p class="hero-sub">Building impactful solutions with code and creativity.</p>
+            <!-- hero CTA removed per user request -->
         </div>
     </section>
 
     <section id="experience" class="animate__animated animate__fadeInUp">
-        <div class="container liquid-glass">
+        <div class="container">
             
             <div class="experience">
                 <h3>Experience</h3>
-                <ul>
-                    <li class="liquid-glass"><strong>Information Technology</strong> at London Jewelers (MARCH 2024 - Present)<br>Provide IT solutions for luxury brands including Rolex, Patek Philippe, Cartier, VCA and other high-profile partners.
-                    
-                    A trusted point of contact in high-pressure situations, leading technical problem-solving during critical moments to
-                    ensure uninterrupted business operations. Strong communication, influence, and adaptability in resolving complex issues.
-                    
-                    Global administrator for all IT infrastructure and develop proprietary software with JavaScript.</li>
+                <div class="experience-grid">
+                    <div class="job">
+                        <div class="job-head">
+                            <div class="job-company">London Jewelers</div>
+                            <div class="job-role">
+                                <div class="job-title">Information Technology</div>
+                                <div class="job-dates">MARCH 2024 - Present</div>
+                            </div>
+                        </div>
+                        <div class="job-desc">Provide IT solutions for luxury brands including Rolex, Patek Philippe, Cartier, VCA and other high-profile partners. A trusted point of contact in high-pressure situations, leading technical problem-solving during critical moments to ensure uninterrupted business operations. Global administrator for all IT infrastructure and develop proprietary software with JavaScript.</div>
+                    </div>
 
-                    <li class="liquid-glass"><strong>Information Technology</strong> at PLS Financial (OCT 2023 - FEB 2024)<br>Drove excellence by prioritizing the meticulous fine-tuning and optimization of technology infrastructure.
-                    
-                    Directly oversaw 14 locations, including the top two highest-revenue sites out of over 214 locations across North
-                    America.
-                    Drove excellence by prioritizing the meticulous fine-tuning and optimization of technology infrastructure. Directly
-                    oversaw 14 locations, including the top two highest-revenue sites out of over 214 locations across North America.</li>
+                    <div class="job">
+                        <div class="job-head">
+                            <div class="job-company">PLS Financial</div>
+                            <div class="job-role">
+                                <div class="job-title">Information Technology</div>
+                                <div class="job-dates">OCT 2023 - FEB 2024</div>
+                            </div>
+                        </div>
+                        <div class="job-desc">Drove excellence by prioritizing meticulous fine-tuning and optimization of technology infrastructure. Directly oversaw 14 locations, including the top two highest-revenue sites out of over 214 locations across North America.</div>
+                    </div>
 
-                    <li class="liquid-glass"><strong>Network Engineer</strong> at ArtsDistrict (JUL 2022 - FEB 2023)<br>Served as the sole Network Engineer, ensuring the security and reliability of the network infrastructure. Proficient in
-                    managing WatchGuard firewalls, UniFi networks, and G Suite administration.</li>
+                    <div class="job">
+                        <div class="job-head">
+                            <div class="job-company">ArtsDistrict</div>
+                            <div class="job-role">
+                                <div class="job-title">Network Engineer</div>
+                                <div class="job-dates">JUL 2022 - FEB 2023</div>
+                            </div>
+                        </div>
+                        <div class="job-desc">Served as the sole Network Engineer, ensuring the security and reliability of the network infrastructure. Proficient in managing WatchGuard firewalls, UniFi networks, and G Suite administration.</div>
+                    </div>
 
-                    <li class="liquid-glass"><strong>Intern </strong> at New York State Office for the Prevention of Domestic Violence (APR 2021 - MAY 2021)<br>I was assigned the responsibility of developing a comprehensive cyber security safety and information document tailored
-                    for domestic abuse victims. https://opdv.ny.gov/system/files/documents/2021/10/technology-safety.pdf.</li>
+                    <div class="job">
+                        <div class="job-head">
+                            <div class="job-company">New York State Office for the Prevention of Domestic Violence</div>
+                            <div class="job-role">
+                                <div class="job-title">Intern</div>
+                                <div class="job-dates">APR 2021 - MAY 2021</div>
+                            </div>
+                        </div>
+                        <div class="job-desc">Developed a comprehensive cyber safety and information document tailored for domestic abuse victims. Read more: <a href="https://opdv.ny.gov/system/files/documents/2021/10/technology-safety.pdf">technology-safety.pdf</a>.</div>
+                    </div>
 
-                    <li class="liquid-glass"><strong>Intern </strong> at Microsoft (MAR 2017 - APR 2017)<br>Demonstrated expertise in identifying website vulnerabilities, specifically through parameter manipulation, to uncover
-                    login breaches that had not been anticipated by developers.</li>
-
-                </ul>
+                    <div class="job">
+                        <div class="job-head">
+                            <div class="job-company">Microsoft</div>
+                            <div class="job-role">
+                                <div class="job-title">Intern</div>
+                                <div class="job-dates">MAR 2017 - APR 2017</div>
+                            </div>
+                        </div>
+                        <div class="job-desc">Identified website vulnerabilities via parameter manipulation and contributed to security testing efforts.</div>
+                    </div>
+                </div>
             </div>
             <div class="skills">
                 <h3>Skills</h3>
@@ -103,12 +140,70 @@
     </section>
 
     <section id="timeline" class="animate__animated animate__fadeInUp">
-        <div class="container liquid-glass">
-            <h2>GitHub Projects Timeline</h2>
-            <p id="loading">Loading GitHub projects...</p>
-            <div id="timeline-container" class="timeline"></div>
+        <div class="container">
+            <h2 class="section-title">A small selection of my work.</h2>
+            <p id="loading" class="loading">Loading projects…</p>
+            <div id="timeline-container" class="work-grid"></div>
+            <div class="load-more-wrap"></div>
         </div>
     </section>
+
+    <!-- About modal (hidden by default) -->
+    <div id="about-modal" aria-hidden="true" role="dialog" aria-labelledby="about-title">
+        <div class="modal-backdrop" data-close="true"></div>
+        <div class="modal-dialog">
+            <div class="modal">
+                <button class="modal-close" aria-label="Close about">×</button>
+                <div class="modal-body">
+                    <div class="modal-text">
+                        <h3 id="about-title">About Brayan</h3>
+                        <p>Born in El Salvador, I immigrated to the United States at the age of six, carrying with me a curiosity that’s shaped my life. As a child, I was fascinated by how things worked, often taking apart my PlayStation 2 (much to my parents’ dismay) or building makeshift radios from spare parts scavenged from bins. This love for engineering and problem-solving has stayed with me, driving me to work hard and approach every challenge with my best effort. I take pride in doing things right, and I’m not one to sit idle—I thrive on staying busy and pushing myself to grow.</p>
+                        <p>Today, I’m driven by big dreams and a desire to make a meaningful impact. Whether through innovative technology or simply lending a hand, I’m committed to leaving the world a better place than I found it.</p>
+                        <p class="signature">— Brayan Villatoro</p>
+                    </div>
+                    <div class="modal-visual" aria-hidden="true">
+                        <img src="Images/me.png" alt="Brayan Villatoro portrait">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact modal (hidden by default) -->
+    <div id="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="contact-title">
+        <div class="modal-backdrop" data-close="true"></div>
+        <div class="modal-dialog">
+            <div class="modal">
+                <button class="modal-close" aria-label="Close contact">×</button>
+                <div class="modal-body">
+                    <div class="modal-text">
+                        <div class="contact-header">
+                            <h3 id="contact-title">Contact Me</h3>
+                            <div class="contact-header-actions">
+                                <a class="linkedin-btn" href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                    <span class="sr-only">Open LinkedIn profile</span>
+                                    <span class="linkedin-label">Connect on LinkedIn</span>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="contact-intro">Interested in collaborating or have a question? Drop me a message!</p>
+                        <form action="https://formspree.io/f/xpwyzvay" method="POST" class="contact-form" data-ajax="true">
+                            <input type="hidden" name="_subject" value="New contact form message">
+                            <input type="hidden" name="_format" value="plain">
+                            <div class="form-group"><label for="modal-name">Name</label><input type="text" id="modal-name" name="name" required placeholder="Your Name"></div>
+                            <div class="form-group"><label for="modal-email">Email</label><input type="email" id="modal-email" name="_replyto" required placeholder="Your Email"></div>
+                            <div class="form-group"><label for="modal-message">Message</label><textarea id="modal-message" name="message" required rows="6" placeholder="Your Message"></textarea></div>
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- visual removed per request -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
