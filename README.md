@@ -5,7 +5,7 @@
 Welcome to my personal portfolio repository! This static website, hosted on **GitHub Pages**, showcases my skills, projects, and professional journey as a full-stack developer. Built with **HTML**, **CSS**, and **JavaScript**, it features a dynamic GitHub projects timeline, a contact form powered by Formspree, and a link to my LinkedIn profile.
 
 🔗 **Live Demo**: [brayanvillatoro.com](https://brayanvillatoro.com)  
-📩 **Contact**: [Contact Page](https://brayanvillatoro.com/contact.html)  
+📩 **Contact**: [Contact Page](https://www.brayanvillatoro.com/#contact)
 💼 **LinkedIn**: [Brayan Villatoro](https://www.linkedin.com/in/brayan-villatoro/)  
 ⭐ **Star this repo**: Show support by starring!  
 🔔 **Watch for updates**: Stay tuned for new features.
@@ -203,8 +203,3 @@ Then enable GitHub Pages in the repository settings (Source: `main` branch, `/ (
 
 MIT — see the `LICENSE` file.
 
----
-
-If you want, I can:
-- Auto-generate `sitemap.xml` from the repository HTML files.
-- Add a CONTRIBUTING.md or small dev helper scripts.
