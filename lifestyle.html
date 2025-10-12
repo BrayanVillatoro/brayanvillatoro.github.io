@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div id="root-togglers" aria-hidden="true"></div>
     <header>
         <div class="container">
             <div class="header-row">
                 <div class="brand"><a href="index.html">Brayan Villatoro</a></div>
 
-                <nav class="nav">
+                <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+
+                <nav id="main-nav" class="nav">
                     <ul class="nav-list">
                         <li><a href="index.html#experience">Experience</a></li>
                         <li><a href="index.html#timeline">Work</a></li>
@@ -46,36 +51,82 @@
                 <div class="lifestyle-card">
                     <div class="lifestyle-grid">
                         <div class="card placeholder">
-                            <img src="/Images/me.png" alt="Brayan Villatoro Photography" class="lifestyle-photo">
+                            <img src="/media/me.png" alt="Brayan Villatoro Photography" class="lifestyle-photo" loading="lazy">
                             <div class="caption">Me</div>
                         </div>
     
-                        <div class="card placeholder strava-card">
-                            <!-- Strava embed -->
-                            <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="12232418064"
-                                data-style="standard" data-from-embed="false"></div>
-                            <script src="https://strava-embeds.com/embed.js"></script>
-                            <div class="caption">Strava</div>
-                        </div>
+                        <!-- Strava embed removed -->
                         <div class="card placeholder">
-                            <img src="/Images/GT3.jpg" alt="Red Porsche GT3" class="lifestyle-photo">
+                            <img src="/media/GT3.jpg" alt="Red Porsche GT3" class="lifestyle-photo" loading="lazy">
                             <div class="caption">Dream GT3</div>
                         </div>
                         <div class="card placeholder">
-                            <img src="/Images/tennis.jpg" alt="Tennis Player" class="lifestyle-photo">
+                            <img src="/media/tennis.jpg" alt="Tennis Player" class="lifestyle-photo" loading="lazy">
                             <div class="caption">Tennis</div>
                         </div>
                         <div class="card placeholder">
-                            <img src="/Images/home.jpg" alt="Dream Home" class="lifestyle-photo">
+                            <img src="/media/home.jpg" alt="Dream Home" class="lifestyle-photo" loading="lazy">
                             <div class="caption">Dream Home</div>
                         </div>
                         <div class="card placeholder">
-                            <img src="/Images/softball.jpg" alt="Softball Team Winning Game" class="lifestyle-photo">
+                            <img src="/media/softball.jpg" alt="Softball Team Winning Game" class="lifestyle-photo" loading="lazy">
                             <div class="caption">Softball Squad</div>
                         </div>
+                        <div class="card placeholder">
+                            <video src="/media/cycling.mov" class="lifestyle-photo" playsinline preload="metadata" muted autoplay loop poster="/media/cycling-poster.jpg"></video>
+                            <div class="caption">Cycling</div>
+                        </div>
+                        <!-- Strava embed removed from grid; will appear as standalone below -->
                     </div>
                 </div>
     
+                <!-- spotify embed moved below strava blocks -->
+
+                <!-- Standalone Strava embed (separate from the grid to avoid clipping) -->
+                <div class="strava-standalone">
+                    <button class="strava-close-btn" aria-label="Close activity" aria-hidden="true">✕</button>
+                    <div class="strava-summary">
+                        <div class="strava-summary-left">
+                            <div class="strava-title">🚴 Cycling 100Miles</div>
+                            <div class="strava-meta">• August 24, 2024</div>
+                        </div>
+                        <div class="strava-stats">
+                            <div class="stat"><div class="stat-num">103.9</div><div class="stat-label">mi</div></div>
+                            <div class="stat"><div class="stat-num">4,836</div><div class="stat-label">ft</div></div>
+                            <div class="stat"><div class="stat-num">6h 21m</div><div class="stat-label">time</div></div>
+                        </div>
+                        <div class="strava-controls">
+                            <button class="strava-expand-btn" aria-expanded="false" aria-controls="strava-embed" aria-label="Open activity full screen">View full activity</button>
+                        </div>
+                    </div>
+                    <div id="strava-embed" class="strava-embed-container" aria-hidden="true">
+                        <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="12232418064" data-style="standard" data-from-embed="false"></div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Second standalone Strava embed -->
+                <div class="strava-standalone">
+                    <button class="strava-close-btn" aria-label="Close activity" aria-hidden="true">✕</button>
+                    <div class="strava-summary">
+                        <div class="strava-summary-left">
+                            <div class="strava-title">🏃 Running In Miami</div>
+                            <div class="strava-meta">• July 24, 2025</div>
+                        </div>
+                        <div class="strava-stats">
+                            <div class="stat"><div class="stat-num">1.9</div><div class="stat-label">mi</div></div>
+                            <div class="stat"><div class="stat-num">38</div><div class="stat-label">ft</div></div>
+                            <div class="stat"><div class="stat-num">16m</div><div class="stat-label">time</div></div>
+                        </div>
+                        <div class="strava-controls">
+                            <button class="strava-expand-btn" aria-expanded="false" aria-controls="strava-embed-2" aria-label="Open activity full screen">View full activity</button>
+                        </div>
+                    </div>
+                    <div id="strava-embed-2" class="strava-embed-container" aria-hidden="true">
+                        <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="15220540881" data-style="standard" data-from-embed="false"></div>
+                    </div>
+                </div>
+
                 <div class="spotify-embed-container" alt="Spotify Playlist">
                     <iframe data-testid="embed-iframe" class="spotify-iframe"
                         src="https://open.spotify.com/embed/playlist/5hJch7GxaPW2TGCB05UQiG?utm_source=generator"
@@ -83,7 +134,7 @@
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
                     </iframe>
                 </div>
-    
+
         </section>
     </main>
 

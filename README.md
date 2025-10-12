@@ -65,7 +65,7 @@ Follow these steps to run the website locally or adapt it for your own use.
   - `lifestyle.html` — Lifestyle gallery (images, Strava & Spotify embeds)
   - `styles.css` — Global styles
   - `script.js` — Timeline loader, modal handling, embed normalization, anchor helpers
-  - `Images/` — local images used by the site
+   - `media/` — local images used by the site
   - `sitemap.xml`, `robots.txt` — SEO helpers
 
   ## Quick preview (Windows PowerShell)
@@ -105,7 +105,7 @@ Live: https://brayanvillatoro.com
 - `lifestyle.html` — Lifestyle gallery (images, Strava & Spotify embeds)
 - `styles.css` — Global styles
 - `script.js` — Timeline loader, modal handling, embed normalization, anchor helpers
-- `Images/` — local images used by the site
+- `media/` — local images used by the site
 - `sitemap.xml`, `robots.txt` — SEO helpers
 
 ## Quick preview (Windows PowerShell)

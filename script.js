@@ -13,6 +13,11 @@ let aboutModal = document.getElementById('about-modal');
 const contactLink = document.getElementById('contact-link');
 let contactModal = document.getElementById('contact-modal');
 const loadMoreWrap = document.querySelector('.load-more-wrap');
+const navToggleBtn = document.querySelector('.nav-toggle');
+const mainNav = document.getElementById('main-nav');
+// Remember original parent/place so we can restore the nav and toggler after closing
+const _navOriginal = mainNav ? { parent: mainNav.parentNode, nextSibling: mainNav.nextSibling } : null;
+const _togglerOriginal = navToggleBtn ? { parent: navToggleBtn.parentNode, nextSibling: navToggleBtn.nextSibling, inlineStyle: navToggleBtn.getAttribute && navToggleBtn.getAttribute('style') ? navToggleBtn.getAttribute('style') : '' } : null;
 
 let page = 1;
 
@@ -187,12 +192,195 @@ document.querySelectorAll('a[href*="#"]').forEach(a => {
     });
 });
 
-// Mobile menu toggle
-if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+// NOTE: mobile menu behavior is handled by toggling `body.nav-open` (see below).
+// The older toggle that flipped a `.nav-menu.active` class was removed to
+// avoid conflicting toggles when the nav lives in a full-screen panel.
+
+// Mobile nav: toggling using the new nav-toggle button
+if (navToggleBtn && mainNav) {
+    // Helper to open mobile nav: move to body, apply inline fixed styles so it fills viewport
+    function openMobileNav() {
+        try {
+            // measure current toggler position so we can pin it visually when moved in the DOM
+            let rect = null;
+            try { rect = navToggleBtn.getBoundingClientRect(); } catch (e) { rect = null; }
+
+            if (mainNav && mainNav.parentNode !== document.body) document.body.appendChild(mainNav);
+            // keep the CSS-controlled frosted background; do not force a white background inline
+            if (mainNav) {
+                mainNav.style.display = 'block';
+                mainNav.style.position = 'fixed';
+                mainNav.style.inset = '0';
+                mainNav.style.zIndex = '120';
+                mainNav.style.padding = '28px 20px 20px 20px';
+                mainNav.style.overflow = 'auto';
+            }
+            document.body.classList.add('nav-open');
+            navToggleBtn.setAttribute('aria-expanded', 'true');
+            navToggleBtn.setAttribute('aria-label', 'Close menu');
+            // move the toggler into the root-level container so it sits above overlays
+            try {
+                const root = document.getElementById('root-togglers');
+                if (root && navToggleBtn && navToggleBtn.parentNode !== root) {
+                    // Apply inline fixed positioning to keep visual continuity while the button is moved
+                    if (rect && rect.width && rect.height) {
+                        // pin it to the exact screen coordinates it occupied before moving
+                        navToggleBtn.style.position = 'fixed';
+                        navToggleBtn.style.top = `${rect.top}px`;
+                        navToggleBtn.style.left = `${rect.left}px`;
+                        navToggleBtn.style.width = `${rect.width}px`;
+                        navToggleBtn.style.height = `${rect.height}px`;
+                        navToggleBtn.style.margin = '0';
+                        // ensure it's above the panel
+                        navToggleBtn.style.zIndex = '170';
+                        navToggleBtn.style.transform = 'translateZ(0)';
+                    }
+                    root.appendChild(navToggleBtn);
+                }
+            } catch (e) { /* ignore */ }
+            // toggler fixed positioning is handled by CSS (body.nav-open .nav-toggle)
+            // move focus to first link and trap
+            focusFirstNavLink();
+            trapNavFocus();
+        } catch (e) {
+            console.warn('openMobileNav failed', e);
+        }
+    }
+
+    // Helper to close mobile nav and restore original DOM location and styles
+    function closeMobileNav() {
+        try {
+            document.body.classList.remove('nav-open');
+            navToggleBtn.setAttribute('aria-expanded', 'false');
+            navToggleBtn.setAttribute('aria-label', 'Open menu');
+            // restore inline styles
+            if (mainNav) {
+                mainNav.style.display = '';
+                mainNav.style.position = '';
+                mainNav.style.inset = '';
+                mainNav.style.zIndex = '';
+                mainNav.style.background = '';
+                mainNav.style.padding = '';
+                mainNav.style.overflow = '';
+            }
+            // restore toggler to its original DOM location
+            try {
+                const root = document.getElementById('root-togglers');
+                if (root && _togglerOriginal && _togglerOriginal.parent) {
+                    const parent = _togglerOriginal.parent;
+                    const next = _togglerOriginal.nextSibling;
+                    if (next) parent.insertBefore(navToggleBtn, next); else parent.appendChild(navToggleBtn);
+                    // restore original inline style (if any) so position/size go back to normal
+                    try {
+                        if (_togglerOriginal.inlineStyle && _togglerOriginal.inlineStyle.length) navToggleBtn.setAttribute('style', _togglerOriginal.inlineStyle); else navToggleBtn.removeAttribute('style');
+                    } catch (e) { /* ignore */ }
+                }
+            } catch (e) { /* ignore */ }
+            // restore to original place if available
+            if (_navOriginal && _navOriginal.parent) {
+                const parent = _navOriginal.parent;
+                const next = _navOriginal.nextSibling;
+                if (next) parent.insertBefore(mainNav, next); else parent.appendChild(mainNav);
+            }
+            releaseNavFocus();
+            if (navToggleBtn) navToggleBtn.focus();
+        } catch (e) {
+            console.warn('closeMobileNav failed', e);
+        }
+    }
+
+    // Toggle handler uses helpers
+    navToggleBtn.addEventListener('click', () => {
+        if (document.body.classList.contains('nav-open')) closeMobileNav(); else openMobileNav();
+    });
+
+    // Close nav when a link inside it is clicked
+    mainNav.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        // allow normal click; then close nav and return focus to the toggler
+        closeMobileNav();
+    });
+
+    // Close nav on escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+            closeMobileNav();
+        }
     });
 }
+
+// When nav opens, move focus to the first link and listen for the close button
+function focusFirstNavLink() {
+    if (!mainNav) return;
+    const firstLink = mainNav.querySelector('.nav-list a');
+    if (firstLink) firstLink.focus();
+}
+
+// Observe body class changes to detect nav-open (fallback for simple toggle)
+const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+        if (m.type === 'attributes' && m.attributeName === 'class') {
+            const opened = document.body.classList.contains('nav-open');
+            if (opened) focusFirstNavLink();
+        }
+    }
+});
+observer.observe(document.body, { attributes: true });
+
+// Handle explicit nav-close button(s)
+document.querySelectorAll('#main-nav .nav-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+        closeMobileNav();
+    });
+});
+
+// Simple focus trap for the nav panel
+let _navTrapHandler = null;
+function trapNavFocus() {
+    if (!mainNav) return;
+    const nodes = Array.from(mainNav.querySelectorAll('a, button')).filter(el => el.offsetParent !== null);
+    if (nodes.length === 0) return;
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+    _navTrapHandler = function(e) {
+        if (e.key !== 'Tab') return;
+        const active = document.activeElement;
+        if (e.shiftKey) {
+            if (active === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (active === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    };
+    document.addEventListener('keydown', _navTrapHandler);
+}
+
+function releaseNavFocus() {
+    if (_navTrapHandler) document.removeEventListener('keydown', _navTrapHandler);
+    _navTrapHandler = null;
+}
+
+// Hook into mutation observer to trap/release focus when nav opens/closes
+const bodyClassObserver = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+        if (m.type === 'attributes' && m.attributeName === 'class') {
+            const opened = document.body.classList.contains('nav-open');
+            if (opened) {
+                focusFirstNavLink();
+                trapNavFocus();
+            } else {
+                releaseNavFocus();
+            }
+        }
+    }
+});
+bodyClassObserver.observe(document.body, { attributes: true });
 
 // About modal handlers
 function openModal() {
@@ -216,6 +404,212 @@ function closeModal() {
     aboutModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
 }
+
+/* Strava embed: fullscreen expand behavior
+   Adds a small control to expand the standalone embed to a fixed, viewport-sized overlay so the
+   third-party iframe can render without inner scrollbars. */
+function initStravaExpand() {
+    const stands = Array.from(document.querySelectorAll('.strava-standalone'));
+    if (stands.length === 0) return;
+
+    // Helper to lazy-load the external script once
+    function ensureStravaScript() {
+        if (window.__strava_embed_loaded) return Promise.resolve();
+        return new Promise((resolve) => {
+            const s = document.createElement('script');
+            s.src = 'https://strava-embeds.com/embed.js';
+            s.async = true;
+            s.onload = () => { window.__strava_embed_loaded = true; resolve(); };
+            s.onerror = () => { resolve(); };
+            document.body.appendChild(s);
+        });
+    }
+
+    stands.forEach((stand) => {
+        const btn = stand.querySelector('.strava-expand-btn');
+        const host = stand.querySelector('#strava-embed, .strava-embed-container');
+        if (!btn || !host) return;
+
+        let opened = false;
+
+        const closeBtn = stand.querySelector('.strava-close-btn');
+
+        async function openFull() {
+            stand.classList.add('is-fullscreen');
+            btn.setAttribute('aria-expanded', 'true');
+            if (closeBtn) closeBtn.setAttribute('aria-hidden', 'false');
+            // reveal embed container
+            host.setAttribute('aria-hidden', 'false');
+            // lazy-load script
+            await ensureStravaScript();
+            opened = true;
+            // focus the close button for accessibility if present, otherwise the expand button
+            if (closeBtn) closeBtn.focus(); else btn.focus();
+            // mark body to hide decorative header pill and dim background if desired
+            document.body.classList.add('embed-open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFull() {
+            stand.classList.remove('is-fullscreen');
+            btn.setAttribute('aria-expanded', 'false');
+            if (closeBtn) closeBtn.setAttribute('aria-hidden', 'true');
+            host.setAttribute('aria-hidden', 'true');
+            opened = false;
+            document.body.style.overflow = '';
+            // return focus to the expand button and remove embed-open marker
+            btn.focus();
+            document.body.classList.remove('embed-open');
+            // blur the close button to avoid a lingering focus/selection visual on some platforms
+            try { if (closeBtn && typeof closeBtn.blur === 'function') closeBtn.blur(); } catch (e) {}
+        }
+
+        btn.addEventListener('click', () => {
+            if (opened) closeFull(); else openFull();
+        });
+
+        if (closeBtn) {
+            // close button inside the overlay
+            closeBtn.addEventListener('click', () => {
+                if (opened) closeFull();
+            });
+            // ensure it's hidden until opened
+            closeBtn.setAttribute('aria-hidden', 'true');
+            // prevent pointerdown from focusing the button on touch devices which can leave a persistent
+            // pressed/focus visual in some browsers; we still allow click to close
+            closeBtn.addEventListener('pointerdown', (ev) => {
+                try { ev.preventDefault(); } catch (e) {}
+            });
+        }
+
+        // Close this stand's fullscreen on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && stand.classList.contains('is-fullscreen')) closeFull();
+        });
+    });
+}
+
+// Initialize after DOM loads
+window.addEventListener('load', () => {
+    initStravaExpand();
+});
+
+/* After the Strava script injects markup, try to find the activity title and copy it into
+   the `.strava-title` element so the summary shows the real title. This uses a MutationObserver
+   to avoid polling and gracefully no-ops if the structure is unexpected. */
+function initStravaTitleSync() {
+    const stands = Array.from(document.querySelectorAll('.strava-standalone'));
+    if (stands.length === 0) return;
+
+    stands.forEach((stand, idx) => {
+        const host = stand.querySelector('#strava-embed, #strava-embed-2, .strava-embed-container');
+        const titleEl = stand.querySelector('.strava-title');
+        if (!host || !titleEl) return;
+
+        const mo = new MutationObserver((mutations, obs) => {
+            const candidate = host.querySelector('h1.activity-name, h2.activity-name, h2, h3, .activity-title, .strava-activity-title');
+            if (candidate && candidate.textContent && candidate.textContent.trim().length > 0) {
+                let text = candidate.textContent.trim();
+                // If the title already contains an emoji at start, keep it.
+                const emojiStart = /^\p{Extended_Pictographic}/u.test(text);
+                if (!emojiStart) {
+                    const lower = text.toLowerCase();
+                    if (lower.includes('ride') || lower.includes('cycling') || lower.includes('bike')) text = '🚴 ' + text;
+                    else if (lower.includes('run') || lower.includes('jog') || lower.includes('marathon')) text = '🏃 ' + text;
+                    else if (lower.includes('swim')) text = '🏊 ' + text;
+                    else text = '⭐ ' + text;
+                }
+                titleEl.textContent = text;
+                obs.disconnect();
+            }
+        });
+
+        mo.observe(host, { childList: true, subtree: true });
+    });
+}
+
+window.addEventListener('load', () => initStravaTitleSync());
+
+/* Sync distance / elevation / time from injected embed into the summary stats.
+   Uses heuristics to find text nodes that match typical formats (e.g. "103.9 mi", "4,836 ft", "6h 21m").
+   Falls back gracefully if specific values aren't found. */
+function initStravaStatsSync() {
+    const stands = Array.from(document.querySelectorAll('.strava-standalone'));
+    if (stands.length === 0) return;
+
+    const distanceRe = /([0-9]{1,3}(?:[.,][0-9]+)?)\s*(mi|km)\b/i;
+    const elevRe = /([0-9]{1,3}(?:[,][0-9]{3})*|[0-9]+)\s*(ft|m|meters|metres)\b/i;
+    const timeRe = /(?:(\d+)h\s*(\d+)m)|(\d+:\d+)|(\d+h)/i;
+
+    stands.forEach((stand) => {
+        const host = stand.querySelector('.strava-embed-container');
+        const statNums = Array.from(stand.querySelectorAll('.strava-stats .stat .stat-num'));
+        if (!host || statNums.length < 3) return;
+
+        const mo = new MutationObserver((mutations, obs) => {
+            // First, look for the exact structure you pasted: .stats.activity-stats .stat .stat-value
+            const statValues = host.querySelectorAll('.stats.activity-stats .stat .stat-value, .activity-stats .stat .stat-value');
+            if (statValues && statValues.length >= 3) {
+                try {
+                    const d = statValues[0].textContent.trim();
+                    const e = statValues[1].textContent.trim();
+                    const t = statValues[2].textContent.trim();
+                    if (d) statNums[0].textContent = d;
+                    if (e) statNums[1].textContent = e;
+                    if (t) statNums[2].textContent = t;
+                    obs.disconnect();
+                    return;
+                } catch (err) {
+                    // fall through to generic scanning on error
+                }
+            }
+
+            // search elements under host for candidates (generic fallback)
+            const walker = document.createTreeWalker(host, NodeFilter.SHOW_ELEMENT, null);
+            let node;
+            let foundDistance = null;
+            let foundElev = null;
+            let foundTime = null;
+
+            while ((node = walker.nextNode())) {
+                const text = (node.textContent || '').trim();
+                if (!text) continue;
+                // distance
+                if (!foundDistance) {
+                    const m = text.match(distanceRe);
+                    if (m) foundDistance = m[1].replace(',', '.').trim() + ' ' + m[2];
+                }
+                // elevation
+                if (!foundElev) {
+                    const m = text.match(elevRe);
+                    if (m) foundElev = m[1].trim() + ' ' + (m[2] || 'ft');
+                }
+                // time
+                if (!foundTime) {
+                    const m = text.match(timeRe);
+                    if (m) {
+                        if (m[1] && m[2]) foundTime = `${m[1]}h ${m[2]}m`;
+                        else if (m[3]) foundTime = m[3];
+                        else if (m[4]) foundTime = `${m[4]}`;
+                    }
+                }
+                if (foundDistance && foundElev && foundTime) break;
+            }
+
+            // Apply found values to the stat-num elements (distance, elev, time)
+            if (foundDistance) statNums[0].textContent = foundDistance.replace(/\s+mi/i, ' mi').replace(/\s+km/i, ' km');
+            if (foundElev) statNums[1].textContent = foundElev.replace(/meters?/i, 'm');
+            if (foundTime) statNums[2].textContent = foundTime;
+
+            // If we've found at least one value, disconnect to avoid extra work; otherwise keep observing until timeout
+            if (foundDistance || foundElev || foundTime) obs.disconnect();
+        });
+
+        mo.observe(host, { childList: true, subtree: true });
+    });
+}
+
+window.addEventListener('load', () => initStravaStatsSync());
 
 if (aboutLink && aboutModal) {
     aboutLink.addEventListener('click', (e) => {
@@ -370,7 +764,28 @@ function initJobToggles() {
         btn.textContent = 'Read more';
 
         if (head) {
-            head.insertAdjacentElement('afterend', btn);
+            // Place the toggle next to the dates on the same row. Create or reuse a .job-meta container
+            const role = job.querySelector('.job-role');
+            const dates = role ? role.querySelector('.job-dates') : null;
+            let meta = job.querySelector('.job-meta');
+            try {
+                if (!meta) {
+                    meta = document.createElement('div');
+                    meta.className = 'job-meta';
+                }
+
+                if (dates) {
+                    // Move dates into meta if not already inside it
+                    if (dates.parentNode !== meta) meta.appendChild(dates);
+                }
+
+                // Append the toggle into meta and then place meta into job-role (or head)
+                meta.appendChild(btn);
+                if (role) role.appendChild(meta); else head.appendChild(meta);
+            } catch (e) {
+                // fallback: insert after head
+                head.insertAdjacentElement('afterend', btn);
+            }
         } else {
             job.appendChild(btn);
         }
@@ -395,97 +810,36 @@ function initJobToggles() {
 document.addEventListener('DOMContentLoaded', initJobToggles);
 window.addEventListener('resize', debounce(initJobToggles, 200));
 
-/*
-  Small fallback to normalize third-party embed sizing (Strava).
-  Some embed scripts inject inline width/height or extra wrappers after load.
-  This snippet uses a MutationObserver to detect when the Strava placeholder
-  receives children and then strips width/height attributes and applies
-  a CSS-friendly class to ensure the embed fits its card.
-*/
-function normalizeStravaEmbed() {
-    const placeholder = document.querySelector('.strava-embed-placeholder');
-    if (!placeholder) return;
+// Note: Strava embeds removed; no normalization required.
 
-    const applyFix = (node) => {
-        try {
-            // remove inline size attributes on elements
-            ['width', 'height', 'style'].forEach(attr => {
-                if (node.hasAttribute && node.hasAttribute(attr)) {
-                    // keep other style rules but strip width/height from style attribute
-                    if (attr === 'style') {
-                        const style = node.getAttribute('style');
-                        const cleaned = style.replace(/(?:\bwidth\s*:\s*[^;]+;?)|(?:\bheight\s*:\s*[^;]+;?)/g, '');
-                        node.setAttribute('style', cleaned);
-                    } else {
-                        node.removeAttribute(attr);
-                    }
-                }
-            });
+// Sticky header helper: measure header height and set CSS variable for mobile
+function setHeaderOffset() {
+    try {
+        const header = document.querySelector('header');
+        if (!header) return;
+        const root = document.documentElement;
+        const rect = header.getBoundingClientRect();
+        const height = Math.ceil(rect.height);
+        root.style.setProperty('--header-offset', `${height}px`);
 
-            // force sizing-friendly classes
-            node.classList && node.classList.add('normalized-embed-node');
-        } catch (e) {
-            // ignore errors for third-party nodes we can't modify
-            console.warn('normalizeStravaEmbed: failed to clean node', e);
-        }
-    };
-
-    const observer = new MutationObserver((mutations, obs) => {
-        for (const m of mutations) {
-            for (const n of m.addedNodes) {
-                applyFix(n);
-                // also fix descendants
-                if (n.querySelectorAll) {
-                    n.querySelectorAll('*').forEach(applyFix);
-                }
+        // add a padding class to main sections so content is pushed below the fixed header
+        document.querySelectorAll('body > *').forEach(el => {
+            if (el.tagName.toLowerCase() === 'header' || el.tagName.toLowerCase() === 'script') return;
+            if (window.innerWidth <= 720) {
+                el.classList.add('content-offset');
+            } else {
+                el.classList.remove('content-offset');
             }
-        }
-
-        // If the placeholder has at least one iframe or visible content, stop observing
-        if (placeholder.querySelector('iframe, .strava-embed-wrapper, img')) {
-            obs.disconnect();
-        }
-    });
-
-    // Start observing for child additions and subtree changes
-    observer.observe(placeholder, { childList: true, subtree: true });
-
-    // Also attempt a one-time pass in case the embed already exists
-    applyFix(placeholder);
-    placeholder.querySelectorAll('*').forEach(applyFix);
-
-    // If a third-party embed doesn't appear within a short window, provide a graceful fallback
-    const maybeInjectFallback = () => {
-        const found = placeholder.querySelector('iframe, .strava-embed-wrapper, img');
-        if (!found) {
-            // Build a safe fallback link to the Strava activity using data attributes
-            const id = placeholder.dataset && placeholder.dataset.embedId ? placeholder.dataset.embedId : null;
-            const href = id ? `https://www.strava.com/activities/${id}` : 'https://www.strava.com/' ;
-            // Avoid overwriting a working embed; check again before replacing
-            const still = placeholder.querySelector('iframe, .strava-embed-wrapper, img');
-            if (!still) {
-                placeholder.innerHTML = '';
-                const a = document.createElement('a');
-                a.className = 'strava-fallback';
-                a.href = href;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.textContent = id ? 'View activity on Strava' : 'Open Strava';
-                placeholder.appendChild(a);
-            }
-        }
-    };
-
-    // Run fallback check after a short delay to allow the remote script time to inject
-    setTimeout(maybeInjectFallback, 1200);
+        });
+    } catch (e) {
+        // ignore
+    }
 }
 
-// Run after window load to give third-party scripts time to inject
-window.addEventListener('load', () => {
-    normalizeStravaEmbed();
-    // run again after a short delay in case the embed loads slowly
-    setTimeout(normalizeStravaEmbed, 800);
-});
+window.addEventListener('resize', debounce(setHeaderOffset, 120));
+window.addEventListener('orientationchange', debounce(setHeaderOffset, 160));
+document.addEventListener('DOMContentLoaded', setHeaderOffset);
+window.addEventListener('load', () => setTimeout(setHeaderOffset, 80));
 
 // If the user navigates to the site with a hash (e.g. index.html#about or #contact),
 // open the matching modal if available. This also supports links from other pages

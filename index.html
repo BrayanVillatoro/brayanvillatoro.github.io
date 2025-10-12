@@ -34,12 +34,18 @@
         </script>
 </head>
 <body>
+    <!-- Root-level toggler container: used to host the mobile toggler above overlays -->
+    <div id="root-togglers" aria-hidden="true"></div>
     <header>
     <div class="container">
         <div class="header-row">
             <div class="brand"><a href="index.html">Brayan Villatoro</a></div>
 
-            <nav class="nav">
+            <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span class="hamburger" aria-hidden="true"></span>
+            </button>
+
+            <nav id="main-nav" class="nav" role="navigation">
                 <ul class="nav-list">
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#timeline">Work</a></li>
@@ -157,12 +163,13 @@
                 <div class="modal-body">
                     <div class="modal-text">
                         <h3 id="about-title">About Brayan</h3>
-                        <p>Born in El Salvador, I immigrated to the United States at the age of six, carrying with me a curiosity that’s shaped my life. As a child, I was fascinated by how things worked, often taking apart my PlayStation 2 (much to my parents’ dismay) or building makeshift radios from spare parts scavenged from bins. This love for engineering and problem-solving has stayed with me, driving me to work hard and approach every challenge with my best effort. I take pride in doing things right, and I’m not one to sit idle—I thrive on staying busy and pushing myself to grow.</p>
+                        <p>Born in El Salvador, I immigrated to the United States at the age of six, carrying with me a curiosity that’s shaped my life. As a child, I was fascinated by how things worked, often taking apart my PlayStation 2 or building makeshift radios from spare parts scavenged from bins. This love for engineering and problem-solving has stayed with me, driving me to work hard and approach every challenge with my best effort. I take pride in doing things right, and I’m not one to sit idle—I thrive on staying busy and pushing myself to grow.</p>
                         <p>Today, I’m driven by big dreams and a desire to make a meaningful impact. Whether through innovative technology or simply lending a hand, I’m committed to leaving the world a better place than I found it.</p>
+                        <div class="spacer" aria-hidden="true"></div>
                         <p class="signature">— Brayan Villatoro</p>
                     </div>
                     <div class="modal-visual" aria-hidden="true">
-                        <img src="Images/me.png" alt="Brayan Villatoro portrait">
+                        <img src="media/me.png" alt="Brayan Villatoro portrait" loading="lazy">
                     </div>
                 </div>
             </div>
