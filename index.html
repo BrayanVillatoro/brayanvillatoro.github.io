@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brayan Villatoro</title>
+    <title>Brayan Villatoro — Computer Engineer</title>
+    <meta name="description" content="Brayan Villatoro — Computer Engineer building web apps, infrastructure, and tools. Portfolio, work samples, and contact information.">
+    <link rel="canonical" href="https://www.brayanvillatoro.com/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Brayan Villatoro — Computer Engineer">
+    <meta property="og:description" content="Brayan Villatoro — Computer Engineer building web apps, infrastructure, and tools. Portfolio, work samples, and contact information.">
+    <meta property="og:url" content="https://www.brayanvillatoro.com/">
+    <!-- Twitter metadata removed per user request -->
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,6 +55,7 @@
 
             <nav id="main-nav" class="nav" role="navigation">
                 <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="#site-data" id="site-data-link">Site Data</a></li>
                     <li><a href="#timeline">Work</a></li>
                     <li><a href="lifestyle.html">Lifestyle</a></li>
@@ -163,7 +172,9 @@
                     <div class="modal-text">
                         <h3 id="site-data-title">Site Data</h3>
                         <ul class="site-data-list">
-                            <li>Site Visits: <strong id="site-visits-count">…</strong></li>
+                            <li>Site Visits: <strong id="site-visits-count">…</strong>
+                                <small id="site-visits-checked" class="status-checked" aria-hidden="true">Last checked: —</small>
+                            </li>
                             <li>Site tools: GitHub Pages <span id="github-pages-status" class="status-badge" aria-live="polite">Loading…</span>
                                 <small id="github-pages-checked" class="status-checked" aria-hidden="true">Last checked: —</small>
                             </li>

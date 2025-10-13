@@ -24,6 +24,8 @@ const _togglerOriginal = navToggleBtn ? { parent: navToggleBtn.parentNode, nextS
 let page = 1;
 
 async function loadGitHubTimeline(loadMore = false) {
+    // If this page doesn't have a timeline container (e.g., lifestyle.html), no-op.
+    if (!timelineContainer) return;
     const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
     const perPage = isMobile ? REPOS_PER_PAGE_MOBILE : REPOS_PER_PAGE_DESKTOP;
     const apiUrl = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=asc&per_page=${perPage}&page=${page}`;
@@ -36,15 +38,15 @@ async function loadGitHubTimeline(loadMore = false) {
         const repos = await response.json();
 
         if (repos.length === 0 && page === 1) {
-            timelineContainer.innerHTML = '<p class="text-center text-gray-500">No public projects found.</p>';
-            loadingElement.style.display = 'none';
+            if (timelineContainer) timelineContainer.innerHTML = '<p class="text-center text-gray-500">No public projects found.</p>';
+            if (loadingElement) loadingElement.style.display = 'none';
             return;
         }
 
         if (!loadMore) {
-            timelineContainer.innerHTML = '';
+            if (timelineContainer) timelineContainer.innerHTML = '';
         }
-        loadingElement.style.display = 'none';
+        if (loadingElement) loadingElement.style.display = 'none';
 
         repos.forEach((repo, index) => {
             // Render as a simple work card
@@ -103,8 +105,8 @@ async function loadGitHubTimeline(loadMore = false) {
 
     } catch (error) {
         console.error('Error fetching GitHub repos:', error);
-        timelineContainer.innerHTML = '<p class="text-center text-red-500">Error loading projects.</p>';
-        loadingElement.style.display = 'none';
+        if (timelineContainer) timelineContainer.innerHTML = '<p class="text-center text-red-500">Error loading projects.</p>';
+        if (loadingElement) loadingElement.style.display = 'none';
     }
 }
 
@@ -796,7 +798,7 @@ window.addEventListener('resize', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => loadGitHubTimeline());
+document.addEventListener('DOMContentLoaded', () => { if (timelineContainer) loadGitHubTimeline(); });
 
 // --- Simple site visit counter using CountAPI (no server required)
 // Uses CountAPI (https://countapi.xyz) to increment a namespaced counter and display it.
@@ -806,10 +808,21 @@ const COUNTAPI_KEY = 'site_visits';
 async function fetchVisitCount() {
     try {
         const res = await fetch(`https://api.countapi.xyz/get/${COUNTAPI_NAMESPACE}/${COUNTAPI_KEY}`);
-        if (!res.ok) return null;
+        if (!res.ok) {
+            console.warn('fetchVisitCount: non-OK response', res.status);
+            return null;
+        }
         const json = await res.json();
+        if (!json || typeof json.value === 'undefined') {
+            console.warn('fetchVisitCount: unexpected JSON', json);
+            return null;
+        }
+    // cache last-known public value locally for UI fallback
+    try { localStorage.setItem('bv_site_visits_public', String(json.value)); } catch (e) {}
+    try { const t = document.getElementById('site-visits-checked'); if (t) t.textContent = 'Last checked: ' + new Date().toLocaleString(); } catch (e) {}
         return json.value;
     } catch (e) {
+        console.warn('fetchVisitCount failed', e);
         return null;
     }
 }
@@ -825,9 +838,17 @@ async function incrementVisitCount() {
         if (!res.ok) return null;
         const json = await res.json();
         // set a cookie to throttle further increments for 24 hours
-        setCookie('bv_site_visit', '1', 1);
-        return json.value;
+    setCookie('bv_site_visit', '1', 1);
+    try { localStorage.setItem('bv_site_visits_public', String(json.value)); } catch (e) {}
+    try { const t = document.getElementById('site-visits-checked'); if (t) t.textContent = 'Last checked: ' + new Date().toLocaleString(); } catch (e) {}
+    return json.value;
     } catch (e) {
+        console.warn('incrementVisitCount failed', e);
+        // as a graceful fallback, try to return any cached public value
+        try {
+            const cached = localStorage.getItem('bv_site_visits_public');
+            if (cached) return Number(cached);
+        } catch (err) {}
         return null;
     }
 }
@@ -838,7 +859,9 @@ function setCookie(name, value, days) {
         const d = new Date();
         d.setTime(d.getTime() + (days*24*60*60*1000));
         const expires = `; expires=${d.toUTCString()}`;
-        document.cookie = `${name}=${value || ''}${expires}; path=/; SameSite=Lax`;
+        // Add Secure attribute when on HTTPS to ensure cookies are accepted by modern browsers
+        const secure = (location && location.protocol === 'https:') ? '; Secure' : '';
+        document.cookie = `${name}=${value || ''}${expires}; path=/; SameSite=Lax${secure}`;
     } catch (e) {}
 }
 
@@ -854,7 +877,14 @@ function updateVisitElement(val) {
     try {
         const el = document.getElementById('site-visits-count');
         if (!el) return;
-        if (val === null || typeof val === 'undefined') el.textContent = '—'; else el.textContent = String(val);
+        if (val === null || typeof val === 'undefined') {
+            // try cached public value
+            try {
+                const cached = localStorage.getItem('bv_site_visits_public');
+                if (cached) { el.textContent = String(cached); return; }
+            } catch (e) {}
+            el.textContent = '—';
+        } else el.textContent = String(val);
     } catch (e) { /* ignore */ }
 }
 
@@ -863,6 +893,8 @@ window.addEventListener('load', async () => {
     const v = await incrementVisitCount();
     updateVisitElement(v);
 });
+
+// Like feature removed per user request.
 
 // --- GitHub Pages status via githubstatus.com
 const GITHUB_STATUS_URL = 'https://www.githubstatus.com/api/v2/summary.json';

@@ -657,9 +657,9 @@ html { scroll-padding-top: 110px; scroll-behavior: smooth; }
     #main-nav .nav-title-line1 { font-weight: 700; font-size: 1rem; }
     #main-nav .nav-title-line2 { font-size: 0.95rem; color: #6b7280; margin-top: 6px; }
     /* Ensure nav-list stacks vertically and appears centered-ish */
-    body.nav-open .nav-list { display: flex; flex-direction: column; gap: 34px; margin-top: 28px; max-width: 640px; padding-left: 8px; }
-    /* Muted menu items like the reference */
-    .nav-list a { color: #6b7280; font-size: 1.12rem; font-weight: 600; text-decoration: none; padding-left: 12px; display: block; padding-right: 48px; line-height: 1.8; }
+    body.nav-open .nav-list { display: flex; flex-direction: column; gap: 34px; margin-top: 28px; max-width: 640px; padding-left: 0; align-items: center; }
+    /* Muted menu items like the reference (centered inside the mobile panel) */
+    body.nav-open .nav-list a { color: #6b7280; font-size: 1.12rem; font-weight: 600; text-decoration: none; padding: 8px 12px; display: block; text-align: center; line-height: 1.8; width: 100%; max-width: 520px; }
     .nav-list a:hover { color: #0f1724; }
     /* Remove chevrons and in-panel close — use header hamburger as the close (X) */
     .nav-list li { position: relative; }
@@ -1055,6 +1055,7 @@ body.nav-open .nav-toggle .hamburger::after {
     transition: transform 210ms ease;
     align-items: stretch;
     color: #1f2937;
+    position: relative; /* allow absolute overlays such as like button */
 }
 
 /* Disable per-card decorative pseudo-element so lifestyle cards read like Experience containers */
@@ -1107,6 +1108,8 @@ body.nav-open .nav-toggle .hamburger::after {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
 }
+
+/* Like UI removed — styles deleted per user request. */
 
 .lifestyle-grid .card.placeholder:hover {
     transform: translateY(-5px);
@@ -1173,17 +1176,16 @@ body.nav-open .nav-toggle .hamburger::after {
     font-size: 1rem;
     font-weight: 600;
     color: #2d3748;
-    text-align: center;
-.lifestyle-grid .card .caption { background: transparent !important; }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    text-align: left;
     /* reduce gap between title and media */
     margin-bottom: 0.25rem;
     flex-grow: 0;
     flex-shrink: 0;
-}
-
-/* When captions are siblings after cards, ensure they are centered and span one column */
-.lifestyle-grid .caption {
-    display: block;
+    /* When captions are siblings after cards, ensure they span one column and sit at the top */
     grid-column: span 1;
     align-self: start;
     padding-top: 0.5rem;
@@ -1530,6 +1532,7 @@ section:target::before, section:target::after { display: none; }
     #lifestyle { padding-top: calc(var(--header-offset, 64px) - 35px); }
 }
 
+
 .lifestyle-card {
     background: linear-gradient(180deg, rgba(255,255,255,0.46), rgba(255,255,255,0.66));
     -webkit-backdrop-filter: blur(8px) saturate(1.08);
@@ -1542,20 +1545,27 @@ section:target::before, section:target::after { display: none; }
     margin-top: 6px;
     margin-bottom: 12px;
     padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    width: 100%; /* ensure caption takes full card width so space-between works */
+    position: relative; /* allow absolute child (like button) to position against caption */
+    padding-right: 64px; /* reserve space on the right for the like button */
     color: #1f2937; /* darker text for better contrast on glass */
+    line-height: 1.65;
+}
 
 /* Reduce the top padding inside the lifestyle section container so the intro sits flush */
 #lifestyle .container { padding-top: 0; }
 .lifestyle-grid { margin-top: 12px; }
-    line-height: 1.65;
-}
 
 .lifestyle-card p,
 .lifestyle-card .caption {
     color: #1f2937;
     font-size: 1rem;
 }
+
+/* Make the caption a positioning context so the like button aligns to each caption */
+.lifestyle-grid .card .caption { position: relative; display: block; width: 100%; padding-right: 92px; }
+
+/* Like feature removed. */
 
 @media screen and (max-width: 900px) {
     .lifestyle-grid {
@@ -1570,30 +1580,8 @@ section:target::before, section:target::after { display: none; }
     }
 
     .lifestyle-photo {
-    min-height: 420px;
-    max-height: 620px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .lifestyle-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .container {
-        padding: 0 0.5rem;
-    }
-
-    .lifestyle-grid .card.placeholder {
-        padding: 0.2rem;
-        /* allow card to size to its content on small phones */
-        height: auto;
-        max-height: none;
-    }
-
-    .lifestyle-photo {
-    min-height: 360px;
-    max-height: 520px;
+        min-height: 360px;
+        max-height: 520px;
     }
 
     .spotify-iframe {
@@ -1604,7 +1592,7 @@ section:target::before, section:target::after { display: none; }
 /* Fix left-shifted media on small screens: center media and remove extra horizontal offsets */
 @media screen and (max-width: 520px) {
     /* Ensure the lifestyle grid cells use full width and media centers inside them */
-    .lifestyle-grid { padding: 0; margin-left: 0; margin-right: 0; }
+    .lifestyle-grid { padding: 0; margin-left: 0; margin-right: 0; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
     /* remove extra card-level horizontal padding and let media fill the card fully */
     .lifestyle-grid .card { padding-left: 0; padding-right: 0; display: block; }
     .lifestyle-grid .card .lifestyle-photo, .lifestyle-grid .card img, .lifestyle-grid .card video {
@@ -1653,6 +1641,14 @@ section:target::before, section:target::after { display: none; }
 .lifestyle-card .caption,
 .card .caption,
 .card-title { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* Mobile override: single-column layout and inline like button to prevent overlap on very narrow devices */
+@media screen and (max-width: 520px) {
+    .lifestyle-grid { grid-template-columns: 1fr !important; gap: 0.75rem; }
+    .lifestyle-grid .card { padding-left: 8px; padding-right: 8px; }
+    .lifestyle-grid .card .caption { padding-right: 0 !important; justify-content: center !important; align-items: center !important; }
+    /* inline like control styles removed */
+}
 
 /* Strava summary: use a compact grid on small screens so the expand button sits aligned to the right next to stats */
 @media screen and (max-width: 520px) {
