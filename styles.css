@@ -467,6 +467,16 @@ html { scroll-padding-top: 110px; scroll-behavior: smooth; }
     /* Footer */
     footer { padding: 36px 0; color: var(--muted); text-align:center; font-size:0.95rem; }
 
+    /* Footer row with social icons aligned to the right */
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .footer-social { display: flex; gap: 14px; align-items: center; }
+    .footer-social a { color: var(--muted); font-size: 1.05rem; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; text-decoration: none; }
+    .footer-social a:hover, .footer-social a:focus { background: rgba(0,0,0,0.03); color: var(--text); outline: none; }
+
+    @media (max-width: 520px) {
+        .footer-row { flex-direction: column; align-items: center; gap: 8px; }
+    }
+
     /* Accessibility helpers */
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border:0; }
 
