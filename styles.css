@@ -398,6 +398,10 @@ html { scroll-padding-top: 110px; scroll-behavior: smooth; }
     #about-modal.is-active .modal-backdrop { opacity: 1; }
 
     .modal h3 { margin-top: 0; font-size: 1.6rem; color: var(--about-blue); }
+    /* Mobile: hide about modal profile image to save space on small screens */
+    @media (max-width: 600px) {
+        #about-modal .modal-visual { display: none; }
+    }
 
 /* Status badge for external services (GitHub Pages) */
 .status-badge {
