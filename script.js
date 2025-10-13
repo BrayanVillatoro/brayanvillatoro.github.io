@@ -12,6 +12,8 @@ const aboutLink = document.getElementById('about-link');
 let aboutModal = document.getElementById('about-modal');
 const contactLink = document.getElementById('contact-link');
 let contactModal = document.getElementById('contact-modal');
+const siteDataLink = document.getElementById('site-data-link');
+let siteDataModal = document.getElementById('site-data-modal');
 const loadMoreWrap = document.querySelector('.load-more-wrap');
 const navToggleBtn = document.querySelector('.nav-toggle');
 const mainNav = document.getElementById('main-nav');
@@ -390,8 +392,9 @@ function openModal() {
     aboutModal.classList.add('is-open');
     // small delay so the browser can apply the 'is-open' state, then flip active for transitions
     requestAnimationFrame(() => requestAnimationFrame(() => aboutModal.classList.add('is-active')));
-    // lock body scroll
+    // lock scroll on both <html> and <body> so the page cannot scroll behind the modal
     document.body.classList.add('modal-open');
+    try { document.documentElement.classList.add('modal-open'); } catch (e) {}
 }
 
 function closeModal() {
@@ -403,6 +406,39 @@ function closeModal() {
     aboutModal.classList.remove('is-closing');
     aboutModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    try { document.documentElement.classList.remove('modal-open'); } catch (e) {}
+}
+
+// Site Data modal handlers (reuse About modal behavior)
+function openSiteData() {
+    if (!siteDataModal) return;
+    siteDataModal.setAttribute('aria-hidden', 'false');
+    siteDataModal.classList.add('is-open');
+    requestAnimationFrame(() => requestAnimationFrame(() => siteDataModal.classList.add('is-active')));
+    // lock scroll on both root and body
+    document.body.classList.add('modal-open');
+    try { document.documentElement.classList.add('modal-open'); } catch (e) {}
+    // refresh displayed visit count when opening
+    (async () => {
+        const v = await fetchVisitCount();
+        updateVisitElement(v);
+        // also refresh the GitHub Pages badge in the injected modal and update timestamp
+        await updateGithubPagesBadge();
+        try { refreshSitePerformance(); initPerfSampleButton(); } catch (e) {}
+    })();
+    // refresh GitHub Pages badge on open (legacy call)
+    updateGithubPagesBadge();
+    try { refreshSitePerformance(); initPerfSampleButton(); } catch (e) {}
+}
+
+function closeSiteData() {
+    if (!siteDataModal) return;
+    siteDataModal.classList.remove('is-active');
+    siteDataModal.classList.remove('is-open');
+    siteDataModal.classList.remove('is-closing');
+    siteDataModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    try { document.documentElement.classList.remove('modal-open'); } catch (e) {}
 }
 
 /* Strava embed: fullscreen expand behavior
@@ -635,7 +671,9 @@ function openContact() {
     contactModal.setAttribute('aria-hidden', 'false');
     contactModal.classList.add('is-open');
     requestAnimationFrame(() => requestAnimationFrame(() => contactModal.classList.add('is-active')));
+    // lock scroll on both root and body
     document.body.classList.add('modal-open');
+    try { document.documentElement.classList.add('modal-open'); } catch (e) {}
 }
 
 function closeContact() {
@@ -645,6 +683,7 @@ function closeContact() {
     contactModal.classList.remove('is-closing');
     contactModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    try { document.documentElement.classList.remove('modal-open'); } catch (e) {}
 }
 
 if (contactLink && contactModal) {
@@ -662,6 +701,24 @@ if (contactLink && contactModal) {
     if (closeBtnContact) closeBtnContact.addEventListener('click', closeContact);
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeContact();
+    });
+}
+
+if (siteDataLink && siteDataModal) {
+    siteDataLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSiteData();
+    });
+
+    siteDataModal.addEventListener('click', (e) => {
+        const close = e.target && e.target.getAttribute && e.target.getAttribute('data-close');
+        if (close) closeSiteData();
+    });
+
+    const closeBtnSite = siteDataModal.querySelector('.modal-close');
+    if (closeBtnSite) closeBtnSite.addEventListener('click', closeSiteData);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSiteData();
     });
 }
 
@@ -740,6 +797,274 @@ window.addEventListener('resize', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => loadGitHubTimeline());
+
+// --- Simple site visit counter using CountAPI (no server required)
+// Uses CountAPI (https://countapi.xyz) to increment a namespaced counter and display it.
+const COUNTAPI_NAMESPACE = 'brayanvillatoro';
+const COUNTAPI_KEY = 'site_visits';
+
+async function fetchVisitCount() {
+    try {
+        const res = await fetch(`https://api.countapi.xyz/get/${COUNTAPI_NAMESPACE}/${COUNTAPI_KEY}`);
+        if (!res.ok) return null;
+        const json = await res.json();
+        return json.value;
+    } catch (e) {
+        return null;
+    }
+}
+
+async function incrementVisitCount() {
+    try {
+        // If the throttle cookie exists, don't increment; just return the current value
+        if (getCookie('bv_site_visit')) {
+            return await fetchVisitCount();
+        }
+
+        const res = await fetch(`https://api.countapi.xyz/hit/${COUNTAPI_NAMESPACE}/${COUNTAPI_KEY}`);
+        if (!res.ok) return null;
+        const json = await res.json();
+        // set a cookie to throttle further increments for 24 hours
+        setCookie('bv_site_visit', '1', 1);
+        return json.value;
+    } catch (e) {
+        return null;
+    }
+}
+
+// Cookie helpers: simple, minimal, 1-day expiry helper
+function setCookie(name, value, days) {
+    try {
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        const expires = `; expires=${d.toUTCString()}`;
+        document.cookie = `${name}=${value || ''}${expires}; path=/; SameSite=Lax`;
+    } catch (e) {}
+}
+
+function getCookie(name) {
+    try {
+        const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return v ? v.pop() : null;
+    } catch (e) { return null; }
+}
+
+// Update the visible counter element if present
+function updateVisitElement(val) {
+    try {
+        const el = document.getElementById('site-visits-count');
+        if (!el) return;
+        if (val === null || typeof val === 'undefined') el.textContent = '—'; else el.textContent = String(val);
+    } catch (e) { /* ignore */ }
+}
+
+// Increment on page load (counts unique page loads) and update display
+window.addEventListener('load', async () => {
+    const v = await incrementVisitCount();
+    updateVisitElement(v);
+});
+
+// --- GitHub Pages status via githubstatus.com
+const GITHUB_STATUS_URL = 'https://www.githubstatus.com/api/v2/summary.json';
+const GITHUB_STATUS_POLL_MS = 4 * 60 * 1000; // 4 minutes
+const STATUS_LABELS = {
+    operational: 'Operational',
+    degraded_performance: 'Degraded',
+    partial_outage: 'Partial outage',
+    major_outage: 'Major outage',
+    under_maintenance: 'Maintenance'
+};
+
+async function fetchGithubPagesStatus() {
+    try {
+        const res = await fetch(GITHUB_STATUS_URL, { cache: 'no-cache' });
+        if (!res.ok) throw new Error('Status API ' + res.status);
+        const json = await res.json();
+        const components = json.components || [];
+        const pagesComp = components.find(c => (c.slug && c.slug.toLowerCase().includes('pages')) || (c.name && c.name.toLowerCase().includes('pages')));
+        if (!pagesComp) return null;
+        return { status: pagesComp.status, name: pagesComp.name };
+    } catch (e) {
+        console.warn('Failed to fetch GitHub status', e);
+        return null;
+    }
+}
+
+async function updateGithubPagesBadge() {
+    const el = document.getElementById('github-pages-status');
+    if (!el) return;
+    el.textContent = 'Loading…';
+    el.className = 'status-badge';
+
+    const info = await fetchGithubPagesStatus();
+    if (!info) {
+        el.textContent = 'Unknown';
+        el.classList.add('status-degraded_performance');
+        // update last-checked timestamp
+        const tEl = document.getElementById('github-pages-checked');
+        if (tEl) tEl.textContent = 'Last checked: ' + new Date().toLocaleString();
+        return;
+    }
+
+    const s = info.status || 'operational';
+    const label = STATUS_LABELS[s] || s;
+    el.textContent = label;
+    el.className = 'status-badge status-' + s;
+    // update last-checked timestamp
+    const tEl = document.getElementById('github-pages-checked');
+    if (tEl) tEl.textContent = 'Last checked: ' + new Date().toLocaleString();
+}
+
+// start polling and update when modal is opened/injected
+updateGithubPagesBadge();
+setInterval(updateGithubPagesBadge, GITHUB_STATUS_POLL_MS);
+
+// --- Performance (RUM) measurements and browser/device info
+let lastLCP = null;
+function initPerformanceObservers() {
+    try {
+        // LCP observer
+        if ('PerformanceObserver' in window) {
+            const lcpObs = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                if (entries && entries.length) lastLCP = entries[entries.length - 1].renderTime || entries[entries.length - 1].startTime;
+            });
+            try { lcpObs.observe({ type: 'largest-contentful-paint', buffered: true }); } catch (e) {}
+
+            // FCP observer: fallback to paint entries
+            const fcpObs = new PerformanceObserver((entryList) => {});
+            try { fcpObs.observe({ type: 'paint', buffered: true }); } catch (e) {}
+        }
+    } catch (e) { /* ignore */ }
+}
+
+function getNavigationTimings() {
+    try {
+        const nt = performance.getEntriesByType('navigation')[0];
+        if (!nt) return null;
+        return {
+            navTime: Math.round(nt.loadEventEnd - nt.startTime),
+            dcl: Math.round(nt.domContentLoadedEventEnd - nt.startTime)
+        };
+    } catch (e) { return null; }
+}
+
+function getFCP() {
+    try {
+        const paint = performance.getEntriesByType('paint').find(p => p.name === 'first-contentful-paint');
+        return paint ? Math.round(paint.startTime) : null;
+    } catch (e) { return null; }
+}
+
+function getLCP() {
+    return lastLCP ? Math.round(lastLCP) : null;
+}
+
+function detectBrowserInfo() {
+    try {
+        // Prefer User-Agent Client Hints when available for more precise data
+        if (navigator.userAgentData) {
+            const brands = navigator.userAgentData.brands || navigator.userAgentData.uaList || [];
+            const brand = brands.length ? brands[brands.length - 1].brand : 'Browser';
+            const browser = brand || 'Browser';
+            const os = navigator.userAgentData.platform || 'Unknown OS';
+            return { browser, os, ua: navigator.userAgent || '' };
+        }
+
+        const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+        let browser = 'Unknown browser';
+        if (ua.indexOf('Firefox') !== -1) browser = 'Firefox';
+        else if (ua.indexOf('Edg/') !== -1) browser = 'Edge';
+        else if (ua.indexOf('Chrome') !== -1) browser = 'Chrome';
+        else if (ua.indexOf('Safari') !== -1) browser = 'Safari';
+
+        let os = 'Unknown OS';
+        if (ua.indexOf('Windows') !== -1) os = 'Windows';
+        else if (ua.indexOf('Macintosh') !== -1) os = 'macOS';
+        else if (ua.indexOf('Linux') !== -1) os = 'Linux';
+        else if (/Android/.test(ua)) os = 'Android';
+        else if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
+
+        return { browser, os, ua };
+    } catch (e) { return { browser: 'Unknown', os: 'Unknown', ua: '' }; }
+}
+
+// Format ms into human-friendly seconds with 1 decimal (e.g., 900 -> 0.9s)
+function fmtTimeMs(ms) {
+    if (ms === null || typeof ms === 'undefined' || isNaN(ms)) return '—';
+    const s = ms / 1000;
+    if (s < 1) return `${s.toFixed(2)}s`;
+    return `${s.toFixed(1)}s`;
+}
+
+// Prepare an anonymous sample payload (no PII): timings + browser info + timestamp
+function buildPerfSample() {
+    const nav = getNavigationTimings() || {};
+    const sample = {
+        timestamp: new Date().toISOString(),
+        navTimeMs: nav.navTime || null,
+        dclMs: nav.dcl || null,
+        fcpMs: getFCP() || null,
+        lcpMs: getLCP() || null,
+        browser: detectBrowserInfo().browser,
+        os: detectBrowserInfo().os
+    };
+    return sample;
+}
+
+// Wire the sample button: copy JSON to clipboard and show a status message
+function initPerfSampleButton() {
+    const btn = document.getElementById('perf-sample-btn');
+    const status = document.getElementById('perf-sample-status');
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+        try {
+            const payload = buildPerfSample();
+            const json = JSON.stringify(payload);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(json);
+                if (status) status.textContent = 'Sample copied to clipboard (anonymous)';
+            } else {
+                // fallback: open window with raw JSON so user can copy
+                const w = window.open();
+                w.document.body.innerText = json;
+                if (status) status.textContent = 'Sample opened in new window (copy to share)';
+            }
+            setTimeout(() => { if (status) status.textContent = ''; }, 5000);
+        } catch (e) {
+            if (status) status.textContent = 'Failed to prepare sample';
+            setTimeout(() => { if (status) status.textContent = ''; }, 3000);
+        }
+    });
+}
+
+function updatePerformanceUI() {
+    try {
+        const nav = getNavigationTimings();
+        const fcp = getFCP();
+        const lcp = getLCP();
+        if (nav) {
+            const navEl = document.getElementById('perf-navtime'); if (navEl) navEl.textContent = nav.navTime;
+            const dclEl = document.getElementById('perf-dcl'); if (dclEl) dclEl.textContent = nav.dcl;
+        }
+        const fcpEl = document.getElementById('perf-fcp'); if (fcpEl) fcpEl.textContent = fcp || '—';
+        const lcpEl = document.getElementById('perf-lcp'); if (lcpEl) lcpEl.textContent = lcp || '—';
+
+        const info = detectBrowserInfo();
+        const bEl = document.getElementById('browser-info'); if (bEl) bEl.textContent = `${info.browser} on ${info.os}`;
+    } catch (e) { /* ignore */ }
+}
+
+// Initialize observers early so paint/LCP are captured
+initPerformanceObservers();
+
+// Update performance UI when modal is injected or opened
+function refreshSitePerformance() {
+    // update immediately from existing metrics
+    updatePerformanceUI();
+    // schedule a small delayed update to allow late paint entries
+    setTimeout(updatePerformanceUI, 1200);
+}
 
 // Collapsible job descriptions (Read more / Read less)
 function initJobToggles() {
@@ -888,6 +1213,29 @@ document.addEventListener('click', async (e) => {
         if (contactModal) {
             openContact();
             history.replaceState(null, '', '#contact');
+        }
+    }
+
+    if (a.id === 'site-data-link') {
+        e.preventDefault();
+        if (!siteDataModal) {
+            await fetchModalFromIndex('site-data-modal');
+            // after injecting, update the reference and bind
+            siteDataModal = document.getElementById('site-data-modal');
+            bindModalInteractions(siteDataModal, closeSiteData);
+            // update the visit count in the injected modal
+            (async () => {
+                const v = await fetchVisitCount();
+                updateVisitElement(v);
+                // update badge and performance UI for injected modal
+                await updateGithubPagesBadge();
+                try { refreshSitePerformance(); initPerfSampleButton(); } catch (e) {}
+            })();
+        }
+
+        if (siteDataModal) {
+            openSiteData();
+            history.replaceState(null, '', '#site-data');
         }
     }
 });

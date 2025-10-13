@@ -47,7 +47,7 @@
 
             <nav id="main-nav" class="nav" role="navigation">
                 <ul class="nav-list">
-                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#site-data" id="site-data-link">Site Data</a></li>
                     <li><a href="#timeline">Work</a></li>
                     <li><a href="lifestyle.html">Lifestyle</a></li>
                     <li><a href="#contact" id="contact-link">Contact</a></li>
@@ -153,6 +153,43 @@
             <div class="load-more-wrap"></div>
         </div>
     </section>
+    <!-- Site Data modal (hidden by default) -->
+    <div id="site-data-modal" aria-hidden="true" role="dialog" aria-labelledby="site-data-title">
+        <div class="modal-backdrop" data-close="true"></div>
+        <div class="modal-dialog">
+            <div class="modal">
+                <button class="modal-close" aria-label="Close site data">×</button>
+                <div class="modal-body">
+                    <div class="modal-text">
+                        <h3 id="site-data-title">Site Data</h3>
+                        <ul class="site-data-list">
+                            <li>Site Visits: <strong id="site-visits-count">…</strong></li>
+                            <li>Site tools: GitHub Pages <span id="github-pages-status" class="status-badge" aria-live="polite">Loading…</span>
+                                <small id="github-pages-checked" class="status-checked" aria-hidden="true">Last checked: —</small>
+                            </li>
+                            <li id="site-performance">
+                                <strong>Performance</strong>
+                                <ul class="perf-list">
+                                    <li>Navigation load: <span id="perf-navtime">—</span> ms</li>
+                                    <li>DOMContentLoaded: <span id="perf-dcl">—</span> ms</li>
+                                    <li>First Contentful Paint (FCP): <span id="perf-fcp">—</span> ms</li>
+                                    <li>Largest Contentful Paint (LCP): <span id="perf-lcp">—</span> ms</li>
+                                </ul>
+                            </li>
+                            <li id="site-browser">
+                                <strong>Browser / Device</strong>
+                                <div id="browser-info">—</div>
+                            </li>
+                            <li>
+                                <button id="perf-sample-btn" class="perf-sample-btn" type="button">Send anonymous performance sample</button>
+                                <small id="perf-sample-status" class="perf-sample-status" aria-hidden="true"></small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- About modal (hidden by default) -->
     <div id="about-modal" aria-hidden="true" role="dialog" aria-labelledby="about-title">
