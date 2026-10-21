@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VGZNE3TWG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-3VGZNE3TWG');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brayan Villatoro</title>
+  <meta name="description" content="Brayan Villatoro — Computer Engineer building web apps, infrastructure, and tools. Portfolio, work samples, and contact information." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Brayan Villatoro" />
+  <link rel="icon" type="image/png" href="media/symbol.png" />
+  <link rel="canonical" href="https://www.brayanvillatoro.com/" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Brayan Villatoro" />
+  <meta property="og:description" content="Computer Engineer building web apps, infrastructure, and tools. Managing Partner at IntimaLabs. IT solutions for luxury retail brands." />
+  <meta property="og:url" content="https://www.brayanvillatoro.com/" />
+  <meta property="og:image" content="https://www.brayanvillatoro.com/media/symbol.png" />
+  <meta property="og:image:alt" content="Brayan Villatoro" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Brayan Villatoro" />
+  <meta name="twitter:description" content="Computer Engineer building web apps, infrastructure, and tools. Managing Partner at IntimaLabs." />
+  <meta name="twitter:image" content="https://www.brayanvillatoro.com/media/symbol.png" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" />
+  <!-- Compiled Tailwind — rebuild: npx tailwindcss@3 -c tailwind.config.js -i tailwind-src.css -o tailwind.css --minify -->
+  <link rel="stylesheet" href="tailwind.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Brayan Villatoro",
+    "url": "https://www.brayanvillatoro.com/",
+    "image": "https://www.brayanvillatoro.com/media/me.webp",
+    "jobTitle": "Computer Engineer",
+    "description": "Computer Engineer and JavaScript developer specializing in web applications, cloud and server infrastructure, enterprise cybersecurity, and IT strategy.",
+    "knowsLanguage": ["en", "es"],
+    "knowsAbout": [
+      "JavaScript",
+      "Web Development",
+      "Automation",
+      "AI Systems",
+      "Cybersecurity",
+      "Cloud & Server Infrastructure",
+      "ERP & Inventory Systems",
+      "System Administration",
+      "IT Strategy",
+      "Project Management"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "London Jewelers"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "John Jay College of Criminal Justice"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "NY",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/brayan-villatoro/",
+      "https://github.com/brayanvillatoro"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://brayanvillatoro.com/",
+    "name": "Brayan Villatoro"
+  }
+  </script>
+</head>
+<body class="bg-white text-brand-dark font-sans">
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/60 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" aria-label="Home">
+          <img src="media/intima-labs-black.PNG" alt="Logo" class="h-6" />
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link active text-sm font-medium text-brand-dark" data-da="Hjem">Home</a>
+          <a href="lifestyle.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Livsstil">Lifestyle</a>
+          <a href="body-mind.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Krop &amp; Sind">Body &amp; Mind</a>
+          <a href="contact.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Kontakt">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <div class="lang-toggle flex items-center gap-2 text-[11px] font-semibold tracking-[0.1em]" role="group" aria-label="Language / Sprog">
+            <button type="button" data-lang-btn="en" class="lang-opt flex items-center gap-1.5" aria-label="English">
+              <img src="media/us.png" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
+              EN
+            </button>
+            <span aria-hidden="true" class="text-brand-secondary/40">/</span>
+            <button type="button" data-lang-btn="da" class="lang-opt flex items-center gap-1.5" aria-label="Dansk">
+              <img src="media/dk.png" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
+              DA
+            </button>
+          </div>
+          <button id="mobile-menu-btn" class="md:hidden p-2 -mr-1 text-brand-dark" aria-label="Toggle menu">
+            <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/60">
+      <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col">
+        <a href="index.html" class="py-3 text-sm font-medium text-brand-dark border-b border-gray-100" data-da="Hjem">Home</a>
+        <a href="lifestyle.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Livsstil">Lifestyle</a>
+        <a href="body-mind.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Krop &amp; Sind">Body &amp; Mind</a>
+        <a href="contact.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Kontakt">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Who I Am -->
+    <section id="about" class="pt-28 md:pt-32 pb-24 md:pb-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-10 fade-in">Brayan Villatoro</h1>
+            <p class="text-base text-brand-secondary leading-relaxed mb-6 fade-in" data-da="Jeg er født i El Salvador og kom til USA som syv-årig med en nysgerrighed, der aldrig forsvandt. Som barn skilte jeg al den elektronik ad, jeg kunne få fingre i, fra min PlayStation 2 til radioer, jeg byggede af løsdele altid med et behov for at vide, hvordan tingene fungerede. Den samme drivkraft præger alt, hvad jeg laver i dag.">Born in El Salvador, I immigrated to the US at seven years old with a curiosity that never left. As a kid, I took apart every piece of electronics I could get my hands on, from my PlayStation 2 to radios I built from scrap parts always needing to know how things worked. That same drive shapes everything I do today.</p>
+            <p class="text-base text-brand-secondary leading-relaxed mb-6 fade-in" data-da="Jeg er stolt af at gøre tingene ordentligt og hele tiden udfordre mig selv til at vokse. Uanset om jeg bygger teknologi eller bare giver en hånd med, vil jeg gøre en reel forskel og efterlade tingene bedre, end jeg fandt dem.">I take pride in doing things right and pushing myself to grow. Whether I'm building technology or simply lending a hand, I'm committed to making a meaningful impact and leaving things better than I found them.</p>
+
+          </div>
+          <div class="fade-in flex justify-center">
+            <img src="media/me.webp" srcset="media/me-480.webp 480w, media/me-768.webp 768w, media/me-1080.webp 1080w, media/me.webp 1408w" sizes="(max-width: 768px) 100vw, 512px" alt="Brayan Villatoro portrait" class="w-full max-w-md lg:max-w-lg object-contain rounded-lg" fetchpriority="high" decoding="async" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t border-gray-200 pt-5 mt-16 fade-in">
+          <span class="text-sm text-brand-secondary font-mono" data-da="COMPUTERINGENIØR">COMPUTER ENGINEER</span>
+          <span class="text-[11px] uppercase tracking-[0.2em] text-brand-secondary">NORTH SHORE<br class="sm:hidden" /> LONG ISLAND</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="py-24 md:py-32 bg-brand-light">
+      <div class="max-w-6xl mx-auto px-6">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Erfaring">Experience</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-da="Hvad jeg har bygget.">What I've built.</h2>
+        <div class="grid md:grid-cols-2 exp-grid">
+          <!-- London Jewelers (current role — flagship) -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in exp-feature">
+            <div class="exp-feature-grid">
+              <div>
+                <span class="card-num text-xs font-medium font-mono">01</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-brand-dark tracking-tight mt-4 mb-2">London Jewelers</h3>
+                <p class="text-sm uppercase tracking-[0.15em] text-brand-secondary mb-1" data-da="Informationsteknologi">Information Technology</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-1" data-da="mar. 2024 &mdash; nu">Mar 2024 &mdash; Present</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-5">Glen Head, NY 11545</p>
+                <p class="text-sm text-brand-secondary leading-relaxed" data-da="Driver teknologistrategi, infrastruktur og sikkerhedsdrift for 20+ ultra-luksuriøse detailboutiques . Jeg arbejder tæt sammen med teknologidirektøren, virksomhedens ejere og den øverste ledelse om at forme den teknologiske retning og levere en problemfri, eksklusiv kundeoplevelse.">Drive technology strategy, infrastructure, and security operations for 20+ ultra-luxury retail boutiques. Work directly with the VP of Technology, company owners, and senior leadership to shape technology direction and deliver a seamless high-end client experience.</p>
+              </div>
+              <div>
+                <ul class="exp-list">
+                  <li class="text-sm text-brand-secondary leading-relaxed" data-da="Udvikler intern, proprietær software, herunder JavaScript-applikationer og forretningskritiske værktøjer.">Develop proprietary software in-house, including JavaScript applications and mission-critical business tools.</li>
+                  <li class="text-sm text-brand-secondary leading-relaxed" data-da="Designede og implementerede AI-systemer, der effektiviserer arbejdsgange for 400+ brugere på tværs af hele virksomheden.">Designed and deployed AI systems that streamline workflows for 400+ users company-wide.</li>
+                  <li class="text-sm text-brand-secondary leading-relaxed" data-da="Administrerer ERP- og lagersystemer, der sporer varelagre af diamanter og ure til mange millioner dollars.">Manage ERP and inventory systems tracking multi-million dollar diamond and timepiece inventories.</li>
+                  <li class="text-sm text-brand-secondary leading-relaxed" data-da="Står for cybersikkerhed på virksomhedsniveau, fra incident response til beskyttelse af velhavende kunders økonomiske data og købsdata.">Run enterprise cybersecurity, from incident response to protecting high-net-worth clients' financial and purchase data.</li>
+                  <li class="text-sm text-brand-secondary leading-relaxed" data-da="Vedligeholder sikker omnichannel- og kasseteknologi (POS), online og i boutiques.">Maintain secure omnichannel and point-of-sale technology, online and in boutiques.</li>
+                  <li class="text-sm text-brand-secondary leading-relaxed" data-da="Byggede og vedligeholder lokale servere, cloud-miljøer og netværk, der holder kunderådgivningsværktøjer kørende uden afbrydelser.">Built and maintain on-site servers, cloud environments, and networks that keep client-advising tools running without interruption.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- IntimaLabs -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <span class="card-num text-xs font-medium font-mono">02</span>
+            <h3 class="text-2xl font-bold text-brand-dark tracking-tight mt-4 mb-2">IntimaLabs</h3>
+            <p class="text-sm uppercase tracking-[0.15em] text-brand-secondary mb-1">Managing Partner</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-5" data-da="nov. 2025 &mdash; nu">Nov 2025 &mdash; Present</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Bygger affiliate marketing-økosystemer til detailsektoren.">Building affiliate marketing ecosystems for the retail sector.</p>
+            <div class="flex flex-wrap gap-4 mt-5">
+              <a href="https://intimalabs.com/" target="_blank" rel="noopener noreferrer" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2">
+                IntimaLabs
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+              <a href="https://www.villatorogroup.com/" target="_blank" rel="noopener noreferrer" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2">
+                Villatoro Group
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <!-- PLS Financial -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <span class="card-num text-xs font-medium font-mono">03</span>
+            <h3 class="text-2xl font-bold text-brand-dark tracking-tight mt-4 mb-2">PLS Financial</h3>
+            <p class="text-sm uppercase tracking-[0.15em] text-brand-secondary mb-1" data-da="Informationsteknologi">Information Technology</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-1" data-da="okt. 2023 &mdash; feb. 2024">Oct 2023 &mdash; Feb 2024</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-5">Brooklyn, NY</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Skabte resultater gennem grundig finjustering og optimering af den teknologiske infrastruktur. Havde det direkte ansvar for 14 lokationer, heriblandt de to mest omsætningstunge ud af over 214 lokationer i Nordamerika.">Drove excellence by prioritizing meticulous fine-tuning and optimization of technology infrastructure. Directly oversaw 14 locations, including the top two highest-revenue sites out of over 214 locations across North America.</p>
+          </div>
+          <!-- ArtsDistrict -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <span class="card-num text-xs font-medium font-mono">04</span>
+            <h3 class="text-2xl font-bold text-brand-dark tracking-tight mt-4 mb-2">ArtsDistrict</h3>
+            <p class="text-sm uppercase tracking-[0.15em] text-brand-secondary mb-1" data-da="Netværksingeniør">Network Engineer</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-1" data-da="jul. 2022 &mdash; feb. 2023">Jul 2022 &mdash; Feb 2023</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-5">25 Franklin St, Greenpoint, Brooklyn</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Var eneansvarlig netværksingeniør og sikrede netværksinfrastrukturens sikkerhed og driftsstabilitet. Erfaren i at administrere WatchGuard-firewalls, UniFi-netværk og G Suite.">Served as the sole Network Engineer, ensuring the security and reliability of the network infrastructure. Proficient in managing WatchGuard firewalls, UniFi networks, and G Suite administration.</p>
+          </div>
+          <!-- OPDV -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <span class="card-num text-xs font-medium font-mono">05</span>
+            <h3 class="text-2xl font-bold text-brand-dark tracking-tight mt-4 mb-2">New York State Office for the Prevention of Domestic Violence</h3>
+            <p class="text-sm uppercase tracking-[0.15em] text-brand-secondary mb-1" data-da="Praktikant">Intern</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-5" data-da="apr. 2021 &mdash; maj 2021">Apr 2021 &mdash; May 2021</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Udviklede et omfattende dokument om cybersikkerhed og information målrettet ofre for vold i hjemmet.">Developed a comprehensive cyber safety and information document tailored for domestic abuse victims.</p>
+            <a href="https://opdv.ny.gov/system/files/documents/2021/10/technology-safety.pdf" target="_blank" rel="noopener noreferrer" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2 mt-5">
+              technology-safety.pdf
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <!-- Microsoft -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <span class="card-num text-xs font-medium font-mono">06</span>
+            <h3 class="text-2xl font-bold text-brand-dark tracking-tight mt-4 mb-2">Microsoft</h3>
+            <p class="text-sm uppercase tracking-[0.15em] text-brand-secondary mb-1" data-da="Praktikant">Intern</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-1" data-da="mar. 2017 &mdash; apr. 2017">Mar 2017 &mdash; Apr 2017</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/50 mb-5">Manhattan, NY</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Fandt sårbarheder på websites via parametermanipulation og bidrog til sikkerhedstest.">Identified website vulnerabilities via parameter manipulation and contributed to security testing efforts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Skills -->
+    <section class="py-24 md:py-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Uddannelse">Education</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-8 fade-in">John Jay College</h2>
+            <ul class="space-y-3 fade-in">
+              <li class="text-sm text-brand-secondary leading-relaxed" data-da="BSc, Datalogi &amp; Informationssikkerhed">BS, Computer Science &amp; Information Security</li>
+              <li class="text-sm text-brand-secondary leading-relaxed">Cum Laude 2022</li>
+              <li class="text-sm text-brand-secondary leading-relaxed" data-da="Dean's List, forår &amp; efterår 2021">Dean's List Spring &amp; Fall 2021</li>
+              <li class="text-sm text-brand-secondary leading-relaxed" data-da="Dean's List, forår &amp; efterår 2020">Dean's List Spring &amp; Fall 2020</li>
+            </ul>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mt-10 mb-4 fade-in" data-da="Sprog">Languages</p>
+            <ul class="space-y-3 fade-in">
+              <li class="text-sm text-brand-secondary leading-relaxed" data-da="Engelsk &amp; spansk &mdash; flydende">English &amp; Spanish &mdash; Fluent</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Kompetencer">Skills</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-8 fade-in" data-da="Mit håndværk.">My craft.</h2>
+            <div class="grid grid-cols-2 gap-4 fade-in">
+              <p class="text-sm text-brand-secondary leading-relaxed">JavaScript</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="Automatisering">Automation</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="Webudvikling">Web Development</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="AI-systemer">AI Systems</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="Cybersikkerhed">Cybersecurity</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="Cloud- &amp; serverinfrastruktur">Cloud &amp; Server Infrastructure</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="ERP- &amp; lagersystemer">ERP &amp; Inventory Systems</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="Systemadministration">System Administration</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="IT-strategi">IT Strategy</p>
+              <p class="text-sm text-brand-secondary leading-relaxed" data-da="Projektledelse">Project Management</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB-->
+    <section class="py-24 md:py-32 bg-brand-light">
+      <div class="max-w-6xl mx-auto px-6">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in">Github</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-da="Offentligt arbejde.">Public Work.</h2>
+        <p id="loading-projects" class="text-sm text-brand-secondary" data-da="Indlæser projekter&hellip;">Loading projects&hellip;</p>
+        <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="load-more-wrap" class="mt-10"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Quote -->
+  <div class="py-16 md:py-20 text-center fade-in">
+    <p class="pull-quote text-brand-dark max-w-xl mx-auto leading-relaxed px-6" data-da="Alle mine sejre tilhører Gud, og alle mine nederlag er mine alene.">All my victories belong to God, and all my losses are mine alone.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary">&copy; <span id="copyright-year"></span> Brayan Villatoro. <span data-da="Alle rettigheder forbeholdes.">All rights reserved.</span></p>
+        <div class="flex items-center gap-6">
+          <a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary hover:text-brand-dark transition-colors">LinkedIn</a>
+          <a href="https://github.com/brayanvillatoro" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary hover:text-brand-dark transition-colors">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

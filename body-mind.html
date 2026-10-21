@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VGZNE3TWG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3VGZNE3TWG');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Body &amp; Mind — Brayan Villatoro</title>
+  <meta name="description" content="Brayan Villatoro's fitness journey, mindset, and curated inspirations." />
+  <link rel="icon" type="image/png" href="media/symbol.png" />
+  <link rel="canonical" href="https://www.brayanvillatoro.com/body-mind.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Body &amp; Mind — Brayan Villatoro" />
+  <meta property="og:description" content="Brayan Villatoro's fitness journey, mindset, and curated inspirations." />
+  <meta property="og:url" content="https://www.brayanvillatoro.com/body-mind.html" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Body &amp; Mind — Brayan Villatoro" />
+  <meta name="twitter:description" content="Brayan Villatoro's fitness journey, mindset, and curated inspirations." />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" />
+  <!-- Compiled Tailwind — rebuild: npx tailwindcss@3 -c tailwind.config.js -i tailwind-src.css -o tailwind.css --minify -->
+  <link rel="stylesheet" href="tailwind.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-white text-brand-dark font-sans">
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/60 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="text-base font-semibold text-brand-dark">Brayan Villatoro</a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Hjem">Home</a>
+          <a href="lifestyle.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Livsstil">Lifestyle</a>
+          <a href="body-mind.html" class="nav-link active text-sm font-medium text-brand-dark" data-da="Krop &amp; Sind">Body &amp; Mind</a>
+          <a href="contact.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Kontakt">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <div class="lang-toggle flex items-center gap-2 text-[11px] font-semibold tracking-[0.1em]" role="group" aria-label="Language / Sprog">
+            <button type="button" data-lang-btn="en" class="lang-opt flex items-center gap-1.5" aria-label="English">
+              <img src="media/us.png" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
+              EN
+            </button>
+            <span aria-hidden="true" class="text-brand-secondary/40">/</span>
+            <button type="button" data-lang-btn="da" class="lang-opt flex items-center gap-1.5" aria-label="Dansk">
+              <img src="media/dk.png" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
+              DA
+            </button>
+          </div>
+          <button id="mobile-menu-btn" class="md:hidden p-2 -mr-1 text-brand-dark" aria-label="Toggle menu">
+            <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/60">
+      <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col">
+        <a href="index.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Hjem">Home</a>
+        <a href="lifestyle.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Livsstil">Lifestyle</a>
+        <a href="body-mind.html" class="py-3 text-sm font-medium text-brand-dark border-b border-gray-100" data-da="Krop &amp; Sind">Body &amp; Mind</a>
+        <a href="contact.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Kontakt">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Fitness -->
+    <section class="pt-36 md:pt-48 pb-24 md:pb-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in">Fitness</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-da="Hold dig i bevægelse.">Stay moving.</h2>
+        <div class="space-y-8">
+          <!-- Top row: 3 portrait media -->
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Road Cycling -->
+            <div class="group fade-in relative">
+              <div class="overflow-hidden bg-gray-100 rounded-lg relative">
+                <video class="w-full h-auto" autoplay playsinline muted loop preload="metadata" poster="media/cycling-poster.webp">
+                  <source src="media/cycling.webm" type="video/webm" />
+                  <source src="media/cycling.mp4" type="video/mp4" />
+                </video>
+                <button class="video-play-btn absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Play video">
+                  <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-da="Landevejscykling">Road Cycling</p>
+            </div>
+            <!-- Tennis -->
+            <div class="group fade-in">
+              <div class="overflow-hidden bg-gray-100 rounded-lg aspect-[9/16]">
+                <img src="media/tennis.webp" srcset="media/tennis-480.webp 480w, media/tennis-768.webp 768w, media/tennis-1080.webp 1080w, media/tennis.webp 2000w" sizes="(max-width: 768px) 100vw, 33vw" alt="Tennis Player" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
+              </div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4">Tennis</p>
+            </div>
+            <!-- Cycling & Camping 2026 -->
+            <div class="group fade-in relative">
+              <div class="overflow-hidden bg-gray-100 rounded-lg relative">
+                <video class="w-full h-auto" autoplay playsinline muted loop preload="metadata" poster="media/cycling-camping-2026-poster.webp">
+                <source src="media/cycling-camping-2026.webm" type="video/webm" />
+                <source src="media/cycling-camping-2026.mp4" type="video/mp4" />
+              </video>
+                <button class="video-play-btn absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Play video">
+                  <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-da="Camping + mountainbike">Camping + Mountain Bike</p>
+            </div>
+          </div>
+          <!-- Hero: Softball (full width) -->
+          <div class="group fade-in">
+            <div class="overflow-hidden bg-gray-100 rounded-lg aspect-[16/9]">
+              <img src="media/softball-1080.webp" srcset="media/softball-480.webp 480w, media/softball-768.webp 768w, media/softball-1080.webp 1080w, media/softball-1600.webp 1600w, media/softball-2160.webp 2160w" sizes="(min-width: 1152px) 1104px, calc(100vw - 48px)" alt="Softball Team Winning Game" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
+            </div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-da="Softball-holdet">Softball Squad</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity Highlights (suppressed) -->
+    <section class="py-24 md:py-32 bg-brand-light" hidden>
+      <div class="max-w-6xl mx-auto px-6">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Aktivitetshøjdepunkter">Activity Highlights</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-da="Tallene taler.">By the numbers.</h2>
+        <div class="grid md:grid-cols-2 gap-px bg-gray-200">
+          <!-- 100 Mile Ride -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="text-2xl">&#x1F6B4;</span>
+              <h3 class="text-xl font-bold text-brand-dark tracking-tight" data-da="100 miles på cykel">Cycling 100 Miles</h3>
+            </div>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/60 mb-6" data-da="24. august 2024">August 24, 2024</p>
+            <div class="flex flex-wrap gap-6 md:gap-10">
+              <div>
+                <p class="text-3xl font-bold text-brand-dark font-mono">103.9</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1">Miles</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-brand-dark font-mono">4,836</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Stigning i fod">Feet Climbed</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-brand-dark font-mono">6h 21m</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Tid">Time</p>
+              </div>
+            </div>
+            <button type="button" data-strava-open="strava-modal-cycling" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2 mt-8">
+              <span data-da="Se på Strava">View on Strava</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </button>
+          </div>
+          <!-- Miami Run -->
+          <div class="bg-brand-light p-10 md:p-14 fade-in">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="text-2xl">&#x1F3C3;</span>
+              <h3 class="text-xl font-bold text-brand-dark tracking-tight" data-da="Løb i Miami">Running in Miami</h3>
+            </div>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/60 mb-6" data-da="24. juli 2025">July 24, 2025</p>
+            <div class="flex flex-wrap gap-6 md:gap-10">
+              <div>
+                <p class="text-3xl font-bold text-brand-dark font-mono">1.9</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1">Miles</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-brand-dark font-mono">38</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Stigning i fod">Feet Climbed</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-brand-dark font-mono">16m</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Tid">Time</p>
+              </div>
+            </div>
+            <button type="button" data-strava-open="strava-modal-running" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2 mt-8">
+              <span data-da="Se på Strava">View on Strava</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotes -->
+    <section class="py-24 md:py-32 bg-brand-dark">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/30 mb-6 fade-in" data-da="Ord, jeg lever efter">Words I Live By</p>
+        <div class="space-y-12">
+          <blockquote class="fade-in">
+            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-da="&quot;Sandheden er som poesi, og de fleste mennesker hader f***ing poesi.&quot;">"The truth is like poetry, and most people f***ing hate poetry."</p>
+          </blockquote>
+          <blockquote class="fade-in">
+            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-da="&quot;Folk kan kun møde dig lige så dybt, som de har mødt sig selv.&quot;">"People can only meet you as deeply as they've met themselves."</p>
+          </blockquote>
+          <blockquote class="fade-in">
+            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-da="&quot;Ikke alt fremskridt måles i vundet terræn; nogle gange måles fremskridt i undgåede tab.&quot;">"Not all progress is measured by ground gained; sometimes progress is measured by losses avoided."</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section class="py-24 md:py-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Inspiration">Research</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-6 fade-in" data-da="Det, der har formet mig.">What shaped me.</h2>
+        <p class="text-base text-brand-secondary leading-relaxed mb-16 max-w-2xl fade-in" data-da="Nogle få værker, der har formet min måde at tænke og bygge på: bøgerne, der har smedet min tankegang, og forskningen, der minder mig om, hvorfor nysgerrighed betyder noget.">A few works that shaped how I think and build: the books that forged my mindset and the research that reminds me why curiosity matters.</p>
+
+        <div class="grid lg:grid-cols-3 gap-px bg-gray-200">
+          <!-- Can't Hurt Me -->
+          <div class="bg-white p-10 md:p-12 fade-in">
+            <div class="overflow-hidden bg-gray-100 rounded-lg mb-8">
+              <img src="media/david-goggins.jpg" alt="David Goggins — Can't Hurt Me poster" class="w-full h-auto" loading="lazy" />
+            </div>
+            <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3">Can't Hurt Me</h3>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Hvordan denne bog ændrede mit liv og hjalp mig med at blive den, jeg er i dag.">How this book changed my life and helped me become the person I am today.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Den lærte mig at tage det fulde ansvar, opsøge ubehaget og opbygge daglig disciplin, selv når motivationen forsvinder. Tankegangen om bevidst at gøre svære ting og opbygge modstandskraft har hjulpet mig med at komme igennem modgang og holde fast i de vaner, der faktisk bringer mig fremad.">It taught me to take full ownership, lean into discomfort, and build daily discipline even when motivation fades. The mindset of doing hard things on purpose, building reps of resilience, helped me push through setbacks and stay consistent with the habits that actually move me forward.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Den skubbede mig til at sætte klare mål, holde styr på dagene og gøre arbejdet, selv når det er ubehageligt. Den enkle vane at møde op blev fundamentet for alt, hvad jeg bygger.">It pushed me to set clear goals, track the days, and do the work even when it is uncomfortable. The simple habit of showing up became the base for everything I build.</p>
+          </div>
+          <!-- Grit -->
+          <div class="bg-white p-10 md:p-12 fade-in">
+            <div class="overflow-hidden bg-gray-100 rounded-lg mb-8">
+              <img src="media/grit.jpg" alt="Grit — Angela Duckworth poster" class="w-full h-auto" loading="lazy" />
+            </div>
+            <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3">Grit</h3>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Den lærte mig, at hårdt arbejde altid slår ren begavelse, og at arbejde smart har hjulpet mit arbejde med at blive lagt mærke til.">It taught me that hard work will always beat being smart, and working smart has helped my work be noticed.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="At møde op, øve bevidst og holde fast i langsigtede mål gjorde forskellen. At kombinere vedholdenhed med smartere systemer som feedback-loops, klare prioriteter og akkumuleret indsats har fået mit arbejde til at skille sig ud og levere resultater, folk stoler på.">Showing up, practicing deliberately, and staying committed to long term goals made the difference. Pairing persistence with smarter systems like feedback loops, clear priorities, and compounding effort helped my work stand out and deliver results people trust.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Jeg lærte at dele store mål op i små skridt, gennemgå mit arbejde hver uge og blive ved, når fremgangen er langsom. Med tiden talte den akkumulerede indsats højere end talent.">I learned to break big goals into small steps, review my work weekly, and keep moving when progress is slow. Over time the compounding effort spoke louder than talent.</p>
+          </div>
+          <!-- James Webb -->
+          <div class="bg-white p-10 md:p-12 fade-in">
+            <div class="overflow-hidden bg-gray-100 rounded-lg mb-8">
+              <img src="media/james-webb.jpg" alt="James Webb Space Telescope" class="w-full h-auto" loading="lazy" />
+            </div>
+            <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3" data-da="James Webb-rumteleskopet">James Webb Space Telescope</h3>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Det minder mig om, hvor stort universet er, og hvor lille vores kendte verden i virkeligheden er.">It reminds me how big the universe is and how small our known world really is.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Det inspirerer mig til at drømme om, hvad der kan lade sig gøre, og holder min nysgerrighed i live.">It inspires me to dream about what can be and keeps my curiosity alive.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-6" data-da="Det sætter min hverdag i perspektiv og får mig til at sigte højere med de værktøjer, jeg har, til at bygge ting, der holder, og til at blive ved med at lære.">It puts my day in perspective, and it makes me want to aim higher with the tools I have, to build things that last and to keep learning.</p>
+            <a href="https://webb.nasa.gov/" target="_blank" rel="noopener noreferrer" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2">
+              <span data-da="Se forskning">View Research</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Strava Modal: Cycling 100 Miles -->
+  <div id="strava-modal-cycling" class="strava-modal fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-8" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="strava-modal-cycling-title">
+    <div class="relative bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <button type="button" data-strava-close class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-gray-100 flex items-center justify-center transition-colors" aria-label="Close">
+        <svg class="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="p-6 md:p-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-2" data-da="Strava-aktivitet">Strava Activity</p>
+        <h3 id="strava-modal-cycling-title" class="text-2xl font-bold text-brand-dark tracking-tight mb-6" data-da="100 miles på cykel &mdash; 24. august 2024">Cycling 100 Miles &mdash; August 24, 2024</h3>
+        <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="12232418064" data-style="standard" data-from-embed="false" data-token="5lMKtLEkZHTftf25OmLkpNLJgWqlVUtKxrHLhEKUW-E"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strava Modal: Running in Miami -->
+  <div id="strava-modal-running" class="strava-modal fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-8" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="strava-modal-running-title">
+    <div class="relative bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <button type="button" data-strava-close class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-gray-100 flex items-center justify-center transition-colors" aria-label="Close">
+        <svg class="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="p-6 md:p-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-2" data-da="Strava-aktivitet">Strava Activity</p>
+        <h3 id="strava-modal-running-title" class="text-2xl font-bold text-brand-dark tracking-tight mb-6" data-da="Løb i Miami &mdash; 24. juli 2025">Running in Miami &mdash; July 24, 2025</h3>
+        <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="15203618428" data-style="standard" data-from-embed="false" data-token="6hBBFaApX6WUoLULj_q9jZ5JmoazkaoXnE3GjTBZgQc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary">&copy; <span id="copyright-year"></span> Brayan Villatoro. <span data-da="Alle rettigheder forbeholdes.">All rights reserved.</span></p>
+        <div class="flex items-center gap-6">
+          <a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary hover:text-brand-dark transition-colors">LinkedIn</a>
+          <a href="https://github.com/brayanvillatoro" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary hover:text-brand-dark transition-colors">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var modals = document.querySelectorAll('.strava-modal');
+      if (!modals.length) return;
+      var openBtns = document.querySelectorAll('[data-strava-open]');
+      var scriptLoaded = false;
+
+      function openModal(modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (!scriptLoaded) {
+          var s = document.createElement('script');
+          s.src = 'https://strava-embeds.com/embed.js';
+          s.async = true;
+          document.body.appendChild(s);
+          scriptLoaded = true;
+        }
+      }
+      function closeModal(modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      openBtns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var target = document.getElementById(b.getAttribute('data-strava-open'));
+          if (target) openModal(target);
+        });
+      });
+      modals.forEach(function (modal) {
+        modal.querySelectorAll('[data-strava-close]').forEach(function (b) {
+          b.addEventListener('click', function () { closeModal(modal); });
+        });
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeModal(modal);
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        modals.forEach(function (modal) {
+          if (!modal.classList.contains('hidden')) closeModal(modal);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
