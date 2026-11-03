@@ -42,21 +42,31 @@
       <div class="flex items-center justify-between h-16">
         <a href="index.html" class="text-base font-semibold text-brand-dark">Brayan Villatoro</a>
         <nav class="hidden md:flex items-center gap-8">
-          <a href="index.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Hjem">Home</a>
-          <!-- <a href="lifestyle.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Livsstil">Lifestyle</a> -->
-          <!-- <a href="body-mind.html" class="nav-link active text-sm font-medium text-brand-dark" data-da="Krop &amp; Sind">Body &amp; Mind</a> -->
-          <a href="contact.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-da="Kontakt">Contact</a>
+          <a href="index.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-i18n="home">Home</a>
+          <!-- <a href="lifestyle.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-i18n="lifestyle">Lifestyle</a> -->
+          <!-- <a href="body-mind.html" class="nav-link active text-sm font-medium text-brand-dark" data-i18n="body-mind">Body &amp; Mind</a> -->
+          <a href="contact.html" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-dark transition-colors" data-i18n="contact">Contact</a>
         </nav>
         <div class="flex items-center gap-3">
-          <div class="lang-toggle flex items-center gap-2 text-[11px] font-semibold tracking-[0.1em]" role="group" aria-label="Language / Sprog">
+          <div class="lang-toggle flex items-center gap-2 text-[11px] font-semibold tracking-[0.1em]" role="group" aria-label="Language">
             <button type="button" data-lang-btn="en" class="lang-opt flex items-center gap-1.5" aria-label="English">
               <img src="media/us.png" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
-              EN
+              <span class="lang-code">EN</span>
             </button>
             <span aria-hidden="true" class="text-brand-secondary/40">/</span>
             <button type="button" data-lang-btn="da" class="lang-opt flex items-center gap-1.5" aria-label="Dansk">
               <img src="media/dk.png" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
-              DA
+              <span class="lang-code">DA</span>
+            </button>
+            <span aria-hidden="true" class="text-brand-secondary/40">/</span>
+            <button type="button" data-lang-btn="es" class="lang-opt flex items-center gap-1.5" aria-label="Español">
+              <img src="media/es.svg" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
+              <span class="lang-code">ES</span>
+            </button>
+            <span aria-hidden="true" class="text-brand-secondary/40">/</span>
+            <button type="button" data-lang-btn="fr" class="lang-opt flex items-center gap-1.5" aria-label="Français">
+              <img src="media/fr.svg" alt="" width="20" height="15" class="w-5 h-auto rounded-sm" />
+              <span class="lang-code">FR</span>
             </button>
           </div>
           <button id="mobile-menu-btn" class="md:hidden p-2 -mr-1 text-brand-dark" aria-label="Toggle menu">
@@ -68,10 +78,10 @@
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/60">
       <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col">
-        <a href="index.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Hjem">Home</a>
-        <!-- <a href="lifestyle.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Livsstil">Lifestyle</a> -->
-        <!-- <a href="body-mind.html" class="py-3 text-sm font-medium text-brand-dark border-b border-gray-100" data-da="Krop &amp; Sind">Body &amp; Mind</a> -->
-        <a href="contact.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-da="Kontakt">Contact</a>
+        <a href="index.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-i18n="home">Home</a>
+        <!-- <a href="lifestyle.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-i18n="lifestyle">Lifestyle</a> -->
+        <!-- <a href="body-mind.html" class="py-3 text-sm font-medium text-brand-dark border-b border-gray-100" data-i18n="body-mind">Body &amp; Mind</a> -->
+        <a href="contact.html" class="py-3 text-sm font-medium text-brand-secondary hover:text-brand-dark border-b border-gray-100" data-i18n="contact">Contact</a>
       </div>
     </div>
   </header>
@@ -82,7 +92,7 @@
     <section class="pt-36 md:pt-48 pb-24 md:pb-32">
       <div class="max-w-6xl mx-auto px-6">
         <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in">Fitness</p>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-da="Hold dig i bevægelse.">Stay moving.</h2>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-i18n="stay-moving">Stay moving.</h2>
         <div class="space-y-8">
           <!-- Top row: 3 portrait media -->
           <div class="grid md:grid-cols-3 gap-8">
@@ -97,7 +107,7 @@
                   <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </button>
               </div>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-da="Landevejscykling">Road Cycling</p>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-i18n="road-cycling">Road Cycling</p>
             </div>
             <!-- Tennis -->
             <div class="group fade-in">
@@ -117,7 +127,7 @@
                   <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </button>
               </div>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-da="Camping + mountainbike">Camping + Mountain Bike</p>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-i18n="camping-mountain-bike">Camping + Mountain Bike</p>
             </div>
           </div>
           <!-- Hero: Softball (full width) -->
@@ -125,7 +135,7 @@
             <div class="overflow-hidden bg-gray-100 rounded-lg aspect-[16/9]">
               <img src="media/softball-1080.webp" srcset="media/softball-480.webp 480w, media/softball-768.webp 768w, media/softball-1080.webp 1080w, media/softball-1600.webp 1600w, media/softball-2160.webp 2160w" sizes="(min-width: 1152px) 1104px, calc(100vw - 48px)" alt="Softball Team Winning Game" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
             </div>
-            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-da="Softball-holdet">Softball Squad</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-secondary mt-4" data-i18n="softball-squad">Softball Squad</p>
           </div>
         </div>
       </div>
@@ -134,16 +144,16 @@
     <!-- Activity Highlights (suppressed) -->
     <section class="py-24 md:py-32 bg-brand-light" hidden>
       <div class="max-w-6xl mx-auto px-6">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Aktivitetshøjdepunkter">Activity Highlights</p>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-da="Tallene taler.">By the numbers.</h2>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-i18n="activity-highlights">Activity Highlights</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-16 fade-in" data-i18n="by-the-numbers">By the numbers.</h2>
         <div class="grid md:grid-cols-2 gap-px bg-gray-200">
           <!-- 100 Mile Ride -->
           <div class="bg-brand-light p-10 md:p-14 fade-in">
             <div class="flex items-center gap-3 mb-6">
               <span class="text-2xl">&#x1F6B4;</span>
-              <h3 class="text-xl font-bold text-brand-dark tracking-tight" data-da="100 miles på cykel">Cycling 100 Miles</h3>
+              <h3 class="text-xl font-bold text-brand-dark tracking-tight" data-i18n="cycling-100-miles">Cycling 100 Miles</h3>
             </div>
-            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/60 mb-6" data-da="24. august 2024">August 24, 2024</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/60 mb-6" data-i18n="august-24-2024">August 24, 2024</p>
             <div class="flex flex-wrap gap-6 md:gap-10">
               <div>
                 <p class="text-3xl font-bold text-brand-dark font-mono">103.9</p>
@@ -151,15 +161,15 @@
               </div>
               <div>
                 <p class="text-3xl font-bold text-brand-dark font-mono">4,836</p>
-                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Stigning i fod">Feet Climbed</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-i18n="feet-climbed">Feet Climbed</p>
               </div>
               <div>
                 <p class="text-3xl font-bold text-brand-dark font-mono">6h 21m</p>
-                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Tid">Time</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-i18n="time">Time</p>
               </div>
             </div>
             <button type="button" data-strava-open="strava-modal-cycling" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2 mt-8">
-              <span data-da="Se på Strava">View on Strava</span>
+              <span data-i18n="view-on-strava">View on Strava</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </button>
           </div>
@@ -167,9 +177,9 @@
           <div class="bg-brand-light p-10 md:p-14 fade-in">
             <div class="flex items-center gap-3 mb-6">
               <span class="text-2xl">&#x1F3C3;</span>
-              <h3 class="text-xl font-bold text-brand-dark tracking-tight" data-da="Løb i Miami">Running in Miami</h3>
+              <h3 class="text-xl font-bold text-brand-dark tracking-tight" data-i18n="running-in-miami">Running in Miami</h3>
             </div>
-            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/60 mb-6" data-da="24. juli 2025">July 24, 2025</p>
+            <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary/60 mb-6" data-i18n="july-24-2025">July 24, 2025</p>
             <div class="flex flex-wrap gap-6 md:gap-10">
               <div>
                 <p class="text-3xl font-bold text-brand-dark font-mono">1.9</p>
@@ -177,15 +187,15 @@
               </div>
               <div>
                 <p class="text-3xl font-bold text-brand-dark font-mono">38</p>
-                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Stigning i fod">Feet Climbed</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-i18n="feet-climbed">Feet Climbed</p>
               </div>
               <div>
                 <p class="text-3xl font-bold text-brand-dark font-mono">16m</p>
-                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-da="Tid">Time</p>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary mt-1" data-i18n="time">Time</p>
               </div>
             </div>
             <button type="button" data-strava-open="strava-modal-running" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2 mt-8">
-              <span data-da="Se på Strava">View on Strava</span>
+              <span data-i18n="view-on-strava">View on Strava</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </button>
           </div>
@@ -196,16 +206,16 @@
     <!-- Quotes -->
     <section class="py-24 md:py-32 bg-brand-dark">
       <div class="max-w-4xl mx-auto px-6">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/30 mb-6 fade-in" data-da="Ord, jeg lever efter">Words I Live By</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/30 mb-6 fade-in" data-i18n="words-i-live-by">Words I Live By</p>
         <div class="space-y-12">
           <blockquote class="fade-in">
-            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-da="&quot;Sandheden er som poesi, og de fleste mennesker hader f***ing poesi.&quot;">"The truth is like poetry, and most people f***ing hate poetry."</p>
+            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-i18n="the-truth-is-like-poetry">"The truth is like poetry, and most people f***ing hate poetry."</p>
           </blockquote>
           <blockquote class="fade-in">
-            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-da="&quot;Folk kan kun møde dig lige så dybt, som de har mødt sig selv.&quot;">"People can only meet you as deeply as they've met themselves."</p>
+            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-i18n="people-can-only-meet-you">"People can only meet you as deeply as they've met themselves."</p>
           </blockquote>
           <blockquote class="fade-in">
-            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-da="&quot;Ikke alt fremskridt måles i vundet terræn; nogle gange måles fremskridt i undgåede tab.&quot;">"Not all progress is measured by ground gained; sometimes progress is measured by losses avoided."</p>
+            <p class="text-xl md:text-2xl text-white/70 leading-relaxed font-light" data-i18n="not-all-progress-is-measured">"Not all progress is measured by ground gained; sometimes progress is measured by losses avoided."</p>
           </blockquote>
         </div>
       </div>
@@ -214,9 +224,9 @@
     <!-- Research -->
     <section class="py-24 md:py-32">
       <div class="max-w-6xl mx-auto px-6">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-da="Inspiration">Research</p>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-6 fade-in" data-da="Det, der har formet mig.">What shaped me.</h2>
-        <p class="text-base text-brand-secondary leading-relaxed mb-16 max-w-2xl fade-in" data-da="Nogle få værker, der har formet min måde at tænke og bygge på: bøgerne, der har smedet min tankegang, og forskningen, der minder mig om, hvorfor nysgerrighed betyder noget.">A few works that shaped how I think and build: the books that forged my mindset and the research that reminds me why curiosity matters.</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-6 fade-in" data-i18n="research">Research</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark tracking-tight leading-[0.95] mb-6 fade-in" data-i18n="what-shaped-me">What shaped me.</h2>
+        <p class="text-base text-brand-secondary leading-relaxed mb-16 max-w-2xl fade-in" data-i18n="a-few-works-that-shaped">A few works that shaped how I think and build: the books that forged my mindset and the research that reminds me why curiosity matters.</p>
 
         <div class="grid lg:grid-cols-3 gap-px bg-gray-200">
           <!-- Can't Hurt Me -->
@@ -225,9 +235,9 @@
               <img src="media/david-goggins.jpg" alt="David Goggins — Can't Hurt Me poster" class="w-full h-auto" loading="lazy" />
             </div>
             <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3">Can't Hurt Me</h3>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Hvordan denne bog ændrede mit liv og hjalp mig med at blive den, jeg er i dag.">How this book changed my life and helped me become the person I am today.</p>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Den lærte mig at tage det fulde ansvar, opsøge ubehaget og opbygge daglig disciplin, selv når motivationen forsvinder. Tankegangen om bevidst at gøre svære ting og opbygge modstandskraft har hjulpet mig med at komme igennem modgang og holde fast i de vaner, der faktisk bringer mig fremad.">It taught me to take full ownership, lean into discomfort, and build daily discipline even when motivation fades. The mindset of doing hard things on purpose, building reps of resilience, helped me push through setbacks and stay consistent with the habits that actually move me forward.</p>
-            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Den skubbede mig til at sætte klare mål, holde styr på dagene og gøre arbejdet, selv når det er ubehageligt. Den enkle vane at møde op blev fundamentet for alt, hvad jeg bygger.">It pushed me to set clear goals, track the days, and do the work even when it is uncomfortable. The simple habit of showing up became the base for everything I build.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-i18n="how-this-book-changed-my">How this book changed my life and helped me become the person I am today.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-i18n="it-taught-me-to-take">It taught me to take full ownership, lean into discomfort, and build daily discipline even when motivation fades. The mindset of doing hard things on purpose, building reps of resilience, helped me push through setbacks and stay consistent with the habits that actually move me forward.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-i18n="it-pushed-me-to-set">It pushed me to set clear goals, track the days, and do the work even when it is uncomfortable. The simple habit of showing up became the base for everything I build.</p>
           </div>
           <!-- Grit -->
           <div class="bg-white p-10 md:p-12 fade-in">
@@ -235,21 +245,21 @@
               <img src="media/grit.jpg" alt="Grit — Angela Duckworth poster" class="w-full h-auto" loading="lazy" />
             </div>
             <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3">Grit</h3>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Den lærte mig, at hårdt arbejde altid slår ren begavelse, og at arbejde smart har hjulpet mit arbejde med at blive lagt mærke til.">It taught me that hard work will always beat being smart, and working smart has helped my work be noticed.</p>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="At møde op, øve bevidst og holde fast i langsigtede mål gjorde forskellen. At kombinere vedholdenhed med smartere systemer som feedback-loops, klare prioriteter og akkumuleret indsats har fået mit arbejde til at skille sig ud og levere resultater, folk stoler på.">Showing up, practicing deliberately, and staying committed to long term goals made the difference. Pairing persistence with smarter systems like feedback loops, clear priorities, and compounding effort helped my work stand out and deliver results people trust.</p>
-            <p class="text-sm text-brand-secondary leading-relaxed" data-da="Jeg lærte at dele store mål op i små skridt, gennemgå mit arbejde hver uge og blive ved, når fremgangen er langsom. Med tiden talte den akkumulerede indsats højere end talent.">I learned to break big goals into small steps, review my work weekly, and keep moving when progress is slow. Over time the compounding effort spoke louder than talent.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-i18n="it-taught-me-that-hard">It taught me that hard work will always beat being smart, and working smart has helped my work be noticed.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-i18n="showing-up-practicing-deliberately-and">Showing up, practicing deliberately, and staying committed to long term goals made the difference. Pairing persistence with smarter systems like feedback loops, clear priorities, and compounding effort helped my work stand out and deliver results people trust.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed" data-i18n="i-learned-to-break-big">I learned to break big goals into small steps, review my work weekly, and keep moving when progress is slow. Over time the compounding effort spoke louder than talent.</p>
           </div>
           <!-- James Webb -->
           <div class="bg-white p-10 md:p-12 fade-in">
             <div class="overflow-hidden bg-gray-100 rounded-lg mb-8">
               <img src="media/james-webb.jpg" alt="James Webb Space Telescope" class="w-full h-auto" loading="lazy" />
             </div>
-            <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3" data-da="James Webb-rumteleskopet">James Webb Space Telescope</h3>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Det minder mig om, hvor stort universet er, og hvor lille vores kendte verden i virkeligheden er.">It reminds me how big the universe is and how small our known world really is.</p>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-da="Det inspirerer mig til at drømme om, hvad der kan lade sig gøre, og holder min nysgerrighed i live.">It inspires me to dream about what can be and keeps my curiosity alive.</p>
-            <p class="text-sm text-brand-secondary leading-relaxed mb-6" data-da="Det sætter min hverdag i perspektiv og får mig til at sigte højere med de værktøjer, jeg har, til at bygge ting, der holder, og til at blive ved med at lære.">It puts my day in perspective, and it makes me want to aim higher with the tools I have, to build things that last and to keep learning.</p>
+            <h3 class="text-xl font-bold text-brand-dark tracking-tight mb-3" data-i18n="james-webb-space-telescope">James Webb Space Telescope</h3>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-i18n="it-reminds-me-how-big">It reminds me how big the universe is and how small our known world really is.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-3" data-i18n="it-inspires-me-to-dream">It inspires me to dream about what can be and keeps my curiosity alive.</p>
+            <p class="text-sm text-brand-secondary leading-relaxed mb-6" data-i18n="it-puts-my-day-in">It puts my day in perspective, and it makes me want to aim higher with the tools I have, to build things that last and to keep learning.</p>
             <a href="https://webb.nasa.gov/" target="_blank" rel="noopener noreferrer" class="case-link text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-dark inline-flex items-center gap-2">
-              <span data-da="Se forskning">View Research</span>
+              <span data-i18n="view-research">View Research</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
@@ -266,8 +276,8 @@
         <svg class="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
       <div class="p-6 md:p-8">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-2" data-da="Strava-aktivitet">Strava Activity</p>
-        <h3 id="strava-modal-cycling-title" class="text-2xl font-bold text-brand-dark tracking-tight mb-6" data-da="100 miles på cykel &mdash; 24. august 2024">Cycling 100 Miles &mdash; August 24, 2024</h3>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-2" data-i18n="strava-activity">Strava Activity</p>
+        <h3 id="strava-modal-cycling-title" class="text-2xl font-bold text-brand-dark tracking-tight mb-6" data-i18n="cycling-100-miles-august-24">Cycling 100 Miles &mdash; August 24, 2024</h3>
         <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="12232418064" data-style="standard" data-from-embed="false" data-token="5lMKtLEkZHTftf25OmLkpNLJgWqlVUtKxrHLhEKUW-E"></div>
       </div>
     </div>
@@ -280,8 +290,8 @@
         <svg class="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
       <div class="p-6 md:p-8">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-2" data-da="Strava-aktivitet">Strava Activity</p>
-        <h3 id="strava-modal-running-title" class="text-2xl font-bold text-brand-dark tracking-tight mb-6" data-da="Løb i Miami &mdash; 24. juli 2025">Running in Miami &mdash; July 24, 2025</h3>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-secondary mb-2" data-i18n="strava-activity">Strava Activity</p>
+        <h3 id="strava-modal-running-title" class="text-2xl font-bold text-brand-dark tracking-tight mb-6" data-i18n="running-in-miami-july-24">Running in Miami &mdash; July 24, 2025</h3>
         <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="15203618428" data-style="standard" data-from-embed="false" data-token="6hBBFaApX6WUoLULj_q9jZ5JmoazkaoXnE3GjTBZgQc"></div>
       </div>
     </div>
@@ -291,7 +301,7 @@
   <footer class="bg-white border-t border-gray-200 py-10">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary">&copy; <span id="copyright-year"></span> Brayan Villatoro. <span data-da="Alle rettigheder forbeholdes.">All rights reserved.</span></p>
+        <p class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary">&copy; <span id="copyright-year"></span> Brayan Villatoro. <span data-i18n="all-rights-reserved">All rights reserved.</span></p>
         <div class="flex items-center gap-6">
           <a href="https://www.linkedin.com/in/brayan-villatoro/" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary hover:text-brand-dark transition-colors">LinkedIn</a>
           <a href="https://github.com/brayanvillatoro" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-[0.15em] text-brand-secondary hover:text-brand-dark transition-colors">GitHub</a>
