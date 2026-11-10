@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Redirect online visitors to the home page; local/downloaded copies (file://) still open normally -->
+  <script>
+    if (location.protocol === "http:" || location.protocol === "https:") {
+      location.replace("/");
+    }
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VGZNE3TWG"></script>
   <script>
